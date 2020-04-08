@@ -13,8 +13,14 @@ export default {
   name: "App",
   data() {
     return {
-      mapsKey: process.env.VUE_APP_MAPS_KEY
-    }
+      mapsKey: process.env.VUE_APP_MAPS_KEY,
+    };
+  },
+  mounted() {
+    Promise.all([
+      this.$store.dispatch("bindUsersRef"),
+      this.$store.dispatch("bindPinsRef")
+    ]);
   },
   components: { Map }
 };
