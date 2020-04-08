@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import { TimeStamp, GeoPoint } from 'firebase/firestore'
 
 Vue.use(Vuex)
 
@@ -19,22 +20,22 @@ const db = firebase.initializeApp({
 
 export default new Vuex.Store({
   state: {
-    origins: [],
-    destinations: [],
+    users: [],
+    pins: [],
   },
 
   mutations: vuexfireMutations,
 
   actions: {
-    bindOriginsRef: firestoreAction(context => {
+    bindUsersRef: firestoreAction(context => {
       // context contains all original properties like commit, state, etc
       // and adds `bindFirestoreRef` and `unbindFirestoreRef`
       // we return the promise returned by `bindFirestoreRef` that will
       // resolve once data is ready
-      return context.bindFirestoreRef('origins', db.collection('origins'))
+      return context.bindFirestoreRef('users', db.collection('users'))
     }),
-    bindDestinationsRef: firestoreAction(context => {
-      return context.bindFirestoreRef('destinations', db.collection('destinations'))
+    bindPinsRef: firestoreAction(context => {
+      return context.bindFirestoreRef('pins', db.collection('pins'))
     }),
   },
 })
