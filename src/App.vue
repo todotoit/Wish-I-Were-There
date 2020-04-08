@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <div class="overlay center">
-      <router-view />
+      <router-view v-show="false" />
     </div>
     <Map :api-key="mapsKey" />
   </div>
 </template>
 
 <script>
-import Map from "@/components/Map";
+import Map from "@/components/Map/Map";
 export default {
   name: "App",
   data() {
@@ -16,15 +16,11 @@ export default {
       mapsKey: process.env.VUE_APP_MAPS_KEY
     }
   },
-  mounted() {
-    console.log(process.env)
-  },
   components: { Map }
 };
 </script>
 
 <style lang="scss">
-/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
