@@ -1,11 +1,17 @@
 import Bubble from './bubble'
+import BubbleSVG from './bubble-svg'
 
 export function createBubble(map, center) {
     createOverlayProto()
-
-    const b = new google.maps.LatLngBounds(
-        new google.maps.LatLng(center.x, center.y),
-        new google.maps.LatLng(center.x + 0.01, center.y + 0.01));
+    const c = new google.maps.LatLng(center.x, center.y)
+    const circle = new google.maps.Circle({
+        map: map,
+        center: c,
+        radius: 200,
+        strokeColor: 'transparent',
+        fillColor: 'transparent'
+    });
+    const b = circle.getBounds();
     return new BubbleOverlay(b, map);
 }
 
@@ -24,7 +30,7 @@ function createOverlayProto() {
     BubbleOverlay.prototype.onAdd = function () {
         var div = document.createElement('div');
         div.classList.add('bubble-container');
-        this.bubble_ = new Bubble(div)
+        this.bubble_ = new BubbleSVG(div)
         this.div_ = div;
         var panes = this.getPanes();
         panes.overlayLayer.appendChild(div);
@@ -49,6 +55,7 @@ function createOverlayProto() {
         div.style.top = ne.y + 'px';
         div.style.width = (ne.x - sw.x) + 'px';
         div.style.height = (sw.y - ne.y) + 'px';
+        this.bubble_.setBounds(this.div_.getBoundingClientRect()) 
     };
 }
 
