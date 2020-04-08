@@ -1,13 +1,14 @@
 <template>
   <div class="map-container">
+    <input ref="search-location" type="text" id="search-location" placeholder="Search by location" />
     <div id="map" ref="map"></div>
-    <input id="find_place" type="text" placeholder="Search by location" />
   </div>
 </template>
 
 <script>
 import styles from "./map-styles.js";
 import { createBubble } from "./overlay";
+import { getNewItems, getRemovedItems } from "@/utils";
 
 export default {
   name: "Map",
@@ -17,9 +18,30 @@ export default {
       required: true
     }
   },
+  watch: {
+    users(val, oldVal) {
+      if (!this.ready) return;
+      const newUsers = getNewItems(val, oldVal);
+      newUsers.forEach(user => this.createUserBubble(user));
+    },
+    pins(val, oldVal) {
+      if (!this.ready) return;
+      const newPins = getNewItems(val, oldVal);
+      newPins.forEach(pin => this.createPin(pin));
+    }
+  },
+  computed: {
+    users() {
+      return this.$store.state.users.slice();
+    },
+    pins() {
+      return this.$store.state.pins.slice();
+    }
+  },
   data() {
     return {
-      pos: {
+      ready: false,
+      startPos: {
         lat: 45.060285,
         lng: 7.680763
       }
@@ -40,25 +62,43 @@ export default {
   methods: {
     init() {
       this.map = new google.maps.Map(this.$refs.map, {
-        center: { lat: this.pos.lat, lng: this.pos.lng },
+        center: { lat: this.startPos.lat, lng: this.startPos.lng },
         zoom: 15,
         mapTypeId: "roadmap",
         disableDefaultUI: true,
         styles: styles["todo"]
       });
-      this.createBubbles();
-      this.searchLocation(this.map);
+      this.setupSearch(this.map);
+      this.ready = true
     },
-    searchLocation(map) {
-      const input = document.getElementById("find_place");
+    createUserBubble(user) {
+      const coordinates = user.coordinates;
+      const marker = new google.maps.Marker({
+        position: { lat: coordinates.Wa, lng: coordinates.za },
+        map: this.map
+      });
+      const overlay = createBubble(this.map, {
+        lat: coordinates.Wa,
+        lng: coordinates.za
+      });
+      user.marker = marker;
+    },
+    createPin(pin) {
+      const coordinates = pin.coordinates;
+      const marker = new google.maps.Marker({
+        position: { lat: coordinates.Wa, lng: coordinates.za },
+        map: this.map
+      });
+      const infowindow = new google.maps.InfoWindow({
+        content: pin.message,
+        maxWidth: 200
+      });
+    },
+    setupSearch() {
+      const input = this.$refs["search-location"];
       const autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.bindTo("bounds", this.map);
 
-      // Bind the map's bounds (viewport) property to the autocomplete object,
-      // so that the autocomplete requests use the current map bounds for the
-      // bounds option in the request.
-      autocomplete.bindTo("bounds", map);
-
-      // Set the data fields to return when the user selects a place.
       autocomplete.setFields([
         "address_components",
         "geometry",
@@ -66,37 +106,17 @@ export default {
         "name"
       ]);
 
-      autocomplete.addListener("place_changed", function() {
-        var place = autocomplete.getPlace();
-        console.log(place)
-        if (!place.geometry) {
-          window.alert("No details available for input: '" + place.name + "'");
+      autocomplete.addListener("place_changed", () => {
+        const place = autocomplete.getPlace();
+        if (!place || !place.geometry) {
           return;
         }
-        // If the place has a geometry, then present it on a map.
         if (place.geometry.viewport) {
-          map.fitBounds(place.geometry.viewport);
+          this.map.fitBounds(place.geometry.viewport);
         } else {
-          map.setCenter(place.geometry.location);
-          map.setZoom(17); // Why 17? Because it looks good.
+          this.map.setCenter(place.geometry.location);
+          this.map.setZoom(17);
         }
-      });
-    },
-    createBubbles() {
-      const marker = new google.maps.Marker({
-        position: { lat: this.pos.lat, lng: this.pos.lng },
-        map: this.map
-      });
-      const infowindow = new google.maps.InfoWindow({
-        content: `We envision, design and deliver unexpected experiences, so that people can live valuable, transformative moments`,
-        maxWidth: 200
-      });
-      marker.addListener("click", function() {
-        infowindow.open(this.map, marker);
-      });
-      const overlay = createBubble(this.map, {
-        x: this.pos.lat,
-        y: this.pos.lng
       });
     }
   }
@@ -108,7 +128,7 @@ export default {
 #map {
   height: 100%;
 }
-#find_place {
+#search-location {
   position: fixed;
   top: 20px;
   left: 50%;

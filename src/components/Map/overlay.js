@@ -3,7 +3,7 @@ import BubbleSVG from './bubble-svg'
 
 export function createBubble(map, center) {
     createOverlayProto()
-    const c = new google.maps.LatLng(center.x, center.y)
+    const c = new google.maps.LatLng(center.lat, center.lng)
     const circle = new google.maps.Circle({
         map: map,
         center: c,
