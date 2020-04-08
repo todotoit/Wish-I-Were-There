@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 
 const db = firebase.initializeApp({
-  apiKey: "AIzaSyCp7iVOxs-Glz355NA_FHG0LZBrnsyaOMA",
+  apiKey: process.env.VUE_APP_FIREBASE_KEY,
   authDomain: "mappette-2f68a.firebaseapp.com",
   databaseURL: "https://mappette-2f68a.firebaseio.com",
   projectId: "mappette-2f68a",
@@ -18,20 +18,23 @@ const db = firebase.initializeApp({
 }).firestore()
 
 export default new Vuex.Store({
-  // setup the reactive todos property
   state: {
     origins: [],
+    destinations: [],
   },
 
   mutations: vuexfireMutations,
 
   actions: {
-    bindTodosRef: firestoreAction(context => {
+    bindOriginsRef: firestoreAction(context => {
       // context contains all original properties like commit, state, etc
       // and adds `bindFirestoreRef` and `unbindFirestoreRef`
       // we return the promise returned by `bindFirestoreRef` that will
       // resolve once data is ready
       return context.bindFirestoreRef('origins', db.collection('origins'))
+    }),
+    bindDestinationsRef: firestoreAction(context => {
+      return context.bindFirestoreRef('destinations', db.collection('destinations'))
     }),
   },
 })
