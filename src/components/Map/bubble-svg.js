@@ -6,7 +6,7 @@ export default class BubbleSVG {
         this.r = 50
         this.dots = []
         this.animate = false
-        this.showBounds = false
+        this.showBounds = true
         this.canvas = document.createElementNS(svgns, 'svg')
         this.canvas.setAttribute('viewBox', '0 0 100 100')
         this.canvas.setAttribute('preserveAspectRatio', 'none')
@@ -24,7 +24,6 @@ export default class BubbleSVG {
     setBounds(bounds) {
         this.canvas.setAttribute('width', bounds.width)
         this.canvas.setAttribute('height', bounds.height)
-        console.log(this.canvas)
     }
     getPointInsideBubble(padding) {
         var pt_angle = Math.random() * 2 * Math.PI;
