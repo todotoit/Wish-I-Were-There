@@ -10,6 +10,12 @@ import SearchLocation from "@/components/SearchLocation";
 export default {
   name: "MarkerPlacer",
   components: { SearchLocation },
+  props: {
+    type: {
+      type: String,
+      default: "bubble"
+    }
+  },
   computed: {
     map() {
       return this.$store.state.map;
@@ -19,10 +25,20 @@ export default {
     }
   },
   mounted() {
+    let url;
+    if (this.type === "bubble") url = require("@/assets/icons/bubble.svg");
+    else url = require("@/assets/icons/pin.svg");
+    const img = {
+      url,
+      size: new google.maps.Size(25, 25),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(12.5, 12.5)
+    };
     const marker = new google.maps.Marker({
       position: this.map.getCenter(),
       map: this.map,
-      draggable: true
+      draggable: true,
+      icon: img
     });
     this.$store.commit("SET_MARKER", marker);
     google.maps.event.addListener(this.map, "click", event => {
@@ -30,7 +46,7 @@ export default {
     });
   },
   destroyed() {
-    google.maps.event.clearListeners(this.map, 'click');
+    google.maps.event.clearListeners(this.map, "click");
     this.marker.setMap(null);
   },
   methods: {

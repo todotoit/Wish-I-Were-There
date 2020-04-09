@@ -50,12 +50,16 @@ export default {
       return this.$store.state.map;
     }
   },
+  mounted() {
+    this.$store.commit('SET_PLACING', true)
+  },
   methods: {
     createNewBubble() {
       this.$store
         .dispatch("createNewUser", { name: this.name, marker: this.marker })
         .then(r => {
           console.log(r);
+          this.$store.commit('SET_PLACING', false)
           this.$store.commit("SET_USER", r);
           this.map.setCenter(r.marker.getPosition());
           this.map.setZoom(17);

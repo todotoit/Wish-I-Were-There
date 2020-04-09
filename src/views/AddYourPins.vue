@@ -1,24 +1,11 @@
 <template>
   <div class="pin-placer panel">
     <div class="pin-editor editor">
-      <template v-if="!placing">
+      <template v-if="!addingMessage">
         <header>
           <h3>What’s the first place you’d like to go to, when all of this is over?</h3>
-          <p>In such times of restlessness, where catching a breath while going grocery shopping becomes the highlight of the day, we all dream of the places we’d like to get to, as soon as the quarantine is over. Explore the map and pinpoint your location and why that is meaningful to you – help us dream of a collective daydream.</p>
-        </header>
-        <footer>
-          <p>
-            <button @click="placing = true">Place your pin</button>
-          </p>
-          <p>
-            <button @click="$router.push('/explore')">Explore the map</button>
-          </p>
-        </footer>
-      </template>
-      <template v-else-if="!addingMessage">
-        <header>
-          <h3>ADD A DAYDREAM PIN</h3>
-          <MarkerPlacer />
+          <p>Explore the map and pinpoint your location and why that is meaningful to you – help us dream of a collective daydream.</p>
+          <MarkerPlacer type="pin" />
         </header>
         <footer>
           <p>
@@ -84,6 +71,9 @@ export default {
     },
     userPin() {
       return this.$store.state.userPins;
+    },
+    placing() {
+      return this.$store.state.placing;
     }
   },
   mounted() {
@@ -100,6 +90,7 @@ export default {
         .then(r => {
           console.log(r);
           this.$store.commit("SET_USER_PINS", r);
+          this.$store.commit("SET_PLACING", false);
           this.map.setCenter(r.marker.getPosition());
         });
     },
@@ -122,7 +113,7 @@ export default {
   pointer-events: none;
 }
 textarea {
-    width: 20rem;
-    height: 20rem;
+  width: 20rem;
+  height: 20rem;
 }
 </style>
