@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-const { TimeStamp, GeoPoint } = firebase.firestore
+const { GeoPoint } = firebase.firestore
 
 Vue.use(Vuex)
 
@@ -26,7 +26,8 @@ export default new Vuex.Store({
     marker: null,
     ready: false,
     user: null,
-    userPins: null
+    userPins: null,
+    placing: false
   },
 
   mutations: {
@@ -45,6 +46,9 @@ export default new Vuex.Store({
     },
     SET_USER_PINS(state, data) {
       state.userPins = data
+    },
+    SET_PLACING(state, data) {
+      state.placing = data
     }
   },
 
