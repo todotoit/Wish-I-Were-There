@@ -1,7 +1,10 @@
 <template>
   <div class="home panel">
     <h2>Mappette</h2>
-    <p>Intro</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam suscipit congue dolor faucibus varius. Nam vel urna augue. Duis et accumsan quam. Nunc scelerisque tincidunt felis. Fusce vel facilisis ex, ut scelerisque nulla. Nunc sagittis, arcu in posuere suscipit, neque erat scelerisque tellus, elementum posuere nisi mi sit amet turpis. Proin sagittis iaculis urna ut hendrerit. Sed tempus id metus at lacinia. Ut id tortor vel metus rutrum volutpat.</p>
+    <p>
+      <button @click="$router.push('/bubble')">Find your bubble</button>
+    </p>
   </div>
 </template>
 
