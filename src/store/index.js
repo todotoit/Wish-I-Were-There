@@ -47,13 +47,13 @@ export default new Vuex.Store({
     bindPinsRef: firestoreAction(context => {
       return context.bindFirestoreRef('pins', db.collection('pins'))
     }),
-    createNewUser: firestoreAction((context, marker) => {
+    createNewUser: firestoreAction((context, user) => {
       // return the promise so we can await the write
-      const coordinates = marker.getPosition()
+      const coordinates = user.marker.getPosition()
       return db.collection('users').add({
         coordinates: new GeoPoint(coordinates.lat(), coordinates.lng()),
         created: firebase.firestore.FieldValue.serverTimestamp(),
-        name: ''
+        name: user.name
       })
     })
   },
