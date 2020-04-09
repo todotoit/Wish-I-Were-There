@@ -153,7 +153,6 @@ export default {
     left: 0;
     transition: opacity 0.5s;
     animation: spin 54s linear infinite;
-    mix-blend-mode: luminosity;
     opacity: .5;
     &.hidden {
       opacity: 0;
