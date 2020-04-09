@@ -33,9 +33,14 @@ h3 {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    user-select: none;
     header,
     footer {
-        pointer-events: all;
         padding: 1rem;
+        button,
+        input,
+        textarea {
+            pointer-events: all;
+        }
     }
 }

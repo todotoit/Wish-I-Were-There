@@ -63,7 +63,9 @@ export default {
       const coordinates = user.coordinates;
       const img = {
         url: require("@/assets/icons/bubble.svg"),
-        size: new google.maps.Size(25, 25)
+        size: new google.maps.Size(25, 25),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(12.5, 12.5)
       };
       const marker = new google.maps.Marker({
         position: { lat: coordinates.Wa, lng: coordinates.za },
