@@ -1,6 +1,6 @@
 <template>
-  <div class="map-container">
-    <input ref="search-location" type="text" id="search-location" placeholder="Search by location" />
+  <div class="map-container" :class="{active: isExplore}">
+    <SearchLocation id="search-location" v-if="ready && isExplore" />
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -9,9 +9,11 @@
 import styles from "./map-styles.js";
 import { createBubble } from "./overlay";
 import { getNewItems, getRemovedItems } from "@/utils";
+import SearchLocation from "@/components/SearchLocation.vue";
 
 export default {
   name: "Map",
+  components: { SearchLocation },
   props: {
     apiKey: {
       type: String,
@@ -36,11 +38,16 @@ export default {
     },
     pins() {
       return this.$store.state.pins.slice();
+    },
+    ready() {
+      return this.$store.state.ready;
+    },
+    isExplore() {
+      return this.$route.path === "/explore";
     }
   },
   data() {
     return {
-      ready: false,
       startPos: {
         lat: 45.060285,
         lng: 7.680763
@@ -52,7 +59,6 @@ export default {
     let script = document.createElement("script");
     script.classList.add("gm-src");
     script.onload = () => {
-      this.$emit("ready");
       this.init();
     };
     script.async = true;
@@ -66,10 +72,11 @@ export default {
         zoom: 15,
         mapTypeId: "roadmap",
         disableDefaultUI: true,
-        styles: styles["todo"]
+        styles: styles["todov2"]
       });
-      this.setupSearch(this.map);
-      this.ready = true
+      this.$store.commit("SET_MAP", this.map);
+      this.$store.commit("SET_READY", true);
+      console.log(this.map);
     },
     createUserBubble(user) {
       const coordinates = user.coordinates;
@@ -93,40 +100,16 @@ export default {
         content: pin.message,
         maxWidth: 200
       });
-    },
-    setupSearch() {
-      const input = this.$refs["search-location"];
-      const autocomplete = new google.maps.places.Autocomplete(input);
-      autocomplete.bindTo("bounds", this.map);
-
-      autocomplete.setFields([
-        "address_components",
-        "geometry",
-        "icon",
-        "name"
-      ]);
-
-      autocomplete.addListener("place_changed", () => {
-        const place = autocomplete.getPlace();
-        if (!place || !place.geometry) {
-          return;
-        }
-        if (place.geometry.viewport) {
-          this.map.fitBounds(place.geometry.viewport);
-        } else {
-          this.map.setCenter(place.geometry.location);
-          this.map.setZoom(17);
-        }
-      });
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .map-container,
 #map {
   height: 100%;
+  background-color: #212121;
 }
 #search-location {
   position: fixed;
@@ -134,9 +117,11 @@ export default {
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 20;
-  width: 20%;
-  height: 20px;
-  padding: 0.5rem;
-  font-size: 1rem;
+}
+#map > div {
+    background-color: #212121!important;
+}
+.map-container:not(.active) .gm-style > div:first-child > div:first-child > div:last-child {
+  opacity: 0.2;
 }
 </style>
