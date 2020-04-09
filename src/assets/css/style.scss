@@ -7,7 +7,6 @@
     pointer-events: none;
     &.center {
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
     }
@@ -16,10 +15,9 @@
 .panel {
     width: 50%;
     height: auto;
-    border: 1px solid #000;
-    background-color: #fff;
     padding: 0.5rem;
     pointer-events: all;
+    text-align: center;
 }
 
 .bubble-container {
@@ -31,8 +29,8 @@
 }
 
 .bubble-area {
-    fill: rgba(255,0,0,0.1);
+    fill: rgba(255, 0, 0, 0.1);
 }
 .bubble-dot {
-    fill: rgba(255,0,0,0.3);
+    fill: rgba(255, 0, 0, 0.3);
 }
