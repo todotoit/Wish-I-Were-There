@@ -9,5 +9,17 @@ module.exports = {
       .loader("vue-svg-inline-loader")
       .options({ /* ... */ });
     config.resolve.alias.set('assets', path.resolve('src/assets'));
-  }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }
+    ]
+  },
 }
