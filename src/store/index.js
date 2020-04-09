@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { TimeStamp, GeoPoint } from 'firebase/firestore'
+const { TimeStamp, GeoPoint } = firebase.firestore
 
 Vue.use(Vuex)
 
@@ -22,20 +22,39 @@ export default new Vuex.Store({
   state: {
     users: [],
     pins: [],
+    map: null,
+    marker: null,
+    ready: false
   },
 
-  mutations: vuexfireMutations,
+  mutations: {
+    ...vuexfireMutations,
+    SET_MAP(state, data) {
+      state.map = data
+    },
+    SET_MARKER(state, data) {
+      state.marker = data
+    },
+    SET_READY(state, data) {
+      state.ready = data
+    }
+  },
 
   actions: {
     bindUsersRef: firestoreAction(context => {
-      // context contains all original properties like commit, state, etc
-      // and adds `bindFirestoreRef` and `unbindFirestoreRef`
-      // we return the promise returned by `bindFirestoreRef` that will
-      // resolve once data is ready
       return context.bindFirestoreRef('users', db.collection('users'))
     }),
     bindPinsRef: firestoreAction(context => {
       return context.bindFirestoreRef('pins', db.collection('pins'))
     }),
+    createNewUser: firestoreAction((context, marker) => {
+      // return the promise so we can await the write
+      const coordinates = marker.getPosition()
+      return db.collection('users').add({
+        coordinates: new GeoPoint(coordinates.lat(), coordinates.lng()),
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+        name: ''
+      })
+    })
   },
 })
