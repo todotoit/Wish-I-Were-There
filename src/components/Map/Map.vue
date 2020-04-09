@@ -119,9 +119,27 @@ export default {
   z-index: 20;
 }
 #map > div {
-    background-color: #212121!important;
+  background-color: #212121 !important;
 }
-.map-container:not(.active) .gm-style > div:first-child > div:first-child > div:last-child {
+.map-container:not(.active)
+  .gm-style
+  > div:first-child
+  > div:first-child
+  > div:last-child {
   opacity: 0.2;
+}
+.bubble-container {
+  position: absolute;
+}
+
+.bubble {
+  display: block;
+}
+
+.bubble-area {
+  fill: rgba(255, 255, 255, 0.2);
+}
+.bubble-dot {
+  fill: rgba(255, 255, 255, 0.5);
 }
 </style>
