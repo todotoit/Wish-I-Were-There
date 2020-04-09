@@ -29,6 +29,10 @@ export default {
       this.updateMarker(event.latLng);
     });
   },
+  destroyed() {
+    google.maps.event.clearListeners(this.map, 'click');
+    this.marker.setMap(null);
+  },
   methods: {
     centerMarker() {
       this.marker.setPosition(this.map.getCenter());
