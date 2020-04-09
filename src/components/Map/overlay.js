@@ -46,9 +46,7 @@ function createOverlayProto() {
         // coordinates of the overlay to peg it to the correct position and size.
         // To do this, we need to retrieve the projection from the overlay.
         var overlayProjection = this.getProjection();
-
         const zoom = overlayProjection['T'].zoom
-        console.log(zoom)
 
         let zoomLevel = 0
         if (zoom > 16) zoomLevel = 1

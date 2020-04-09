@@ -152,10 +152,13 @@ export default {
     top: 0;
     left: 0;
     transition: opacity 0.5s;
-    animation: spin 54s linear infinite;
-    opacity: .5;
+    &.far {
+      animation: spin 54s linear infinite;
+    }
+    opacity: 0.5;
     &.hidden {
       opacity: 0;
+      animation: none;
     }
   }
 }
