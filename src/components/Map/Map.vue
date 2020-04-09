@@ -1,6 +1,6 @@
 <template>
   <div class="map-container" :class="{active: isExplore}">
-    <SearchLocation id="search-location" v-if="ready && isExplore" />
+    <SearchLocation id="search-location" v-if="map && isExplore" />
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -14,20 +14,12 @@ import SearchLocation from "@/components/SearchLocation.vue";
 export default {
   name: "Map",
   components: { SearchLocation },
-  props: {
-    apiKey: {
-      type: String,
-      required: true
-    }
-  },
   watch: {
     users(val, oldVal) {
-      if (!this.ready) return;
       const newUsers = getNewItems(val, oldVal);
       newUsers.forEach(user => this.createUserBubble(user));
     },
     pins(val, oldVal) {
-      if (!this.ready) return;
       const newPins = getNewItems(val, oldVal);
       newPins.forEach(pin => this.createPin(pin));
     }
@@ -39,11 +31,11 @@ export default {
     pins() {
       return this.$store.state.pins.slice();
     },
-    ready() {
-      return this.$store.state.ready;
-    },
     isExplore() {
       return this.$route.path === "/explore";
+    },
+    map() {
+      return this.$store.state.map;
     }
   },
   data() {
@@ -55,29 +47,18 @@ export default {
     };
   },
   mounted() {
-    if (document.getElementsByClassName("gm-src").length) return;
-    let script = document.createElement("script");
-    script.classList.add("gm-src");
-    script.onload = () => {
-      this.init();
-    };
-    script.async = true;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&libraries=places`;
-    document.head.appendChild(script);
+    const map = new google.maps.Map(this.$refs.map, {
+      center: { lat: this.startPos.lat, lng: this.startPos.lng },
+      zoom: 15,
+      mapTypeId: "roadmap",
+      disableDefaultUI: true,
+      zoomControl: true,
+      styles: styles["mappette"],
+      clickableIcons: false
+    });
+    this.$store.commit("SET_MAP", map);
   },
   methods: {
-    init() {
-      this.map = new google.maps.Map(this.$refs.map, {
-        center: { lat: this.startPos.lat, lng: this.startPos.lng },
-        zoom: 15,
-        mapTypeId: "roadmap",
-        disableDefaultUI: true,
-        zoomControl: true,
-        styles: styles["mappette"]
-      });
-      this.$store.commit("SET_MAP", this.map);
-      this.$store.commit("SET_READY", true);
-    },
     createUserBubble(user) {
       const coordinates = user.coordinates;
       const marker = new google.maps.Marker({
@@ -92,9 +73,14 @@ export default {
     },
     createPin(pin) {
       const coordinates = pin.coordinates;
+      const img = {
+        url: require("@/assets/icons/pin.svg"),
+        size: new google.maps.Size(25, 25)
+      };
       const marker = new google.maps.Marker({
         position: { lat: coordinates.Wa, lng: coordinates.za },
-        map: this.map
+        map: this.map,
+        icon: img
       });
       const infowindow = new google.maps.InfoWindow({
         content: pin.message,
