@@ -251,6 +251,9 @@ export default {
       "stylers": [
         {
           "color": "#373737"
+        },
+        {
+          "visibility": "off"
         }
       ]
     },
@@ -260,9 +263,6 @@ export default {
       "stylers": [
         {
           "color": "#3c3c3c"
-        },
-        {
-          "visibility": "off"
         }
       ]
     },
