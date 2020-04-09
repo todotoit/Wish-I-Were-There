@@ -4,7 +4,7 @@
       <a @click="$router.push('/explore')" class="close">CLOSE</a>
       <router-view />
     </div>
-    <Map :api-key="mapsKey" />
+    <Map v-if="ready" />
     <div class="btn-info" @click="info = !info">
       <div class="open" v-if="!info" />
       <div class="close" v-else />
@@ -24,12 +24,31 @@ export default {
       info: false
     };
   },
+  computed: {
+    ready() {
+      return this.$store.state.ready;
+    }
+  },
   mounted() {
     if (this.$route.path !== "/") this.$router.push("/");
     Promise.all([
       this.$store.dispatch("bindUsersRef"),
       this.$store.dispatch("bindPinsRef")
     ]);
+    this.includeScripts()
+  },
+  methods: {
+    includeScripts() {
+      if (document.getElementsByClassName("gm-src").length) return;
+      let script = document.createElement("script");
+      script.classList.add("gm-src");
+      script.onload = () => {
+        this.$store.commit("SET_READY", true);
+      };
+      script.async = true;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.mapsKey}&libraries=places`;
+      document.head.appendChild(script);
+    }
   },
   components: { Map, Info }
 };
