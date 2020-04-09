@@ -2,6 +2,10 @@
     display: none;
 }
 
+h3 {
+    text-transform: uppercase;
+}
+
 .overlay {
     position: absolute;
     top: 0;
@@ -22,4 +26,16 @@
     padding: 0.5rem;
     pointer-events: all;
     text-align: center;
+}
+
+.editor {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    header,
+    footer {
+        pointer-events: all;
+        padding: 1rem;
+    }
 }
