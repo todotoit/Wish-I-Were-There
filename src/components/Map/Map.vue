@@ -72,9 +72,9 @@ export default {
       const coordinates = user.coordinates;
       const img = {
         url: require("@/assets/icons/bubble.svg"),
-        size: new google.maps.Size(25, 25),
+        size: new google.maps.Size(10, 10),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(12.5, 12.5)
+        anchor: new google.maps.Point(5, 5)
       };
       const marker = new google.maps.Marker({
         position: { lat: coordinates.Wa, lng: coordinates.za },
@@ -108,7 +108,6 @@ export default {
     },
     handleMapZoom(e) {
       const zoom = this.map.getZoom();
-
     }
   }
 };
@@ -139,7 +138,7 @@ export default {
 }
 .bubble-container {
   position: absolute;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
   &.hidden {
     opacity: 0;
   }
@@ -153,6 +152,9 @@ export default {
     top: 0;
     left: 0;
     transition: opacity 0.5s;
+    animation: spin 54s linear infinite;
+    mix-blend-mode: luminosity;
+    opacity: .5;
     &.hidden {
       opacity: 0;
     }

@@ -20,7 +20,7 @@ function BubbleOverlay(bounds, map) {
     this.bounds_ = bounds;
     this.map_ = map;
     this.images = [
-        require('@/assets/img/bubbles/bubbles-noise.png'),
+        require('@/assets/img/bubbles/bubbles-gradient.png'),
         require('@/assets/img/bubbles/bubbles-expanded.png')
     ]
 
