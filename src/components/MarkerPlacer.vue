@@ -1,6 +1,6 @@
 <template>
   <div class="marker-placer">
-    <SearchLocation @change="updateMarker()" />
+    <SearchLocation @change="centerMarker()" />
   </div>
 </template>
 
@@ -25,10 +25,16 @@ export default {
       draggable: true
     });
     this.$store.commit("SET_MARKER", marker);
+    google.maps.event.addListener(this.map, "click", event => {
+      this.updateMarker(event.latLng);
+    });
   },
   methods: {
-    updateMarker() {
+    centerMarker() {
       this.marker.setPosition(this.map.getCenter());
+    },
+    updateMarker(pos) {
+      this.marker.setPosition(pos);
     }
   }
 };
