@@ -61,9 +61,14 @@ export default {
   methods: {
     createUserBubble(user) {
       const coordinates = user.coordinates;
+      const img = {
+        url: require("@/assets/icons/bubble.svg"),
+        size: new google.maps.Size(25, 25)
+      };
       const marker = new google.maps.Marker({
         position: { lat: coordinates.Wa, lng: coordinates.za },
-        map: this.map
+        map: this.map,
+        icon: img
       });
       const overlay = createBubble(this.map, {
         lat: coordinates.Wa,
