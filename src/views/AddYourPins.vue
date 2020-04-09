@@ -15,21 +15,21 @@
           </p>
         </footer>
       </template>
-      <template v-else-if="!userPin">
+      <template v-else-if="!addingMessage">
         <header>
           <h3>ADD A DAYDREAM PIN</h3>
           <MarkerPlacer />
         </header>
         <footer>
           <p>
-            <button @click="createNewPin">Place</button>
+            <button @click="addingMessage = true">Place</button>
           </p>
           <p>
             <button @click="$router.push('/explore')">Explore the map</button>
           </p>
         </footer>
       </template>
-      <template v-else-if="!messageUpdated">
+      <template v-else-if="!userPin">
         <header>
           <h3>ADD A DAYDREAM PIN</h3>
           <p>If you want, you can add a message to your daydream pin</p>
@@ -37,7 +37,7 @@
         </header>
         <footer>
           <p>
-            <button @click="updatePinMessage">Add your message</button>
+            <button @click="createNewPin">Add your message</button>
           </p>
           <p>
             <button @click="$router.push('/explore')">Explore the map</button>
@@ -68,6 +68,7 @@ export default {
     return {
       message: "",
       placing: false,
+      addingMessage: false,
       messageUpdated: false
     };
   },
@@ -93,7 +94,7 @@ export default {
       this.$store
         .dispatch("createNewPin", {
           user: this.user,
-          message: "",
+          message: this.message,
           marker: this.marker
         })
         .then(r => {
@@ -119,5 +120,9 @@ export default {
 .pin-placer {
   height: 100%;
   pointer-events: none;
+}
+textarea {
+    width: 20rem;
+    height: 20rem;
 }
 </style>
