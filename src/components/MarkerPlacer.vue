@@ -19,7 +19,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.map.getCenter())
     const marker = new google.maps.Marker({
       position: this.map.getCenter(),
       map: this.map,
@@ -29,7 +28,6 @@ export default {
   },
   methods: {
     updateMarker() {
-      console.log(this.map.getCenter())
       this.marker.setPosition(this.map.getCenter());
     }
   }

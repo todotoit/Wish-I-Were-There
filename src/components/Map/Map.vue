@@ -77,7 +77,6 @@ export default {
       });
       this.$store.commit("SET_MAP", this.map);
       this.$store.commit("SET_READY", true);
-      console.log(this.map);
     },
     createUserBubble(user) {
       const coordinates = user.coordinates;
