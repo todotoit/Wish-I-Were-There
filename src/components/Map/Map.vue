@@ -66,7 +66,8 @@ export default {
         zoom: 15,
         mapTypeId: "roadmap",
         disableDefaultUI: true,
-        styles: styles["todo"]
+        zoomControl: true,
+        styles: styles["mappette"]
       });
       this.setupSearch(this.map);
       this.ready = true
