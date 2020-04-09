@@ -72,7 +72,8 @@ export default {
         zoom: 15,
         mapTypeId: "roadmap",
         disableDefaultUI: true,
-        styles: styles["todov2"]
+        zoomControl: true,
+        styles: styles["mappette"]
       });
       this.$store.commit("SET_MAP", this.map);
       this.$store.commit("SET_READY", true);

@@ -97,7 +97,7 @@ export default {
       stylers: [{ color: '#9e9e9e' }]
     }
   ],
-  todov2: [
+  mappette: [
     {
       "elementType": "geometry",
       "stylers": [
