@@ -24,7 +24,9 @@ export default new Vuex.Store({
     pins: [],
     map: null,
     marker: null,
-    ready: false
+    ready: false,
+    user: null,
+    userPins: null
   },
 
   mutations: {
@@ -37,6 +39,12 @@ export default new Vuex.Store({
     },
     SET_READY(state, data) {
       state.ready = data
+    },
+    SET_USER(state, data) {
+      state.user = data
+    },
+    SET_USER_PINS(state, data) {
+      state.userPins = data
     }
   },
 
@@ -48,13 +56,39 @@ export default new Vuex.Store({
       return context.bindFirestoreRef('pins', db.collection('pins'))
     }),
     createNewUser: firestoreAction((context, user) => {
-      // return the promise so we can await the write
       const coordinates = user.marker.getPosition()
       return db.collection('users').add({
         coordinates: new GeoPoint(coordinates.lat(), coordinates.lng()),
         created: firebase.firestore.FieldValue.serverTimestamp(),
         name: user.name
+      }).then(r => {
+        return {
+          id: r.id,
+          name: user.name,
+          marker: user.marker
+        }
       })
+    }),
+    createNewPin: firestoreAction((context, data) => {
+      const coordinates = data.marker.getPosition()
+      return db.collection('pins').add({
+        coordinates: new GeoPoint(coordinates.lat(), coordinates.lng()),
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+        user: db.collection('users').doc(data.user.id),
+        message: data.message
+      }).then(r => {
+        return {
+          id: r.id,
+          user: data.user,
+          marker: data.marker,
+          message: data.message
+        }
+      })
+    }),
+    updatePin: firestoreAction((context, data) => {
+      return db.collection('pins')
+        .doc(context.state.userPins.id)
+        .update({ message: data.message })
     })
   },
 })
