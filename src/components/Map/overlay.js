@@ -46,9 +46,14 @@ function createOverlayProto() {
         // coordinates of the overlay to peg it to the correct position and size.
         // To do this, we need to retrieve the projection from the overlay.
         var overlayProjection = this.getProjection();
+
         const zoom = overlayProjection['T'].zoom
+        console.log(zoom)
+
         let zoomLevel = 0
         if (zoom > 16) zoomLevel = 1
+
+
         // Retrieve the south-west and north-east coordinates of this overlay
         // in LatLngs and convert them to pixel coordinates.
         // We'll use these coordinates to resize the div.
@@ -57,6 +62,12 @@ function createOverlayProto() {
 
         // Resize the image's div to fit the indicated dimensions.
         var div = this.div_;
+        if (zoom < 14) {
+            div.classList.add('hidden')
+            return
+        }
+        else div.classList.remove('hidden')
+
         div.style.left = sw.x + 'px';
         div.style.top = ne.y + 'px';
         div.style.width = (ne.x - sw.x) + 'px';
