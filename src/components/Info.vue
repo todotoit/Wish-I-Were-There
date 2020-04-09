@@ -44,8 +44,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden; /* Hide scrollbars */
-  /* Hide scrollbar for Chrome, Safari and Opera */
   section {
     padding-top: 0.5rem;
     width: 60%;
