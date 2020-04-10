@@ -7,9 +7,10 @@
 
 <script>
 import styles from "./map-styles.js";
-import { createBubble } from "./overlay";
+import { createBubble } from "./bubble/bubble-overlay";
 import { getNewItems, getRemovedItems } from "@/utils";
 import SearchLocation from "@/components/SearchLocation.vue";
+import GmapsQuadraticBezier from "./line/gm-bezier";
 
 export default {
   name: "Map",
@@ -47,7 +48,8 @@ export default {
         lat: 45.060285,
         lng: 7.680763
       },
-      bubbleMarkers: []
+      bubbleMarkers: [],
+      line: null
     };
   },
   mounted() {
@@ -66,6 +68,9 @@ export default {
     google.maps.event.addListener(map, "zoom_changed", e =>
       this.handleMapZoom(e)
     );
+    google.maps.event.addListener(map, "click", e =>{
+      if(this.line) this.line.remove()
+    });
   },
   methods: {
     createUserBubble(user) {
@@ -81,17 +86,45 @@ export default {
         map: this.map,
         icon: img
       });
-      const overlay = createBubble(this.map, {
-        lat: coordinates.Wa,
-        lng: coordinates.za
-      }, user);
+      const overlay = createBubble(
+        this.map,
+        {
+          lat: coordinates.Wa,
+          lng: coordinates.za
+        },
+        user
+      );
       user.marker = marker;
-      marker.addListener('click', () => {
-        const pins = this.$store.getters.getUserPins(user.id)
-        console.log(user, pins)
-      })
+      marker.addListener("click", () => {
+        this.highlightUser(user);
+      });
       this.bubbleMarkers.push(marker);
     },
+    highlightUser(user) {
+      if(this.line) this.line.remove()
+      const pin = this.$store.getters.getUserPins(user.id);
+      if (!pin) return this.zoomOnMarker(user.marker);
+      const bounds = new google.maps.LatLngBounds();
+      const pinCoords = new google.maps.LatLng({
+        lat: pin.coordinates.latitude,
+        lng: pin.coordinates.longitude
+      });
+      const userCoords = user.marker.getPosition();
+      bounds.extend(pinCoords);
+      bounds.extend(userCoords);
+      const center = bounds.getCenter();
+      const offset1 = google.maps.geometry.spherical.computeOffset(center, 1000, 60)
+      this.line = new GmapsQuadraticBezier(
+        userCoords,
+        offset1,
+        pinCoords,
+        {},
+        this.map
+      );
+      this.line.draw()
+      this.map.fitBounds(bounds);
+    },
+    zoomOnMarker(marker) {},
     createPin(pin) {
       const coordinates = pin.coordinates;
       const img = {
@@ -170,6 +203,7 @@ export default {
     top: 50%;
     left: 60%;
     z-index: 20;
+    user-select: none;
   }
 }
 
