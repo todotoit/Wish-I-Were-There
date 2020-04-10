@@ -1,7 +1,7 @@
 import Bubble from './bubble'
 import BubbleImage from './bubble-img'
 
-export function createBubble(map, center) {
+export function createBubble(map, center, user) {
     createOverlayProto()
     const c = new google.maps.LatLng(center.lat, center.lng)
     const circle = new google.maps.Circle({
@@ -12,13 +12,14 @@ export function createBubble(map, center) {
         fillColor: 'transparent'
     });
     const b = circle.getBounds();
-    return new BubbleOverlay(b, map);
+    return new BubbleOverlay(b, map, user);
 }
 
 /** @constructor */
-function BubbleOverlay(bounds, map) {
+function BubbleOverlay(bounds, map, user) {
     this.bounds_ = bounds;
     this.map_ = map;
+    this.user_ = user
     this.images = [
         require('@/assets/img/bubbles/bubbles-gradient.png'),
         require('@/assets/img/bubbles/bubbles-expanded.png')
@@ -32,11 +33,14 @@ function createOverlayProto() {
     BubbleOverlay.prototype = new google.maps.OverlayView();
 
     BubbleOverlay.prototype.onAdd = function () {
-        var div = document.createElement('div');
+        const div = document.createElement('div');
+        const label = document.createElement('label');
+        div.appendChild(label)
+        label.innerText = this.user_.name
         div.classList.add('bubble-container');
         this.bubble_ = new BubbleImage(div, this.images)
         this.div_ = div;
-        var panes = this.getPanes();
+        const panes = this.getPanes();
         panes.overlayLayer.appendChild(div);
     };
 
@@ -45,7 +49,7 @@ function createOverlayProto() {
         // We use the south-west and north-east
         // coordinates of the overlay to peg it to the correct position and size.
         // To do this, we need to retrieve the projection from the overlay.
-        var overlayProjection = this.getProjection();
+        const overlayProjection = this.getProjection();
         const zoom = overlayProjection['T'].zoom
 
         let zoomLevel = 0
@@ -55,11 +59,11 @@ function createOverlayProto() {
         // Retrieve the south-west and north-east coordinates of this overlay
         // in LatLngs and convert them to pixel coordinates.
         // We'll use these coordinates to resize the div.
-        var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-        var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+        const sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+        const ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
 
         // Resize the image's div to fit the indicated dimensions.
-        var div = this.div_;
+        const div = this.div_;
         if (zoom < 14) {
             div.classList.add('hidden')
             return

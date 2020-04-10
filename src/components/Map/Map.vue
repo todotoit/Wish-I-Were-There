@@ -84,8 +84,12 @@ export default {
       const overlay = createBubble(this.map, {
         lat: coordinates.Wa,
         lng: coordinates.za
-      });
+      }, user);
       user.marker = marker;
+      marker.addListener('click', () => {
+        const pins = this.$store.getters.getUserPins(user.id)
+        console.log(user, pins)
+      })
       this.bubbleMarkers.push(marker);
     },
     createPin(pin) {
@@ -160,6 +164,12 @@ export default {
       opacity: 0;
       animation: none;
     }
+  }
+  label {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    z-index: 20;
   }
 }
 
