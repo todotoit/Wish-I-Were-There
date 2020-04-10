@@ -49,7 +49,8 @@ export default {
         lng: 7.680763
       },
       bubbleMarkers: [],
-      line: null
+      line: null,
+      infoWindow: null
     };
   },
   mounted() {
@@ -68,13 +69,16 @@ export default {
     google.maps.event.addListener(map, "zoom_changed", e =>
       this.handleMapZoom(e)
     );
-    google.maps.event.addListener(map, "click", e =>{
-      if(this.line) this.line.remove()
+    google.maps.event.addListener(map, "click", e => {
+      if (this.line) this.line.remove();
+      if (this.infoWindow) this.infoWindow.close();
     });
+    this.pins.forEach(p => this.createPin(p))
+    this.users.forEach(u => this.createUserBubble(u))
   },
   methods: {
     createUserBubble(user) {
-      const coordinates = user.coordinates;
+      const pos = { lat: user.coordinates.Wa, lng: user.coordinates.za };
       const img = {
         url: require("@/assets/icons/bubble.svg"),
         size: new google.maps.Size(10, 10),
@@ -82,49 +86,17 @@ export default {
         anchor: new google.maps.Point(5, 5)
       };
       const marker = new google.maps.Marker({
-        position: { lat: coordinates.Wa, lng: coordinates.za },
+        position: pos,
         map: this.map,
         icon: img
       });
-      const overlay = createBubble(
-        this.map,
-        {
-          lat: coordinates.Wa,
-          lng: coordinates.za
-        },
-        user
-      );
+      const overlay = createBubble(this.map, pos, user);
       user.marker = marker;
       marker.addListener("click", () => {
         this.highlightUser(user);
       });
       this.bubbleMarkers.push(marker);
     },
-    highlightUser(user) {
-      if(this.line) this.line.remove()
-      const pin = this.$store.getters.getUserPins(user.id);
-      if (!pin) return this.zoomOnMarker(user.marker);
-      const bounds = new google.maps.LatLngBounds();
-      const pinCoords = new google.maps.LatLng({
-        lat: pin.coordinates.latitude,
-        lng: pin.coordinates.longitude
-      });
-      const userCoords = user.marker.getPosition();
-      bounds.extend(pinCoords);
-      bounds.extend(userCoords);
-      const center = bounds.getCenter();
-      const offset1 = google.maps.geometry.spherical.computeOffset(center, 1000, 60)
-      this.line = new GmapsQuadraticBezier(
-        userCoords,
-        offset1,
-        pinCoords,
-        {},
-        this.map
-      );
-      this.line.draw()
-      this.map.fitBounds(bounds);
-    },
-    zoomOnMarker(marker) {},
     createPin(pin) {
       const coordinates = pin.coordinates;
       const img = {
@@ -138,11 +110,57 @@ export default {
         map: this.map,
         icon: img
       });
-      const infowindow = new google.maps.InfoWindow({
-        content: pin.message,
-        maxWidth: 200
+      const infoWindow = this.createInfoWindow(pin)
+      marker.addListener("click", () => {
+        if (this.infoWindow) this.infoWindow.close();
+        infoWindow.open(this.map, marker);
+        this.infoWindow = infoWindow;
+        this.highlightPin(pin);
       });
     },
+    createLink(start, end) {
+      if (this.line) this.line.remove();
+      const spherical = google.maps.geometry.spherical;
+      const bounds = new google.maps.LatLngBounds();
+      bounds.extend(end);
+      bounds.extend(start);
+      const center = bounds.getCenter();
+      const dist = spherical.computeDistanceBetween(start, end);
+      const angle = spherical.computeHeading(start, end);
+      const offset = spherical.computeOffset(center, dist / 2, angle + 60);
+      this.line = new GmapsQuadraticBezier(start, offset, end, {}, this.map);
+      this.line.draw();
+      this.map.fitBounds(bounds);
+    },
+    highlightUser(user) {
+      const pin = this.$store.getters.getUserPin(user.id);
+      if (!pin) return this.zoomOnMarker(user.marker);
+      const pinCoords = new google.maps.LatLng({
+        lat: pin.coordinates.latitude,
+        lng: pin.coordinates.longitude
+      });
+      const userCoords = user.marker.getPosition();
+      this.createLink(pinCoords, userCoords);
+    },
+    highlightPin(pin) {
+      const pinCoords = new google.maps.LatLng({
+        lat: pin.coordinates.latitude,
+        lng: pin.coordinates.longitude
+      });
+      const userCoords = new google.maps.LatLng({
+        lat: pin.user.coordinates.latitude,
+        lng: pin.user.coordinates.longitude
+      });
+      this.createLink(pinCoords, userCoords);
+    },
+    createInfoWindow(pin) {
+      let content = `<h4>${pin.user.name}</h4>`
+      content += `<p>${pin.message}</p>`
+      return new google.maps.InfoWindow({
+        content
+      });
+    },
+    zoomOnMarker(marker) {},
     handleMapZoom(e) {
       const zoom = this.map.getZoom();
     }
