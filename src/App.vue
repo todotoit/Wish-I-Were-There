@@ -10,6 +10,7 @@
       <div class="close" v-else />
     </div>
     <Info v-if="info" />
+    <img svg-inline class="copyright" src="@/assets/icons/todo-logo.svg" />
   </div>
 </template>
 
@@ -35,7 +36,7 @@ export default {
       this.$store.dispatch("bindUsersRef"),
       this.$store.dispatch("bindPinsRef")
     ]);
-    this.includeScripts()
+    this.includeScripts();
   },
   methods: {
     includeScripts() {
@@ -73,6 +74,16 @@ body {
 .close {
   cursor: pointer;
   pointer-events: all;
+}
+
+.copyright {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  path {
+    fill: $col-white;
+  }
 }
 
 .btn-info {
