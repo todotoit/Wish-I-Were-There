@@ -32,14 +32,28 @@ export default {
       const newPins = getNewItems(val, oldVal);
       newPins.forEach(pin => this.createPin(pin));
     },
-    showUserBubbles(val, oldVal) {
-      this.bubbleMarkers.forEach(m => {
+    showUserBubbles(val) {
+      this.userMarkers.forEach(m => {
         m.setVisible(val);
         m.overlay.setVisible(val);
       });
     },
-    showPins(val, oldVal) {
+    showPins(val) {
       this.pinMarkers.forEach(m => m.setVisible(val));
+    },
+    selectedUser(val) {
+      this.userMarkers.forEach(m => {
+        m.setOpacity(val ? 0.3 : 1);
+        m.overlay.setDisabled(val);
+      });
+      if (val) {
+        val.setOpacity(1);
+        val.overlay.setDisabled(false);
+      }
+    },
+    selectedPin(val) {
+      this.pinMarkers.forEach(m => m.setOpacity(val ? 0.3 : 1));
+      if (val) val.setOpacity(1);
     },
     $route(to, from) {
       if (to.path === "/explore" && !this.init) this.createItems();
@@ -71,13 +85,15 @@ export default {
         lat: 45.060285,
         lng: 7.680763
       },
-      bubbleMarkers: [],
+      userMarkers: [],
       pinMarkers: [],
       showUserBubbles: true,
       showPins: true,
       line: null,
       infoWindow: null,
-      init: false
+      init: false,
+      selectedUser: null,
+      selectedPin: null
     };
   },
   mounted() {
@@ -99,6 +115,8 @@ export default {
     google.maps.event.addListener(map, "click", e => {
       if (this.line) this.line.remove();
       if (this.infoWindow) this.infoWindow.close();
+      this.selectedUser = null;
+      this.selectedPin = null;
     });
     if (this.user) this.zoomOnCoords(this.getLatLng(this.user.coordinates));
     if (this.isExplore && !this.init) this.createItems();
@@ -125,6 +143,7 @@ export default {
       });
       const overlay = createBubble(this.map, pos, user, this.showUserBubbles);
       user.marker = marker;
+      marker.user = user;
       marker.addListener("click", e => {
         console.log("mark");
         if (e) e.stop();
@@ -132,9 +151,12 @@ export default {
       });
       marker.overlay = overlay;
       overlay.marker = marker;
-      this.bubbleMarkers.push(marker);
+      this.userMarkers.push(marker);
     },
     createPin(pin) {
+      if (typeof pin.user === "string") {
+        pin.user = this.$store.getters.getUserByRef(pin.user);
+      }
       const coordinates = pin.coordinates;
       const img = {
         url: require("@/assets/icons/pin.svg"),
@@ -150,11 +172,10 @@ export default {
       });
       const infoWindow = this.createInfoWindow(pin);
       marker.addListener("click", () => {
-        if (this.infoWindow) this.infoWindow.close();
-        infoWindow.open(this.map, marker);
-        this.infoWindow = infoWindow;
         this.highlightPin(pin);
       });
+      marker.infoWindow = infoWindow
+      marker.pin = pin;
       this.pinMarkers.push(marker);
     },
     createLink(start, end) {
@@ -172,26 +193,43 @@ export default {
       this.map.fitBounds(bounds);
     },
     highlightUser(user) {
-      const pin = this.$store.getters.getUserPin(user.id);
-      if (!pin) return this.zoomOnCoords(user.marker.position);
-      const pinCoords = this.getLatLng(pin.coordinates);
+      this.selectedUser = user.marker;
+      const pinMarker = this.pinMarkers.find(
+        marker => marker.pin.user.id === user.id
+      );
+      if (!pinMarker) return this.zoomOnCoords(user.marker.position);
+      const pinCoords = pinMarker.getPosition();
       const userCoords = user.marker.getPosition();
       this.createLink(pinCoords, userCoords);
+      this.selectedPin = pinMarker;
+      this.showPinMessage(pinMarker)
     },
     highlightPin(pin) {
+      const userMarker = this.userMarkers.find(
+        marker => marker.user.id === pin.user.id
+      );
+      const pinMarker = this.pinMarkers.find(
+        marker => marker.pin.id === pin.id
+      );
+      this.selectedUser = userMarker;
+      this.selectedPin = pinMarker;
       const pinCoords = this.getLatLng(pin.coordinates);
       const userCoords = this.getLatLng(pin.user.coordinates);
       this.createLink(pinCoords, userCoords);
+      this.showPinMessage(pinMarker)
     },
     createInfoWindow(pin) {
       let user = pin.user;
-      if (typeof pin.user === "string")
-        user = this.$store.getters.getUserByRef(pin.user);
       let content = `<h4>${user.name || "anonymous"}</h4>`;
       content += `<p>${pin.message}</p>`;
       return new google.maps.InfoWindow({
         content
       });
+    },
+    showPinMessage(marker) {
+      if (this.infoWindow) this.infoWindow.close();
+      marker.infoWindow.open(this.map, marker);
+      this.infoWindow = marker.infoWindow;
     },
     zoomOnCoords(coords) {
       this.map.setCenter(coords);
@@ -248,6 +286,9 @@ export default {
   &.far {
     pointer-events: none;
     opacity: 0;
+  }
+  &.disabled {
+    opacity: 0.25;
   }
   img {
     display: block;
