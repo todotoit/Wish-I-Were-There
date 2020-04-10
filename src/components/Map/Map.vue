@@ -1,14 +1,17 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing}">
     <SearchLocation id="search-location" v-if="map && isExplore" />
-    <ul class="tools" v-if="map && isExplore">
-      <li :class="{active: showUserBubbles}" @click="showUserBubbles = !showUserBubbles">
-        <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" /> Microcosms
-      </li>
-      <li :class="{active: showPins}" @click="showPins = !showPins">
-        <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" /> Daydreams
-      </li>
-    </ul>
+    <div class="tools" v-if="map && isExplore">
+      <h4>Visualizing</h4>
+      <ul>
+        <li :class="{active: showUserBubbles}" @click="showUserBubbles = !showUserBubbles">
+          <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" /> Microcosms
+        </li>
+        <li :class="{active: showPins}" @click="showPins = !showPins">
+          <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" /> Daydreams
+        </li>
+      </ul>
+    </div>
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -266,10 +269,18 @@ export default {
   left: 1rem;
   top: 1rem;
   z-index: 20;
-  padding: 0;
-  margin: 0;
+
+  h4 {
+    color: $col-green;
+    text-transform: uppercase;
+    font-family: "GT America Expanded";
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $col-white;
+  }
   ul,
   li {
+    padding: 0;
+    margin: 0;
     list-style: none;
   }
   li {
