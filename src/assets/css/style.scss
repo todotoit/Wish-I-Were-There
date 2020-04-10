@@ -2,21 +2,108 @@
   display: none;
 }
 
-h3 {
-  text-transform: uppercase;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #212121;
+  font-family: "GT America Extended", Arial, Helvetica, sans-serif;
+  color: $col-white;
 }
 
-.overlay {
+#app {
+  height: 100%;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+button,
+input {
+  z-index: 8;
+  padding: 7px 20px;
+  margin: 0 $spacing / 2;
+  background: transparent;
+  text-align: center;
+  outline: 0;
+  border: 1px solid $col-green;
+  border-radius: 20px;
+  transition: all 700ms;
+  cursor: pointer;
+  color: $col-green;
+  @extend .medium;
+  font-family: "GT America Compressed", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  &:hover {
+    background-color: $col-green;
+    color: $col-white;
+  }
+}
+
+input {
+  border: 1px solid $col-white;
+  color: $col-white;
+  padding: 0.2rem;
+  width: 25rem;
+
+  &:hover {
+    background-color: transparent;
+    color: $col-white;
+  }
+}
+
+textarea {
+  border: 1px solid white;
+  outline: 0;
+  color: $col-green;
+  @extend .medium;
+  resize: none;
+  background-color: $col-dark;
+  width: 100%;
+  min-height: 25rem;
+  padding: $spacing / 2;
+  box-sizing: border-box;
+}
+
+.view {
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
   z-index: 10;
   pointer-events: none;
-  &.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: all;
+  .info {
+    min-height: 85%;
+    position: relative;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 50%;
+    margin-top: $spacing;
+    .header {
+      width: 100%;
+      &.center {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%);
+    }
   }
 }
 

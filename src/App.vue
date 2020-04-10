@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="overlay center" v-show="$route.path !== '/explore'">
-      <a @click="$router.push('/explore')" class="close">CLOSE</a>
+    <div class="view" v-show="$route.path !== '/explore'">
+      <!-- <a @click="$router.push('/explore')" class="close">CLOSE</a> -->
       <router-view v-if="ready" />
     </div>
     <Map v-if="ready" />
@@ -31,7 +31,8 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.path !== "/" && this.$route.path !== "/explore") this.$router.push("/");
+    if (this.$route.path !== "/" && this.$route.path !== "/explore")
+      this.$router.push("/");
     Promise.all([
       this.$store.dispatch("bindUsersRef"),
       this.$store.dispatch("bindPinsRef"),
@@ -63,21 +64,6 @@ export default {
 </script>
 
 <style lang="scss">
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #212121;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #ffffff;
-  height: 100%;
-}
-
 .close {
   cursor: pointer;
   pointer-events: all;
@@ -88,6 +74,7 @@ body {
   bottom: 1.5rem;
   left: 50%;
   transform: translate(-50%, 0);
+  z-index: 11;
   path {
     fill: $col-white;
   }
@@ -95,7 +82,7 @@ body {
 
 .btn-info {
   position: fixed;
-  z-index: 101;
+  z-index: 100;
   top: 0;
   right: 0;
   padding: 0.5rem;

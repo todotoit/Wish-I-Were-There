@@ -31,10 +31,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search-input {
-  height: 20px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  width: 25rem;
-}
 </style>

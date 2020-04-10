@@ -1,10 +1,14 @@
 <template>
-  <div class="home">
-    <h2>Mappette</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam suscipit congue dolor faucibus varius. Nam vel urna augue. Duis et accumsan quam. Nunc scelerisque tincidunt felis. Fusce vel facilisis ex, ut scelerisque nulla. Nunc sagittis, arcu in posuere suscipit, neque erat scelerisque tellus, elementum posuere nisi mi sit amet turpis. Proin sagittis iaculis urna ut hendrerit. Sed tempus id metus at lacinia. Ut id tortor vel metus rutrum volutpat.</p>
-    <p>
-      <button @click="$router.push('/bubble')">Find your bubble</button>
-    </p>
+  <div class="info">
+    <div class="header center">
+      <p class="large">Mappette Project</p>
+      <p
+        class="medium"
+      >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam suscipit congue dolor faucibus varius. Nam vel urna augue. Duis et accumsan quam. Nunc scelerisque tincidunt felis. Fusce vel facilisis ex, ut scelerisque nulla. Nunc sagittis, arcu in posuere suscipit, neque erat scelerisque tellus, elementum posuere nisi mi sit amet turpis. Proin sagittis iaculis urna ut hendrerit. Sed tempus id metus at lacinia. Ut id tortor vel metus rutrum volutpat.</p>
+    </div>
+    <div class="footer">
+      <button @click="$router.push('/bubble')">Let's Go</button>
+    </div>
   </div>
 </template>
 
@@ -15,10 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
-  background-color: #1D1B26;
-  width: 100%;
-  height: 100%;
-  pointer-events: all;
+.info p {
+  margin-bottom: $spacing;
 }
 </style>

@@ -1,47 +1,40 @@
 <template>
-  <div class="pin-placer panel">
-    <div class="pin-editor editor">
-      <template v-if="!addingMessage">
-        <header>
-          <h3>What’s the first place you’d like to go to, when all of this is over?</h3>
-          <p>Explore the map and pinpoint your location and why that is meaningful to you – help us dream of a collective daydream.</p>
-          <MarkerPlacer type="pin" />
-        </header>
-        <footer>
-          <p>
-            <button @click="addingMessage = true">Place</button>
-          </p>
-          <p>
-            <button @click="$router.push('/explore')">Explore the map</button>
-          </p>
-        </footer>
-      </template>
-      <template v-else-if="!userPin">
-        <header>
-          <h3>ADD A DAYDREAM PIN</h3>
-          <p>If you want, you can add a message to your daydream pin</p>
-          <textarea placeholder="Add your message" v-model="message"></textarea>
-        </header>
-        <footer>
-          <p>
-            <button @click="createNewPin">Add your message</button>
-          </p>
-          <p>
-            <button @click="$router.push('/explore')">Explore the map</button>
-          </p>
-        </footer>
-      </template>
-      <template v-else>
-        <header>
-          <h3>You're done!</h3>
-        </header>
-        <footer>
-          <p>
-            <button @click="$router.push('/explore')">Explore the map</button>
-          </p>
-        </footer>
-      </template>
-    </div>
+  <div class="info">
+    <template v-if="!addingMessage">
+      <div class="header">
+        <p class="large">Where would you be</p>
+        <p
+          class="medium"
+        >Explore the map and pinpoint the first location that comes to mind where you’d really like to be as soon as this is all over. Let everyone know why that very place is meaningful to you – help us dream of a collective daydream.</p>
+        <MarkerPlacer type="pin" />
+      </div>
+      <div class="footer">
+        <button @click="addingMessage = true">Place</button>
+      </div>
+    </template>
+    <template v-else-if="!userPin">
+      <div class="header">
+        <p class="large">Send your message</p>
+        <p
+          class="medium"
+        >Explore the map and pinpoint the first location that comes to mind where you’d really like to be as soon as this is all over. Let everyone know why that is meaningful to you – help us dream of a collective daydream.</p>
+        <textarea placeholder="Add your message" v-model="message"></textarea>
+      </div>
+      <div class="footer">
+        <button @click="createNewPin">Publish</button>
+      </div>
+    </template>
+    <template v-else>
+      <div class="header">
+        <p class="large">Done, Thanks!</p>
+        <p
+          class="medium"
+        >Your message has been sent! Your daydream is now travelling 2,5 km away from your current galaxy</p>
+      </div>
+      <div class="footer">
+        <button @click="$router.push('/explore')">Explore the map</button>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -93,7 +86,7 @@ export default {
         });
     },
     updatePinMessage() {
-      if(!this.message) return
+      if (!this.message) return;
       this.$store
         .dispatch("updatePin", {
           message: this.message
@@ -111,8 +104,7 @@ export default {
   height: 100%;
   pointer-events: none;
 }
-textarea {
-  width: 20rem;
-  height: 20rem;
+p {
+  margin-bottom: $spacing;
 }
 </style>
