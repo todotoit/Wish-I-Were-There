@@ -5,7 +5,7 @@
         <header>
           <h3>Where are you self-quarantining?</h3>
           <p>Place the pin in the location where you are spending this time of self-quarantine</p>
-          <MarkerPlacer />
+          <MarkerPlacer :geolocation="true" />
         </header>
         <footer>
           <p>If you want, tell us your name (leave empty if you prefer to remain anonymous)</p>
@@ -67,7 +67,7 @@ export default {
           this.map.setZoom(17);
           this.$cookie.set("daydream_user", r.id, { expires: "1Y" });
         });
-    }
+    },
   }
 };
 </script>

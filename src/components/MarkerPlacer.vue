@@ -44,6 +44,7 @@ export default {
     google.maps.event.addListener(this.map, "click", event => {
       this.updateMarker(event.latLng);
     });
+    this.locateUser()
   },
   destroyed() {
     google.maps.event.clearListeners(this.map, "click");
@@ -55,6 +56,26 @@ export default {
     },
     updateMarker(pos) {
       this.marker.setPosition(pos);
+    },
+    locateUser() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            this.map.setCenter(pos);
+            this.updateMarker(pos);
+            this.map.setZoom(17);
+          },
+          () => {
+            console.log("geolocation not available");
+          }
+        );
+      } else {
+        console.log("geolocation not available");
+      }
     }
   }
 };
