@@ -41,7 +41,7 @@ export default {
     showPins(val) {
       this.pinMarkers.forEach(m => m.setVisible(val));
     },
-    selectedUser(val) {
+    selectedUserMarker(val) {
       this.userMarkers.forEach(m => {
         m.setOpacity(val ? 0.3 : 1);
         m.overlay.setDisabled(val);
@@ -51,7 +51,7 @@ export default {
         val.overlay.setDisabled(false);
       }
     },
-    selectedPin(val) {
+    selectedPinMarker(val) {
       this.pinMarkers.forEach(m => m.setOpacity(val ? 0.3 : 1));
       if (val) val.setOpacity(1);
     },
@@ -92,8 +92,8 @@ export default {
       line: null,
       infoWindow: null,
       init: false,
-      selectedUser: null,
-      selectedPin: null
+      selectedUserMarker: null,
+      selectedPinMarker: null
     };
   },
   mounted() {
@@ -115,8 +115,8 @@ export default {
     google.maps.event.addListener(map, "click", e => {
       if (this.line) this.line.remove();
       if (this.infoWindow) this.infoWindow.close();
-      this.selectedUser = null;
-      this.selectedPin = null;
+      this.selectedUserMarker = null;
+      this.selectedPinMarker = null;
     });
     if (this.user) this.zoomOnCoords(this.getLatLng(this.user.coordinates));
     if (this.isExplore && !this.init) this.createItems();
@@ -142,15 +142,12 @@ export default {
         visible: this.showUserBubbles
       });
       const overlay = createBubble(this.map, pos, user, this.showUserBubbles);
-      user.marker = marker;
-      marker.user = user;
       marker.addListener("click", e => {
-        console.log("mark");
         if (e) e.stop();
-        this.highlightUser(user);
+        this.highlightUser(marker);
       });
+      marker.user = user;
       marker.overlay = overlay;
-      overlay.marker = marker;
       this.userMarkers.push(marker);
     },
     createPin(pin) {
@@ -172,9 +169,9 @@ export default {
       });
       const infoWindow = this.createInfoWindow(pin);
       marker.addListener("click", () => {
-        this.highlightPin(pin);
+        this.highlightPin(marker);
       });
-      marker.infoWindow = infoWindow
+      marker.infoWindow = infoWindow;
       marker.pin = pin;
       this.pinMarkers.push(marker);
     },
@@ -192,31 +189,25 @@ export default {
       this.line.draw();
       this.map.fitBounds(bounds);
     },
-    highlightUser(user) {
-      this.selectedUser = user.marker;
-      const pinMarker = this.pinMarkers.find(
-        marker => marker.pin.user.id === user.id
-      );
-      if (!pinMarker) return this.zoomOnCoords(user.marker.position);
+    highlightUser(userMarker) {
+      this.selectedUserMarker = userMarker;
+      const pin = this.$store.getters.getUserPin(userMarker.user.id);
+      if (!pin) return this.zoomOnCoords(userMarker.position);
+      const pinMarker = this.getPinMarker(pin.id);
       const pinCoords = pinMarker.getPosition();
-      const userCoords = user.marker.getPosition();
+      const userCoords = userMarker.getPosition();
       this.createLink(pinCoords, userCoords);
-      this.selectedPin = pinMarker;
-      this.showPinMessage(pinMarker)
+      this.selectedPinMarker = pinMarker;
+      this.showPinMessage(pinMarker);
     },
-    highlightPin(pin) {
-      const userMarker = this.userMarkers.find(
-        marker => marker.user.id === pin.user.id
-      );
-      const pinMarker = this.pinMarkers.find(
-        marker => marker.pin.id === pin.id
-      );
-      this.selectedUser = userMarker;
-      this.selectedPin = pinMarker;
-      const pinCoords = this.getLatLng(pin.coordinates);
-      const userCoords = this.getLatLng(pin.user.coordinates);
+    highlightPin(pinMarker) {
+      const userMarker = this.getUserMarker(pinMarker.pin.user.id);
+      this.selectedUserMarker = userMarker;
+      this.selectedPinMarker = pinMarker;
+      const pinCoords = pinMarker.getPosition();
+      const userCoords = userMarker.getPosition();
       this.createLink(pinCoords, userCoords);
-      this.showPinMessage(pinMarker)
+      this.showPinMessage(pinMarker);
     },
     createInfoWindow(pin) {
       let user = pin.user;
@@ -234,6 +225,12 @@ export default {
     zoomOnCoords(coords) {
       this.map.setCenter(coords);
       this.map.setZoom(17);
+    },
+    getUserMarker(id) {
+      return this.userMarkers.find(marker => marker.user.id === id);
+    },
+    getPinMarker(id) {
+      return this.pinMarkers.find(marker => marker.pin.id === id);
     },
     getLatLng(coordinates) {
       return new google.maps.LatLng({
