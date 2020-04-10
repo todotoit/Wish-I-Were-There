@@ -1,72 +1,83 @@
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 h3 {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none;
-    &.center {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  &.center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 .panel {
-    width: 50%;
-    height: auto;
-    padding: 0.5rem;
-    pointer-events: all;
-    text-align: center;
+  width: 50%;
+  height: auto;
+  padding: 0.5rem;
+  pointer-events: all;
+  text-align: center;
 }
 
 .editor {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    user-select: none;
-    header,
-    footer {
-        padding: 1rem;
-        button,
-        input,
-        textarea {
-            pointer-events: all;
-        }
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  user-select: none;
+  header,
+  footer {
+    padding: 1rem;
+    button,
+    input,
+    textarea {
+      pointer-events: all;
     }
+  }
+}
+
+#map {
+  .gm-style .gm-style-iw-c {
+    padding: 0;
+    border-radius: 0;
+  }
+  .gm-style-iw-d {
+    padding: 2rem;
+    color: #000;
+  }
 }
 
 @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-      opacity: 0.5;
-    }
-    50% {
-      transform: rotate(180deg);
-      opacity: 0.3;
-    }
-    100% {
-      transform: rotate(360deg);
-      opacity: 0.5;
-    }
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.5;
   }
+  50% {
+    transform: rotate(180deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.5;
+  }
+}
 @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
