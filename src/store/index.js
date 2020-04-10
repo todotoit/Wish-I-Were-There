@@ -93,12 +93,22 @@ export default new Vuex.Store({
       return db.collection('pins')
         .doc(context.state.userPins.id)
         .update({ message: data.message })
-    })
+    }),
+    setCurrentUser: (context, id) => {
+      context.commit('SET_USER', context.getters.getUser(id))
+      context.commit('SET_USER_PINS', context.getters.getUserPin(id))
+    }
   },
 
   getters: {
     getUserPin: (state) => (id) => {
       return state.pins.find(pin => pin.user.id === id)
+    },
+    getUser: (state) => (id) => {
+      return state.users.find(user => user.id === id)
+    },
+    getUserByRef: (state) => (ref) => {
+      return state.users.find(user => user.id === ref.split('/')[1])
     }
   }
 })
