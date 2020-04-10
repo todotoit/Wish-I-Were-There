@@ -54,7 +54,6 @@ export default {
   data() {
     return {
       message: "",
-      placing: false,
       addingMessage: false,
       messageUpdated: false
     };
@@ -88,13 +87,13 @@ export default {
           marker: this.marker
         })
         .then(r => {
-          console.log(r);
           this.$store.commit("SET_USER_PINS", r);
           this.$store.commit("SET_PLACING", false);
           this.map.setCenter(r.marker.getPosition());
         });
     },
     updatePinMessage() {
+      if(!this.message) return
       this.$store
         .dispatch("updatePin", {
           message: this.message

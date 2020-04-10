@@ -21,7 +21,9 @@
           <p>According to Italian regulations most regional governments allow their citizens to move within the 200 mt surrounding their place of self-quarantine</p>
         </header>
         <footer>
-          <p><button @click="$router.push('/pins')">Next</button></p>
+          <p>
+            <button @click="$router.push('/pins')">Next</button>
+          </p>
         </footer>
       </template>
     </div>
@@ -51,18 +53,19 @@ export default {
     }
   },
   mounted() {
-    this.$store.commit('SET_PLACING', true)
+    if(this.$store.state.user) return this.$router.push('/explore')
+    this.$store.commit("SET_PLACING", true);
   },
   methods: {
     createNewBubble() {
       this.$store
         .dispatch("createNewUser", { name: this.name, marker: this.marker })
         .then(r => {
-          console.log(r);
-          this.$store.commit('SET_PLACING', false)
+          this.$store.commit("SET_PLACING", false);
           this.$store.commit("SET_USER", r);
           this.map.setCenter(r.marker.getPosition());
           this.map.setZoom(17);
+          this.$cookie.set("daydream_user", r.id, { expires: "1Y" });
         });
     }
   }
