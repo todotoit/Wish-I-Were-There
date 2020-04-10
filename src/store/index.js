@@ -95,4 +95,10 @@ export default new Vuex.Store({
         .update({ message: data.message })
     })
   },
+
+  getters: {
+    getUserPins: (state) => (id) => {
+      return state.pins.find(pin => pin.user.id === id)
+    }
+  }
 })
