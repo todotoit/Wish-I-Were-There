@@ -6,6 +6,7 @@ import VueCookie from 'vue-cookie';
 import VueSocialSharing from 'vue-social-sharing';
 
 import './assets/css/style.scss'
+import './assets/fonts/stylesheet.css'
 
 Vue.use(VueSocialSharing);
 Vue.use(VueCookie);
