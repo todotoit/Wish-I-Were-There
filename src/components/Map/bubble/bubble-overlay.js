@@ -1,6 +1,6 @@
 import BubbleImage from './bubble-img'
 
-export function createBubble(map, center, user) {
+export function createBubble(map, center, user, visible) {
     createOverlayProto()
     const c = new google.maps.LatLng(center.lat, center.lng)
     const circle = new google.maps.Circle({
@@ -11,14 +11,15 @@ export function createBubble(map, center, user) {
         fillColor: 'transparent'
     });
     const b = circle.getBounds();
-    return new BubbleOverlay(b, map, user);
+    return new BubbleOverlay(b, map, user, visible);
 }
 
 /** @constructor */
-function BubbleOverlay(bounds, map, user) {
+function BubbleOverlay(bounds, map, user, visible) {
     this.bounds_ = bounds;
     this.map_ = map;
     this.user_ = user
+    this.visible_ = visible
     this.images = [
         require('@/assets/img/bubbles/bubbles-gradient.png'),
         require('@/assets/img/bubbles/bubbles-expanded.png')
@@ -41,6 +42,11 @@ function createOverlayProto() {
         this.div_ = div;
         const panes = this.getPanes();
         panes.overlayLayer.appendChild(div);
+        google.maps.event.addDomListener(div, 'click', e => {
+            console.log('click', this)
+            google.maps.event.trigger(this.marker, 'click');
+        });
+        this.setVisible(this.visible_)
     };
 
     BubbleOverlay.prototype.draw = function () {
@@ -48,7 +54,7 @@ function createOverlayProto() {
         const zoom = overlayProjection['T'].zoom
         let zoomLevel = 0
         if (zoom > 16) zoomLevel = 1
-        
+
         const sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
         const ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
 
@@ -67,7 +73,8 @@ function createOverlayProto() {
     };
 
     BubbleOverlay.prototype.setVisible = function (val) {
-        this.div_.classList.toggle('hidden', !val)
+        if (this.div_) this.div_.classList.toggle('hidden', !val)
+        this.visible_ = val
     }
 }
 

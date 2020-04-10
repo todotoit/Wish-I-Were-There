@@ -76,7 +76,7 @@ export default {
     }
   },
   mounted() {
-    this.map.setZoom(12);
+    this.map.setZoom(13);
   },
   methods: {
     createNewPin() {

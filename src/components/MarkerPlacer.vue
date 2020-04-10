@@ -14,6 +14,10 @@ export default {
     type: {
       type: String,
       default: "bubble"
+    },
+    geolocation: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -30,9 +34,9 @@ export default {
     else url = require("@/assets/icons/pin.svg");
     const img = {
       url,
-      size: new google.maps.Size(25, 25),
       origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(12.5, 12.5)
+      anchor: new google.maps.Point(12.5, 12.5),
+      scaledSize: new google.maps.Size(30, 30)
     };
     const marker = new google.maps.Marker({
       position: this.map.getCenter(),
@@ -44,7 +48,7 @@ export default {
     google.maps.event.addListener(this.map, "click", event => {
       this.updateMarker(event.latLng);
     });
-    this.locateUser()
+    if(this.geolocation) this.locateUser();
   },
   destroyed() {
     google.maps.event.clearListeners(this.map, "click");

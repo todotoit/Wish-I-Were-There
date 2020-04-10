@@ -35,11 +35,14 @@ export default {
     showUserBubbles(val, oldVal) {
       this.bubbleMarkers.forEach(m => {
         m.setVisible(val);
-        m.overlay.setVisible(val)
+        m.overlay.setVisible(val);
       });
     },
     showPins(val, oldVal) {
       this.pinMarkers.forEach(m => m.setVisible(val));
+    },
+    $route(to, from) {
+      if (to.path === "/explore" && !this.init) this.createItems();
     }
   },
   computed: {
@@ -73,7 +76,8 @@ export default {
       showUserBubbles: true,
       showPins: true,
       line: null,
-      infoWindow: null
+      infoWindow: null,
+      init: false
     };
   },
   mounted() {
@@ -96,30 +100,38 @@ export default {
       if (this.line) this.line.remove();
       if (this.infoWindow) this.infoWindow.close();
     });
-    this.pins.forEach(p => this.createPin(p));
-    this.users.forEach(u => this.createUserBubble(u));
     if (this.user) this.zoomOnCoords(this.getLatLng(this.user.coordinates));
+    if (this.isExplore && !this.init) this.createItems();
   },
   methods: {
+    createItems() {
+      this.pins.forEach(p => this.createPin(p));
+      this.users.forEach(u => this.createUserBubble(u));
+      this.init = true;
+    },
     createUserBubble(user) {
       const pos = { lat: user.coordinates.Wa, lng: user.coordinates.za };
       const img = {
         url: require("@/assets/icons/bubble.svg"),
-        size: new google.maps.Size(10, 10),
+        scaledSize: new google.maps.Size(20, 20),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(5, 5)
+        anchor: new google.maps.Point(10, 10)
       };
       const marker = new google.maps.Marker({
         position: pos,
         map: this.map,
-        icon: img
+        icon: img,
+        visible: this.showUserBubbles
       });
-      const overlay = createBubble(this.map, pos, user);
+      const overlay = createBubble(this.map, pos, user, this.showUserBubbles);
       user.marker = marker;
-      marker.addListener("click", () => {
+      marker.addListener("click", e => {
+        console.log("mark");
+        if (e) e.stop();
         this.highlightUser(user);
       });
       marker.overlay = overlay;
+      overlay.marker = marker;
       this.bubbleMarkers.push(marker);
     },
     createPin(pin) {
@@ -133,7 +145,8 @@ export default {
       const marker = new google.maps.Marker({
         position: { lat: coordinates.Wa, lng: coordinates.za },
         map: this.map,
-        icon: img
+        icon: img,
+        visible: this.showUserBubbles
       });
       const infoWindow = this.createInfoWindow(pin);
       marker.addListener("click", () => {
@@ -160,7 +173,7 @@ export default {
     },
     highlightUser(user) {
       const pin = this.$store.getters.getUserPin(user.id);
-      if (!pin) return this.zoomOnCoords(user.marker);
+      if (!pin) return this.zoomOnCoords(user.marker.position);
       const pinCoords = this.getLatLng(pin.coordinates);
       const userCoords = user.marker.getPosition();
       this.createLink(pinCoords, userCoords);
@@ -229,8 +242,11 @@ export default {
 .bubble-container {
   position: absolute;
   transition: opacity 0.3s;
+  z-index: -3000;
+  pointer-events: auto;
   &.hidden,
   &.far {
+    pointer-events: none;
     opacity: 0;
   }
   img {
@@ -250,6 +266,7 @@ export default {
     &.hidden {
       opacity: 0;
       animation: none;
+      pointer-events: none;
     }
   }
   label {
