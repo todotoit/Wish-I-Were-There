@@ -14,6 +14,26 @@
         class="medium"
       >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quo mollitia id dolorum possimus ea maiores, libero quas tempora nesciunt quis eveniet soluta doloribus sit asperiores, dicta cum aperiam adipisci.</p>
     </section>
+    <section class="social">
+      <social-sharing
+        url="https://vuejs.org/"
+        title="The Progressive JavaScript Framework"
+        description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
+        quote="Vue is a progressive framework for building user interfaces."
+        hashtags="vuejs,javascript,framework"
+        twitter-user="vuejs"
+        inline-template
+      >
+        <div>
+          <network network="facebook">
+            <i class="fa fa-facebook"></i> Facebook
+          </network>
+          <network network="twitter">
+            <i class="fa fa-twitter"></i> Twitter
+          </network>
+        </div>
+      </social-sharing>
+    </section>
     <section class="copy">
       <p class="large">A PROJECT BY</p>
       <img svg-inline class="logo" src="@/assets/icons/todo-logo.svg" />

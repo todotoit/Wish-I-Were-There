@@ -3,8 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueCookie from 'vue-cookie';
+import VueSocialSharing from 'vue-social-sharing';
+
 import './assets/css/style.scss'
 
+Vue.use(VueSocialSharing);
 Vue.use(VueCookie);
 
 Vue.config.productionTip = false
