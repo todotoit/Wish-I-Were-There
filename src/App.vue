@@ -83,11 +83,10 @@ export default {
 .btn-info {
   position: fixed;
   z-index: 100;
-  top: 0;
-  right: 0;
-  padding: 0.5rem;
-  width: 60px;
-  height: 60px;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  cursor: pointer;
   .open {
     width: 100%;
     height: 100%;
@@ -98,9 +97,7 @@ export default {
   .close {
     width: 100%;
     height: 100%;
-    path {
-      stroke: $col-dark;
-    }
+
     &:focus {
       outline: none;
     }

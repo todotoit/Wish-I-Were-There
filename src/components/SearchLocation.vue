@@ -1,5 +1,5 @@
 <template>
-  <input ref="search-location" type="text" class="search-input" placeholder="Search by location" />
+  <input ref="search-location" type="text" class="search-input" placeholder="Insert address" />
 </template>
 
 <script>
@@ -31,4 +31,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.search-input {
+  font-size: 1rem;
+  text-transform: initial;
+}
 </style>

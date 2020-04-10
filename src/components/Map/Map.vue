@@ -1,14 +1,14 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing}">
     <SearchLocation id="search-location" v-if="map && isExplore" />
-    <div class="tools" v-if="map && isExplore">
-      <p>
-        <input type="checkbox" v-model="showUserBubbles" />Show bubbles
-      </p>
-      <p>
-        <input type="checkbox" v-model="showPins" />Show pins
-      </p>
-    </div>
+    <ul class="tools" v-if="map && isExplore">
+      <li :class="{active: showUserBubbles}" @click="showUserBubbles = !showUserBubbles">
+        <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" /> Microcosms
+      </li>
+      <li :class="{active: showPins}" @click="showPins = !showPins">
+        <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" /> Daydreams
+      </li>
+    </ul>
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -253,7 +253,7 @@ export default {
 }
 #search-location {
   position: fixed;
-  top: 20px;
+  top: 1rem;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 20;
@@ -265,7 +265,26 @@ export default {
   position: absolute;
   left: 1rem;
   top: 1rem;
-  z-index: 100;
+  z-index: 20;
+  padding: 0;
+  margin: 0;
+  ul,
+  li {
+    list-style: none;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+    cursor: pointer;
+    &.active {
+      opacity: 1;
+    }
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
 }
 .map-container:not(.active)
   .gm-style
