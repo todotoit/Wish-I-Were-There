@@ -1,6 +1,14 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing}">
     <SearchLocation id="search-location" v-if="map && isExplore" />
+    <div class="tools" v-if="map && isExplore">
+      <p>
+        <input type="checkbox" v-model="showUserBubbles" />Show bubbles
+      </p>
+      <p>
+        <input type="checkbox" v-model="showPins" />Show pins
+      </p>
+    </div>
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -23,6 +31,15 @@ export default {
     pins(val, oldVal) {
       const newPins = getNewItems(val, oldVal);
       newPins.forEach(pin => this.createPin(pin));
+    },
+    showUserBubbles(val, oldVal) {
+      this.bubbleMarkers.forEach(m => {
+        m.setVisible(val);
+        m.overlay.setVisible(val)
+      });
+    },
+    showPins(val, oldVal) {
+      this.pinMarkers.forEach(m => m.setVisible(val));
     }
   },
   computed: {
@@ -52,6 +69,9 @@ export default {
         lng: 7.680763
       },
       bubbleMarkers: [],
+      pinMarkers: [],
+      showUserBubbles: true,
+      showPins: true,
       line: null,
       infoWindow: null
     };
@@ -99,6 +119,7 @@ export default {
       marker.addListener("click", () => {
         this.highlightUser(user);
       });
+      marker.overlay = overlay;
       this.bubbleMarkers.push(marker);
     },
     createPin(pin) {
@@ -121,6 +142,7 @@ export default {
         this.infoWindow = infoWindow;
         this.highlightPin(pin);
       });
+      this.pinMarkers.push(marker);
     },
     createLink(start, end) {
       if (this.line) this.line.remove();
@@ -152,7 +174,7 @@ export default {
       let user = pin.user;
       if (typeof pin.user === "string")
         user = this.$store.getters.getUserByRef(pin.user);
-      let content = `<h4>${user.name || 'anonymous'}</h4>`;
+      let content = `<h4>${user.name || "anonymous"}</h4>`;
       content += `<p>${pin.message}</p>`;
       return new google.maps.InfoWindow({
         content
@@ -191,6 +213,12 @@ export default {
 #map > div {
   background-color: #212121 !important;
 }
+.tools {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+}
 .map-container:not(.active)
   .gm-style
   > div:first-child
@@ -201,7 +229,8 @@ export default {
 .bubble-container {
   position: absolute;
   transition: opacity 0.3s;
-  &.hidden {
+  &.hidden,
+  &.far {
     opacity: 0;
   }
   img {

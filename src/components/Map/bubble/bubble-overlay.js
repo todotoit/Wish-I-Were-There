@@ -65,10 +65,10 @@ function createOverlayProto() {
         // Resize the image's div to fit the indicated dimensions.
         const div = this.div_;
         if (zoom < 14) {
-            div.classList.add('hidden')
+            div.classList.add('far')
             return
         }
-        else div.classList.remove('hidden')
+        else div.classList.remove('far')
 
         div.style.left = sw.x + 'px';
         div.style.top = ne.y + 'px';
@@ -77,6 +77,10 @@ function createOverlayProto() {
         this.bubble_.setZoomLevel(zoomLevel)
         //this.bubble_.setBounds(this.div_.getBoundingClientRect()) 
     };
+
+    BubbleOverlay.prototype.setVisible = function (val) {
+        this.div_.classList.toggle('hidden', !val)
+    }
 }
 
 
