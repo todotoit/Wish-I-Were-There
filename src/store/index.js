@@ -97,7 +97,7 @@ export default new Vuex.Store({
   },
 
   getters: {
-    getUserPins: (state) => (id) => {
+    getUserPin: (state) => (id) => {
       return state.pins.find(pin => pin.user.id === id)
     }
   }
