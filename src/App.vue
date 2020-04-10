@@ -6,8 +6,8 @@
     </div>
     <Map v-if="ready" />
     <div class="btn-info" @click="info = !info">
-      <div class="open" v-if="!info" />
-      <div class="close" v-else />
+      <img v-if="!info" svg-inline class="open" src="@/assets/icons/info.svg" />
+      <img v-else svg-inline class="close" src="@/assets/icons/close.svg" />
     </div>
     <Info v-if="info" />
     <img svg-inline class="copyright" src="@/assets/icons/todo-logo.svg" />
@@ -92,17 +92,24 @@ body {
   top: 0;
   right: 0;
   padding: 0.5rem;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   .open {
     width: 100%;
     height: 100%;
-    background-color: red;
+    &:focus {
+      outline: none;
+    }
   }
   .close {
     width: 100%;
     height: 100%;
-    background-color: blue;
+    path {
+      stroke: $col-dark;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>
