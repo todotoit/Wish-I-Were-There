@@ -34,21 +34,26 @@ export default {
     if (this.$route.path !== "/") this.$router.push("/");
     Promise.all([
       this.$store.dispatch("bindUsersRef"),
-      this.$store.dispatch("bindPinsRef")
-    ]);
-    this.includeScripts();
+      this.$store.dispatch("bindPinsRef"),
+      this.includeScripts()
+    ]).then(() => {
+      this.$store.commit("SET_READY", true);
+    });;
+    
   },
   methods: {
     includeScripts() {
-      if (document.getElementsByClassName("gm-src").length) return;
-      let script = document.createElement("script");
-      script.classList.add("gm-src");
-      script.onload = () => {
-        this.$store.commit("SET_READY", true);
-      };
-      script.async = true;
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${this.mapsKey}&libraries=places`;
-      document.head.appendChild(script);
+      if (document.getElementsByClassName("gm-src").length) return Promise.resolve();
+      return new Promise(resolve => {
+        let script = document.createElement("script");
+        script.classList.add("gm-src");
+        script.onload = () => {
+          resolve()
+        };
+        script.async = true;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${this.mapsKey}&libraries=places`;
+        document.head.appendChild(script);
+      })
     }
   },
   components: { Map, Info }
