@@ -2,7 +2,7 @@
   <div id="app">
     <div class="overlay center" v-show="$route.path !== '/explore'">
       <a @click="$router.push('/explore')" class="close">CLOSE</a>
-      <router-view />
+      <router-view v-if="ready" />
     </div>
     <Map v-if="ready" />
     <div class="btn-info" @click="info = !info">
@@ -31,29 +31,31 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.path !== "/") this.$router.push("/");
+    if (this.$route.path !== "/" && this.$route.path !== "/explore") this.$router.push("/");
     Promise.all([
       this.$store.dispatch("bindUsersRef"),
       this.$store.dispatch("bindPinsRef"),
       this.includeScripts()
     ]).then(() => {
       this.$store.commit("SET_READY", true);
-    });;
-    
+      const userId = this.$cookie.get("daydream_user");
+      if (userId) this.$store.dispatch("setCurrentUser", userId);
+    });
   },
   methods: {
     includeScripts() {
-      if (document.getElementsByClassName("gm-src").length) return Promise.resolve();
+      if (document.getElementsByClassName("gm-src").length)
+        return Promise.resolve();
       return new Promise(resolve => {
         let script = document.createElement("script");
         script.classList.add("gm-src");
         script.onload = () => {
-          resolve()
+          resolve();
         };
         script.async = true;
         script.src = `https://maps.googleapis.com/maps/api/js?key=${this.mapsKey}&libraries=places`;
         document.head.appendChild(script);
-      })
+      });
     }
   },
   components: { Map, Info }
