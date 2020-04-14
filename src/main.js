@@ -8,6 +8,7 @@ import VueI18n from 'vue-i18n'
 import localization from './localization.js'
 
 import './assets/css/style.scss'
+import './assets/css/transitions.scss'
 import './assets/fonts/stylesheet.css'
 
 Vue.use(VueSocialSharing);
