@@ -5,13 +5,17 @@
       <p class="medium">Visualizing</p>
       <ul>
         <li
-          :class="{active: showUserBubbles}"
+          :class="{active: showUserMarkers}"
           class="medium"
-          @click="showUserBubbles = !showUserBubbles"
+          @click="showUserMarkers = !showUserMarkers"
         >
           <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" /> Microcosms
         </li>
-        <li :class="{active: showPins}" class="medium" @click="showPins = !showPins">
+        <li
+          :class="{active: showPinMarkers}"
+          class="medium"
+          @click="showPinMarkers = !showPinMarkers"
+        >
           <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" /> Daydreams
         </li>
       </ul>
@@ -39,14 +43,16 @@ export default {
       const newPins = getNewItems(val, oldVal);
       newPins.forEach(pin => this.createPin(pin));
     },
-    showUserBubbles(val) {
+    showUserMarkers(val) {
       this.userMarkers.forEach(m => {
         m.setVisible(val);
         m.overlay.setVisible(val);
       });
+      this.map.showUserMarkers = val;
     },
-    showPins(val) {
+    showPinMarkers(val) {
       this.pinMarkers.forEach(m => m.setVisible(val));
+      this.map.showPinMarkers = val;
     },
     selectedUserMarker(val) {
       this.userMarkers.forEach(m => {
@@ -57,6 +63,7 @@ export default {
         val.setOpacity(1);
         val.overlay.setDisabled(false);
       }
+      this.map.selectedUserMarker = val;
     },
     selectedPinMarker(val) {
       this.pinMarkers.forEach(m => m.setOpacity(val ? 0.3 : 1));
@@ -94,8 +101,8 @@ export default {
       },
       userMarkers: [],
       pinMarkers: [],
-      showUserBubbles: true,
-      showPins: true,
+      showUserMarkers: true,
+      showPinMarkers: true,
       line: null,
       infoWindow: null,
       init: false,
@@ -116,6 +123,8 @@ export default {
       clickableIcons: false
     });
     this.$store.commit("SET_MAP", map);
+    this.map.showUserMarkers = this.showUserMarkers;
+    this.map.showPinMarkers = this.showPinMarkers;
     google.maps.event.addListener(map, "zoom_changed", e =>
       this.handleMapZoom(e)
     );
@@ -156,12 +165,13 @@ export default {
         position: pos,
         map: this.map,
         icon: img,
-        visible: this.showUserBubbles
+        visible: this.showUserMarkers
       });
-      const overlay = createBubble(this.map, pos, user, {
-        visible: this.showUserBubbles,
-        disabled: !this.selectedUserMarker
-      });
+      this.map.markerOptions = {
+        visible: this.showUserMarkers,
+        disabled: this.selectedUserMarker
+      };
+      const overlay = createBubble(this.map, pos, user);
       marker.addListener("click", e => {
         if (e) e.stop();
         this.highlightUser(marker);
@@ -185,7 +195,7 @@ export default {
         position: { lat: coordinates.Wa, lng: coordinates.za },
         map: this.map,
         icon: img,
-        visible: this.showUserBubbles
+        visible: this.showUserMarkers
       });
       const infoWindow = this.createInfoWindow(pin);
       marker.addListener("click", () => {
@@ -233,11 +243,16 @@ export default {
     createInfoWindow(pin) {
       let user = pin.user;
       // let content = `<h4>${user.name || "anonymous"}</h4>`;
-      let content = `<p>${pin.message}</p>`;
-      return new google.maps.InfoWindow({
+      let message = pin.message || "No message.";
+      let content = `<p>${message}</p>`;
+      content += `<p class="share-url"><input type="text" readonly onfocus="this.select(); document.execCommand('copy');" value="${this.$store.getters.getUserUrl(
+        user.id
+      )}" /></p>`;
+      const info = new google.maps.InfoWindow({
         content,
-        maxWidth: 300
+        maxWidth: 400
       });
+      return info;
     },
     showPinMessage(marker) {
       if (this.infoWindow) this.infoWindow.close();
@@ -271,7 +286,7 @@ export default {
 .map-container,
 #map {
   height: 100%;
-  background-color: #212121;
+  background-color: $col-dark;
 }
 #search-location {
   position: fixed;
@@ -281,7 +296,7 @@ export default {
   z-index: 20;
 }
 #map > div {
-  background-color: #212121 !important;
+  background-color: $col-dark !important;
 }
 .tools {
   position: absolute;

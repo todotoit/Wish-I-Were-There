@@ -152,6 +152,33 @@ textarea {
     color: $col-green;
     border: 1px solid $col-white;
   }
+  .gm-style .gm-style-iw-c input {
+    border: none;
+    text-transform: lowercase;
+    font-size: 0.8rem;
+    margin: 0;
+    color: $col-white;
+    text-align: left;
+  }
+  .share-url {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+
+    input {
+      flex: 1;
+    }
+    &::before {
+      content: " ";
+      display: block;
+      width: 26px;
+      height: 11px;
+      background-image: url("~@/assets/icons/link.svg");
+      background-position: center center;
+      background-size: 75%;
+      background-repeat: no-repeat;
+    }
+  }
 }
 
 @keyframes spin {
