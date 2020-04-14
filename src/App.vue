@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <div class="view" v-show="$route.path !== '/explore'">
-      <!-- <a @click="$router.push('/explore')" class="close">CLOSE</a> -->
+    <div class="view" v-show="!$route.meta.explore">
       <router-view v-if="ready" />
     </div>
     <Map v-if="ready" />
@@ -28,10 +27,13 @@ export default {
   computed: {
     ready() {
       return this.$store.state.ready;
+    },
+    isTutorialRoute() {
+      return this.$route.meta.tutorial === true
     }
   },
   mounted() {
-    if (this.$route.path !== "/" && this.$route.path !== "/explore")
+    if (this.isTutorialRoute)
       this.$router.push("/");
     Promise.all([
       this.$store.dispatch("bindUsersRef"),
@@ -54,7 +56,7 @@ export default {
           resolve();
         };
         script.async = true;
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${this.mapsKey}&libraries=places`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${this.mapsKey}&libraries=places,geometry`;
         document.head.appendChild(script);
       });
     }

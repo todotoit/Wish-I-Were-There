@@ -63,7 +63,7 @@ export default {
       if (val) val.setOpacity(1);
     },
     $route(to, from) {
-      if (to.path === "/explore" && !this.init) this.createItems();
+      if (to.meta.explore && !this.init) this.createItems();
     }
   },
   computed: {
@@ -74,7 +74,7 @@ export default {
       return this.$store.state.pins.slice();
     },
     isExplore() {
-      return this.$route.path === "/explore";
+      return this.$route.meta.explore;
     },
     map() {
       return this.$store.state.map;
@@ -125,7 +125,6 @@ export default {
       this.selectedUserMarker = null;
       this.selectedPinMarker = null;
     });
-    if (this.user) this.zoomOnCoords(this.getLatLng(this.user.coordinates));
     if (this.isExplore && !this.init) this.createItems();
   },
   methods: {
@@ -133,6 +132,17 @@ export default {
       this.pins.forEach(p => this.createPin(p));
       this.users.forEach(u => this.createUserBubble(u));
       this.init = true;
+      this.checkHighlight();
+    },
+    checkHighlight() {
+      let user = this.user;
+      if (this.isExplore && this.$route.params.id) {
+        user = this.$store.getters.getUser(this.$route.params.id);
+      }
+      if (user) {
+        const marker = this.getUserMarker(user.id);
+        if (marker) this.highlightUser(marker);
+      }
     },
     createUserBubble(user) {
       const pos = { lat: user.coordinates.Wa, lng: user.coordinates.za };
@@ -148,7 +158,10 @@ export default {
         icon: img,
         visible: this.showUserBubbles
       });
-      const overlay = createBubble(this.map, pos, user, this.showUserBubbles);
+      const overlay = createBubble(this.map, pos, user, {
+        visible: this.showUserBubbles,
+        disabled: !this.selectedUserMarker
+      });
       marker.addListener("click", e => {
         if (e) e.stop();
         this.highlightUser(marker);
@@ -197,6 +210,7 @@ export default {
       this.map.fitBounds(bounds);
     },
     highlightUser(userMarker) {
+      console.log("highlight", userMarker.user);
       this.selectedUserMarker = userMarker;
       const pin = this.$store.getters.getUserPin(userMarker.user.id);
       if (!pin) return this.zoomOnCoords(userMarker.position);

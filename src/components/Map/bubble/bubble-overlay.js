@@ -1,6 +1,6 @@
 import BubbleImage from './bubble-img'
 
-export function createBubble(map, center, user, visible) {
+export function createBubble(map, center, user, options) {
     createOverlayProto()
     const c = new google.maps.LatLng(center.lat, center.lng)
     const circle = new google.maps.Circle({
@@ -11,15 +11,19 @@ export function createBubble(map, center, user, visible) {
         fillColor: 'transparent'
     });
     const b = circle.getBounds();
-    return new BubbleOverlay(b, map, user, visible);
+    return new BubbleOverlay(b, map, user, options);
 }
 
 /** @constructor */
-function BubbleOverlay(bounds, map, user, visible) {
+function BubbleOverlay(bounds, map, user, options) {
     this.bounds_ = bounds;
     this.map_ = map;
     this.user_ = user
-    this.visible_ = visible
+    this.options_ = {
+        visible: true,
+        disabled: false,
+        ...options
+    }
     this.images = [
         require('@/assets/img/bubbles/bubbles-gradient.png'),
         require('@/assets/img/bubbles/bubbles-expanded.png')
@@ -46,7 +50,8 @@ function createOverlayProto() {
             console.log('click', this)
             google.maps.event.trigger(this.marker, 'click');
         });
-        this.setVisible(this.visible_)
+        this.setVisible(this.options_.visible)
+        this.setDisabled(this.options_.disabled)
     };
 
     BubbleOverlay.prototype.draw = function () {
