@@ -7,15 +7,14 @@ const { GeoPoint } = firebase.firestore
 
 Vue.use(Vuex)
 
-
 const db = firebase.initializeApp({
   apiKey: process.env.VUE_APP_FIREBASE_KEY,
-  authDomain: "mappette-2f68a.firebaseapp.com",
-  databaseURL: "https://mappette-2f68a.firebaseio.com",
-  projectId: "mappette-2f68a",
-  storageBucket: "mappette-2f68a.appspot.com",
-  messagingSenderId: "31611820265",
-  appId: "1:31611820265:web:bb2d5f1a16927a6153f878"
+  authDomain: "mappette-14132.firebaseapp.com",
+  databaseURL: "https://mappette-14132.firebaseio.com",
+  projectId: "mappette-14132",
+  storageBucket: "mappette-14132.appspot.com",
+  messagingSenderId: "825156378615",
+  appId: "1:825156378615:web:cbc44e0051c1a04861d8f2"
 }).firestore()
 
 export default new Vuex.Store({
