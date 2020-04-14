@@ -330,12 +330,12 @@ export default {
   z-index: -3000;
   pointer-events: auto;
   &.hidden,
+  &.disabled {
+    opacity: 0.25;
+  }
   &.far {
     pointer-events: none;
     opacity: 0;
-  }
-  &.disabled {
-    opacity: 0.25;
   }
   img {
     display: block;
