@@ -7,7 +7,7 @@ export default {
 
         // Add your name
         phase00Username: 'What’s your name?',
-        phase00Desc: '(Use a nickname if you want.)',
+        phase00Desc: 'Use a nickname if you want.',
         phase00Input: 'Enter your name here',
         phase00Btn: 'Next',
 
@@ -15,7 +15,7 @@ export default {
         phase01Title: 'Where are you now?',
         phase01Desc: 'Place the first star where you are self-isolating at the moment.',
         phase01Address: 'Enter address here',
-        phase01GPS: '(or enable GPS to locate your position)',
+        phase01GPS: 'Enable GPS to locate your position',
         phase01Btn: 'Add star',
 
         // Your bubble
@@ -28,6 +28,7 @@ export default {
         phase03Desc: 'Go ahead, daydream a little. Where is the first place you want to go to, as soon as we are all free to move around again?',
         phase03Input: 'Enter address here',
         phase03Btn: 'Add Star',
+        phase03Skip: 'Skip to map',
 
         // Add your message
         phase04Title: 'Add a message',
@@ -64,7 +65,7 @@ export default {
 
         // Add your name
         phase00Username: 'Come ti chiami?',
-        phase00Desc: '(Puoi usare un nickname se vuoi.)',
+        phase00Desc: 'Puoi usare un nickname se vuoi.',
         phase00Input: 'Inserisci il tuo nome qui',
         phase00Btn: 'Avanti',
 
@@ -72,7 +73,7 @@ export default {
         phase01Title: 'Dove stai passando il lockdown?',
         phase01Desc: 'Posiziona la prima stella nel punto in cui stai passando l’auto-isolamento.',
         phase01Address: 'Inserisci il tuo indirizzo',
-        phase01GPS: '(o abilita la localizzazione via GPS)',
+        phase01GPS: 'Abilita la localizzazione via GPS',
         phase01Btn: 'Aggiungi stella',
 
         // Your bubble
@@ -85,11 +86,12 @@ export default {
         phase03Desc: 'Concediti un sogno a occhi aperti. Qual è il primo posto dove andrai, appena saremo di nuovo liberi di spostarci?',
         phase03Input: 'Inserisci qui l’indirizzo',
         phase03Btn: 'Aggiungi stella',
+        phase03Skip: 'Salta alla mappa',
 
         // Add your message
         phase04Title: 'Aggiungi un messaggio',
         phase04Desc: 'Lascia un messaggio alle altre persone che esploreranno la mappa. Sii gentile: è un momento difficile per tutti.',
-        phase04Input: 'Aggiungi il messaggio qui',
+        phase04Input: 'Aggiungi un messaggio',
         phase04Btn: 'Pubblica',
 
         // Feedback
