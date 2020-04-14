@@ -214,10 +214,11 @@ export default {
     },
     createInfoWindow(pin) {
       let user = pin.user;
-      let content = `<h4>${user.name || "anonymous"}</h4>`;
-      content += `<p>${pin.message}</p>`;
+      // let content = `<h4>${user.name || "anonymous"}</h4>`;
+      let content = `<p>${pin.message}</p>`;
       return new google.maps.InfoWindow({
-        content
+        content,
+        maxWidth: 300
       });
     },
     showPinMessage(marker) {
