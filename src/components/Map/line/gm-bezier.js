@@ -58,10 +58,10 @@ p.draw = function () {
     this.createInterval = setInterval(() => {
         const icons = this.line.get('icons');
         icons[0].offset = this.offset + '%';
-        icons[0].repeat = this.repeat + '%';
+        icons[0].repeat = this.repeat + 'px';
         this.line.set('icons', icons);
         this.repeat /= 1.1
-        if (this.repeat <= 1) {
+        if (this.repeat <= 15) {
             clearInterval(this.createInterval)
             this.animateLine()
         }
@@ -72,9 +72,9 @@ p.draw = function () {
 }
 
 p.animateLine = function () {
-    if(this.stop) return
+    if (this.stop) return
     const icons = this.line.get('icons');
-    icons[0].offset = 100-this.offset + '%';
+    icons[0].offset = 100 - this.offset + '%';
     this.line.set('icons', icons);
     this.offset += 0.05
     if (this.offset >= 100) this.offset = 0
