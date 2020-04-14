@@ -36,7 +36,7 @@ export default {
       return this.$store.state.user;
     },
     url() {
-      return window.location.origin + "/explore/" + this.user.id;
+      return this.store.getters.getUserUrl(this.user.id)
     }
   },
   methods: {

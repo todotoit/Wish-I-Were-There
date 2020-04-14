@@ -109,6 +109,9 @@ export default new Vuex.Store({
     },
     getUserByRef: (state) => (ref) => {
       return state.users.find(user => user.id === ref.split('/')[1])
+    },
+    getUserUrl: (state) => id => {
+      return window.location.origin + "/explore/" + id;
     }
   }
 })
