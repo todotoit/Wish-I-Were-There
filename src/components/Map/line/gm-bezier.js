@@ -5,7 +5,7 @@ var GmapQuadraticBezier = function (startp, ctl1, endp, options, map) {
     var lineSymbol = {
         path: 'M 0,-1 0,1',
         strokeOpacity: 1,
-        strokeWeight: 2,
+        strokeWeight: 3,
         scale: 2
     };
 
@@ -16,7 +16,7 @@ var GmapQuadraticBezier = function (startp, ctl1, endp, options, map) {
             icons: [{
                 icon: lineSymbol,
                 offset: '0',
-                repeat: '20px'
+                repeat: '15px'
             }],
         }
     };
