@@ -20,6 +20,10 @@ p {
   margin: 0;
   padding: 0;
   display: block;
+  &.link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 
 button {
@@ -29,8 +33,9 @@ button {
 button,
 input {
   z-index: 8;
-  padding: 7px 20px;
+  padding: 8px 40px;
   margin: 0 $spacing / 2;
+  margin-bottom: 1rem;
   background: transparent;
   text-align: center;
   outline: 0;
@@ -38,22 +43,26 @@ input {
   border-radius: 20px;
   transition: all 700ms;
   color: $col-green;
-  font-family: "GT America Compressed", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
+  @extend .thin-large;
   &:hover {
     background-color: $col-green;
     color: $col-white;
   }
 }
 
+input {
+  @extend .thin-medium;
+  background-color: $col-dark;
+}
+
 input[type="text"] {
   border: 1px solid $col-white;
   color: $col-white;
-  padding: 0.2rem;
+  padding: 10px 25px;
   width: 25rem;
-
   &:hover {
-    background-color: transparent;
+    background-color: $col-dark;
     color: $col-white;
   }
   &::placeholder {
@@ -67,10 +76,11 @@ textarea {
   color: $col-green;
   resize: none;
   background-color: $col-dark;
-  width: 100%;
+  width: 30rem;
   min-height: 15rem;
   padding: $spacing / 2;
   box-sizing: border-box;
+  @extend .exte-small;
 }
 
 .overlay {
@@ -86,7 +96,6 @@ textarea {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 200;
   pointer-events: none;
   display: flex;
   flex-direction: column;
@@ -98,16 +107,20 @@ textarea {
     pointer-events: all;
   }
   .info {
-    min-height: 85%;
+    min-height: 82%;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 50%;
+    max-width: 70%;
     margin-top: $spacing;
+    z-index: 200;
     .header {
       width: 100%;
+      p {
+        margin-bottom: 0.8rem;
+      }
       &.center {
         height: 100%;
         display: flex;

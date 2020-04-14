@@ -38,8 +38,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.search-input {
-  font-size: 1rem;
-  text-transform: initial;
-}
 </style>

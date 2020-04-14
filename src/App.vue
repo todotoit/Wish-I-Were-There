@@ -9,7 +9,9 @@
       <img v-else svg-inline class="close" src="@/assets/icons/close.svg" />
     </div>
     <Info v-if="info" />
-    <img svg-inline class="copyright" src="@/assets/icons/todo-logo.svg" />
+    <a target="_blank" class="exte-medium" href="https://todo.to.it/">
+      <img svg-inline class="copyright" src="@/assets/icons/todo-logo.svg" />
+    </a>
   </div>
 </template>
 
@@ -29,12 +31,11 @@ export default {
       return this.$store.state.ready;
     },
     isTutorialRoute() {
-      return this.$route.meta.tutorial === true
+      return this.$route.meta.tutorial === true;
     }
   },
   mounted() {
-    if (this.isTutorialRoute)
-      this.$router.push("/");
+    if (this.isTutorialRoute) this.$router.push("/");
     Promise.all([
       //this.$store.dispatch("bindUsersRef"),
       //this.$store.dispatch("bindPinsRef"),
@@ -76,7 +77,6 @@ export default {
   bottom: 1.5rem;
   left: 50%;
   transform: translate(-50%, 0);
-  z-index: 11;
   path {
     fill: $col-white;
   }
@@ -84,10 +84,10 @@ export default {
 
 .btn-info {
   position: fixed;
-  z-index: 400;
   top: 1rem;
   right: 1rem;
   width: 2.5rem;
+  z-index: 202;
   cursor: pointer;
   .open {
     width: 100%;
@@ -99,7 +99,6 @@ export default {
   .close {
     width: 100%;
     height: 100%;
-
     &:focus {
       outline: none;
     }

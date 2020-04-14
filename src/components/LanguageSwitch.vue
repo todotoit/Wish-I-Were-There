@@ -6,6 +6,7 @@
         :key="index"
         @click="$i18n.locale = locale"
         :class="{active: locale === $i18n.locale}"
+        class="thin-large"
       >{{locale}}</li>
     </ul>
   </div>
@@ -21,15 +22,15 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .language-switch {
-  ul,
-  li {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  ul {
     li {
       color: $col-green;
       display: inline-block;

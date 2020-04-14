@@ -3,11 +3,12 @@
     <div class="view">
       <div class="info">
         <div class="header center">
-          <p class="large">{{ $t('title') }}</p>
-          <p class="medium">{{ $t('intro') }}</p>
+          <p class="expa-large">{{ $t('title') }}</p>
+          <p class="exte-large">{{ $t('intro') }}</p>
         </div>
         <div class="footer">
           <button @click="$router.push('/bubble')">{{ $t('ctaStart') }}</button>
+          <p class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
         </div>
       </div>
       <LanguageSwitch />
@@ -30,20 +31,11 @@ export default {
 .home {
   width: 100%;
   height: 100%;
-  z-index: 999;
+  z-index: 100;
   background-color: #1d1b26;
   .view {
+    z-index: 101;
     pointer-events: all;
   }
-}
-.info {
-  p {
-    margin-bottom: $spacing;
-  }
-}
-.language-switch {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
 }
 </style>

@@ -2,8 +2,8 @@
   <div class="info">
     <template v-if="!user && step == 0">
       <div class="header">
-        <p class="large">{{ $t('phase00Username') }}</p>
-        <p class="medium">{{ $t('phase00Desc') }}</p>
+        <p class="expa-large">{{ $t('phase00Username') }}</p>
+        <p class="exte-medium">{{ $t('phase00Desc') }}</p>
         <input type="text" v-model="name" :placeholder="$t('phase00Input')" />
       </div>
       <div class="footer">
@@ -12,10 +12,10 @@
     </template>
     <template v-else-if="!user && step == 1">
       <div class="header">
-        <p class="large">{{ $t('phase01Title') }}</p>
-        <p class="medium">{{ $t('phase01Desc') }}</p>
-        <p class="medium">{{ $t('phase01GPS') }}</p>
-        <MarkerPlacer :placeholder="$t('phase01Address')"/>
+        <p class="expa-large">{{ $t('phase01Title') }}</p>
+        <p class="exte-medium">{{ $t('phase01Desc') }}</p>
+        <p class="exte-medium gps">{{ $t('phase01GPS') }}</p>
+        <MarkerPlacer :placeholder="$t('phase01Address')" />
       </div>
       <div class="footer">
         <button @click="createNewBubble()">{{ $t('phase01Btn') }}</button>
@@ -23,8 +23,8 @@
     </template>
     <template v-else>
       <div class="header">
-        <p class="large">{{ $t('phase02Title') }}</p>
-        <p class="medium">{{ $t('phase02Desc') }}</p>
+        <p class="expa-large">{{ $t('phase02Title') }}</p>
+        <p class="exte-medium">{{ $t('phase02Desc') }}</p>
       </div>
       <div class="footer">
         <button @click="$router.push('/pins')">{{ $t('phase02Btn') }}</button>
@@ -83,7 +83,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-p {
-  margin-bottom: $spacing;
+.header {
+  input, /deep/ input {
+    margin-top: 1.5rem;
+  }
+  .gps {
+    color: $col-green;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
 </style>

@@ -2,19 +2,19 @@
   <div class="info">
     <template v-if="!addingMessage">
       <div class="header">
-        <p class="large">{{ $t('phase03Title') }}</p>
-        <p class="medium">{{ $t('phase03Desc') }}</p>
+        <p class="expa-large">{{ $t('phase03Title') }}</p>
+        <p class="exte-medium">{{ $t('phase03Desc') }}</p>
         <MarkerPlacer type="pin" :placeholder="$t('phase03Input')" />
       </div>
       <div class="footer">
         <button @click="addingMessage = true">{{ $t('phase03Btn') }}</button>
-        <p class="small" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
+        <p class="exte-small" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
       </div>
     </template>
     <template v-else-if="!userPin">
       <div class="header">
-        <p class="large">{{ $t('phase04Title') }}</p>
-        <p class="medium">{{ $t('phase04Desc') }}</p>
+        <p class="expa-large">{{ $t('phase04Title') }}</p>
+        <p class="exte-medium">{{ $t('phase04Desc') }}</p>
         <textarea :placeholder="$t('phase04Input')" v-model="message"></textarea>
       </div>
       <div class="footer">
@@ -23,8 +23,8 @@
     </template>
     <template v-else>
       <div class="header">
-        <p class="large">{{ $t('phase05Title') }}</p>
-        <p class="medium">{{ $t('phase05Desc') }}</p>
+        <p class="expa-large">{{ $t('phase05Title') }}</p>
+        <p class="exte-medium">{{ $t('phase05Desc') }}</p>
       </div>
       <div class="footer">
         <button @click="$router.push('/explore')">{{ $t('phase05Btn') }}</button>
@@ -102,5 +102,11 @@ export default {
 }
 p {
   margin-bottom: $spacing;
+}
+.footer {
+  pointer-events: all;
+  p {
+    cursor: pointer;
+  }
 }
 </style>

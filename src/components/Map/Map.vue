@@ -2,11 +2,11 @@
   <div class="map-container" :class="{active: isExplore, placing: placing}">
     <SearchLocation id="search-location" v-if="map && isExplore" :placeholder="$t('phase03Input')" />
     <div class="tools" v-if="map && isExplore">
-      <p class="medium">{{ $t('exploreMode') }}</p>
+      <p class="exte-small ">{{ $t('exploreMode') }}</p>
       <ul>
         <li
           :class="{active: showUserMarkers}"
-          class="medium"
+          class="exte-small "
           @click="showUserMarkers = !showUserMarkers"
         >
           <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" />
@@ -14,7 +14,7 @@
         </li>
         <li
           :class="{active: showPinMarkers}"
-          class="medium"
+          class="exte-small "
           @click="showPinMarkers = !showPinMarkers"
         >
           <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" />
@@ -246,8 +246,8 @@ export default {
       let user = pin.user;
       // let content = `<h4>${user.name || "anonymous"}</h4>`;
       let message = pin.message || "No message.";
-      let content = `<p>${message}</p>`;
-      content += `<p class="share-url"><input type="text" readonly onfocus="this.select(); document.execCommand('copy');" value="${this.$store.getters.getUserUrl(
+      let content = `<p class="exte-small">${message}</p>`;
+      content += `<p class="share-url thin-medium"><input type="text" readonly onfocus="this.select(); document.execCommand('copy');" value="${this.$store.getters.getUserUrl(
         user.id
       )}" /></p>`;
       const info = new google.maps.InfoWindow({
@@ -381,6 +381,7 @@ export default {
     z-index: 20;
     user-select: none;
     color: $col-green;
+    @extend .exte-medium;
     &::before {
       content: ".";
     }
