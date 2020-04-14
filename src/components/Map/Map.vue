@@ -340,10 +340,15 @@ export default {
   }
   label {
     position: absolute;
-    top: 50%;
-    left: 60%;
+    top: 48%;
+    left: 56%;
     z-index: 20;
     user-select: none;
+    color: $col-green;
+    @extend .medium;
+    &::before {
+      content: '.'
+    }
   }
 }
 
