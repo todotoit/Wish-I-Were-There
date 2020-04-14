@@ -3,32 +3,58 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import FindYourBubble from '../views/FindYourBubble.vue'
 import AddYourPins from '../views/AddYourPins.vue'
+import ThankYou from '../views/ThankYou.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
     path: '/bubble',
-    name: 'FindYourBubble',
-    component: FindYourBubble
+    name: 'find-your-bubble',
+    component: FindYourBubble,
+    meta: {
+      tutorial: true
+    }
   },
   {
     path: '/pins',
-    name: 'AddYourPins',
-    component: AddYourPins
+    name: 'add-your-pins',
+    component: AddYourPins,
+    meta: {
+      tutorial: true
+    }
+  },
+  {
+    path: '/thankyou',
+    name: 'thank-you',
+    component: ThankYou,
+    meta: {
+      tutorial: true
+    }
   },
   {
     path: '/explore',
-    name: 'Explore'
-  }
+    name: 'explore',
+    meta: {
+      explore: true
+    }
+  },
+  {
+    path: '/explore/:id',
+    name: 'shared-bubble',
+    meta: {
+      explore: true
+    }
+  },
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
