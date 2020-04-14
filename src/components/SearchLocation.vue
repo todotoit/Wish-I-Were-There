@@ -1,10 +1,17 @@
 <template>
-  <input ref="search-location" type="text" class="search-input" placeholder="Insert address" />
+  <input ref="search-location" type="text" class="search-input" :placeholder="placeholder" />
 </template>
 
 <script>
 export default {
   name: "SearchLocation",
+  props: {
+    placeholder: {
+      type: String,
+      required: true,
+      default: ""
+    }
+  },
   computed: {
     map() {
       return this.$store.state.map;

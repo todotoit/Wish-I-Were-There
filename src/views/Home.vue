@@ -3,11 +3,11 @@
     <div class="view">
       <div class="info">
         <div class="header center">
-          <p class="large">Mappette Project</p>
+          <p class="large">{{ $t('title') }}</p>
           <p class="medium">{{ $t('intro') }}</p>
         </div>
         <div class="footer">
-          <button @click="$router.push('/bubble')">Let's Go</button>
+          <button @click="$router.push('/bubble')">{{ $t('ctaStart') }}</button>
         </div>
       </div>
       <LanguageSwitch />

@@ -2,36 +2,32 @@
   <div class="info">
     <template v-if="!user && step == 0">
       <div class="header">
-        <p class="large">What's your name</p>
-        <p
-          class="medium"
-        >We are naming a galaxy here! Add all of your family names, your childhood pet’s one, or just stay anonymous.</p>
-        <input type="text" v-model="name" placeholder="Your name here (optional)" />
+        <p class="large">{{ $t('phase00Username') }}</p>
+        <p class="medium">{{ $t('phase00Desc') }}</p>
+        <input type="text" v-model="name" :placeholder="$t('phase00Input')" />
       </div>
       <div class="footer">
-        <button @click="next">Next</button>
+        <button @click="next">{{ $t('phase00Btn') }}</button>
       </div>
     </template>
     <template v-else-if="!user && step == 1">
       <div class="header">
-        <p class="large">Where are you ?</p>
-        <p
-          class="medium"
-        >Pinpoint the location where you are currently spending all these days self-quarantine during the Covid19 pandemic. A bit like in space, everyone of us is living in a galaxy of their own – feeling closeby but actually light years away.</p>
-        <MarkerPlacer />
+        <p class="large">{{ $t('phase01Title') }}</p>
+        <p class="medium">{{ $t('phase01Desc') }}</p>
+        <p class="medium">{{ $t('phase01GPS') }}</p>
+        <MarkerPlacer :placeholder="$t('phase01Address')"/>
       </div>
       <div class="footer">
-        <button @click="createNewBubble()">Place your bubble</button>
-        <p class="back">or <a @click="prev">go back</a></p>
+        <button @click="createNewBubble()">{{ $t('phase01Btn') }}</button>
       </div>
     </template>
     <template v-else>
       <div class="header">
-        <p class="large">Your Microcosm</p>
-        <p class="medium">According to Italian extraordinary health regulations most regional governments are currently permitting their citizens to move freely, have walks and take in fresh air only within the linear 200mt surrounding  their residence.</p>
+        <p class="large">{{ $t('phase02Title') }}</p>
+        <p class="medium">{{ $t('phase02Desc') }}</p>
       </div>
       <div class="footer">
-        <button @click="$router.push('/pins')">Next</button>
+        <button @click="$router.push('/pins')">{{ $t('phase02Btn') }}</button>
       </div>
     </template>
   </div>

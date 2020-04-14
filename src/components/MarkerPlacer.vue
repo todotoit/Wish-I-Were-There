@@ -1,6 +1,6 @@
 <template>
   <div class="marker-placer">
-    <SearchLocation @change="centerMarker()" />
+    <SearchLocation @change="centerMarker()" :placeholder="placeholder" />
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
     geolocation: {
       type: Boolean,
       default: false
+    },
+    placeholder: {
+      type: String,
+      required: true,
+      default: ""
     }
   },
   computed: {
@@ -48,7 +53,7 @@ export default {
     google.maps.event.addListener(this.map, "click", event => {
       this.updateMarker(event.latLng);
     });
-    if(this.geolocation) this.locateUser();
+    if (this.geolocation) this.locateUser();
   },
   destroyed() {
     google.maps.event.clearListeners(this.map, "click");

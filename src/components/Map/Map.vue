@@ -1,22 +1,24 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing}">
-    <SearchLocation id="search-location" v-if="map && isExplore" />
+    <SearchLocation id="search-location" v-if="map && isExplore" :placeholder="$t('phase03Input')" />
     <div class="tools" v-if="map && isExplore">
-      <p class="medium">Visualizing</p>
+      <p class="medium">{{ $t('exploreMode') }}</p>
       <ul>
         <li
           :class="{active: showUserMarkers}"
           class="medium"
           @click="showUserMarkers = !showUserMarkers"
         >
-          <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" /> Microcosms
+          <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" />
+          {{ $t('exploreSelf') }}
         </li>
         <li
           :class="{active: showPinMarkers}"
           class="medium"
           @click="showPinMarkers = !showPinMarkers"
         >
-          <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" /> Daydreams
+          <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" />
+          {{ $t('exploreDayDream') }}
         </li>
       </ul>
     </div>

@@ -1,18 +1,8 @@
 <template>
   <div class="info">
     <section class="project">
-      <p class="large">THE PROJECT</p>
-      <p class="medium">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit luctus viverra erat aliquet placerat. Elementum adipiscing quis cras quam lacus ornare. Porttitor sagittis velit turpis dolor. Elementum sed et duis congue ullamcorper fringilla.
-        Suscipit sit in egestas tellus pharetra metus, purus leo. Vitae mattis mauris, interdum tincidunt quis aliquam enim, tempus. Aenean aenean tincidunt in mauris natoque. Consequat convallis bibendum consequat pellentesque nibh cras ornare adipiscing. Nec dis auctor vulputate amet blandit sapien tempor interdum. Sapien, cursus mauris nibh facilisis a, tristique ut.
-        Suscipit tempor, quisque porttitor sit blandit porttitor vel fusce ullamcorper. Non in auctor mattis dolor pellentesque pulvinar pretium malesuada. Consectetur dolor quis tincidunt integer egestas tellus. Semper tristique porttitor natoque scelerisque.
-      </p>
-    </section>
-    <section class="team">
-      <p class="large">THE TEAM</p>
-      <p
-        class="medium"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus quo mollitia id dolorum possimus ea maiores, libero quas tempora nesciunt quis eveniet soluta doloribus sit asperiores, dicta cum aperiam adipisci.</p>
+      <p class="large">{{ $t('aboutTitle') }}</p>
+      <p class="medium">{{ $t('aboutDesc') }}</p>
     </section>
     <section class="social">
       <social-sharing
@@ -35,7 +25,6 @@
       </social-sharing>
     </section>
     <section class="copy">
-      <p class="large">A PROJECT BY</p>
       <img svg-inline class="logo" src="@/assets/icons/todo-logo.svg" />
     </section>
   </div>

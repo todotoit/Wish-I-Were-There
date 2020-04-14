@@ -2,26 +2,31 @@
   <div class="info">
     <template v-if="!addingMessage">
       <div class="header">
-        <p class="large">Where would you be</p>
-        <p
-          class="medium"
-        >Explore the map and pinpoint the first location that comes to mind where you’d really like to be as soon as this is all over. Let everyone know why that very place is meaningful to you – help us dream of a collective daydream.</p>
-        <MarkerPlacer type="pin" />
+        <p class="large">{{ $t('phase03Title') }}</p>
+        <p class="medium">{{ $t('phase03Desc') }}</p>
+        <MarkerPlacer type="pin" :placeholder="$t('phase03Input')" />
       </div>
       <div class="footer">
-        <button @click="addingMessage = true">Place</button>
+        <button @click="addingMessage = true">{{ $t('phase03Btn') }}</button>
       </div>
     </template>
     <template v-else-if="!userPin">
       <div class="header">
-        <p class="large">Send your message</p>
-        <p
-          class="medium"
-        >Explore the map and pinpoint the first location that comes to mind where you’d really like to be as soon as this is all over. Let everyone know why that is meaningful to you – help us dream of a collective daydream.</p>
-        <textarea placeholder="Add your message" v-model="message"></textarea>
+        <p class="large">{{ $t('phase04Title') }}</p>
+        <p class="medium">{{ $t('phase04Desc') }}</p>
+        <textarea :placeholder="$t('phase04Input')" v-model="message"></textarea>
       </div>
       <div class="footer">
-        <button @click="createNewPin">Publish</button>
+        <button @click="createNewPin">{{ $t('phase04Btn') }}</button>
+      </div>
+    </template>
+    <template v-else>
+      <div class="header">
+        <p class="large">{{ $t('phase05Title') }}</p>
+        <p class="medium">{{ $t('phase05Desc') }}</p>
+      </div>
+      <div class="footer">
+        <button @click="$router.push('/explore')">{{ $t('phase05Btn') }}</button>
       </div>
     </template>
   </div>
