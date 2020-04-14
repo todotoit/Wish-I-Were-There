@@ -84,7 +84,7 @@ export default {
 
 .btn-info {
   position: fixed;
-  z-index: 100;
+  z-index: 400;
   top: 1rem;
   right: 1rem;
   width: 2.5rem;

@@ -45,7 +45,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: $col-dark;
-  z-index: 99;
+  z-index: 300;
   color: $col-white;
   display: flex;
   flex-direction: column;
