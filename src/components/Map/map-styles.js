@@ -102,7 +102,7 @@ export default {
       "elementType": "geometry",
       "stylers": [
         {
-          "color": "#212121"
+          "color": "#211f2a"
         }
       ]
     },
@@ -129,7 +129,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#757575"
+          "color": "#878590"
         }
       ]
     },
@@ -137,7 +137,7 @@ export default {
       "elementType": "labels.text.stroke",
       "stylers": [
         {
-          "color": "#212121"
+          "visibility": "off"
         }
       ]
     },
@@ -158,7 +158,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#9e9e9e"
+          "color": "#bdbbc6"
         }
       ]
     },
@@ -178,7 +178,16 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#bdbdbd"
+          "color": "#bdbbc6"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.province",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#bdbbc6"
         }
       ]
     },
@@ -187,7 +196,16 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#757575"
+          "color": "#878590"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "visibility": "off"
         }
       ]
     },
@@ -196,25 +214,7 @@ export default {
       "elementType": "geometry",
       "stylers": [
         {
-          "color": "#181818"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#616161"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#1b1b1b"
+          "color": "#181621"
         }
       ]
     },
@@ -223,7 +223,7 @@ export default {
       "elementType": "geometry.fill",
       "stylers": [
         {
-          "color": "#2c2c2c"
+          "color": "#2c2a35"
         }
       ]
     },
@@ -241,7 +241,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#8a8a8a"
+          "color": "#878590"
         }
       ]
     },
@@ -262,7 +262,7 @@ export default {
       "elementType": "geometry",
       "stylers": [
         {
-          "color": "#3c3c3c"
+          "color": "#2c2a35"
         }
       ]
     },
@@ -271,7 +271,7 @@ export default {
       "elementType": "geometry",
       "stylers": [
         {
-          "color": "#4e4e4e"
+          "color": "#2c2a35"
         }
       ]
     },
@@ -280,16 +280,16 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#616161"
+          "color": "#878590"
         }
       ]
     },
     {
-      "featureType": "transit",
-      "elementType": "labels.text.fill",
+      "featureType": "road.local",
+      "elementType": "labels.text.stroke",
       "stylers": [
         {
-          "color": "#757575"
+          "visibility": "off"
         }
       ]
     },
@@ -307,7 +307,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#3d3d3d"
+          "color": "#48435c"
         }
       ]
     }
