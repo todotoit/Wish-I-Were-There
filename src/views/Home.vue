@@ -31,10 +31,9 @@ export default {
 .home {
   width: 100%;
   height: 100%;
-  z-index: 100;
+  z-index: 500;
   background-color: #1d1b26;
   .view {
-    z-index: 101;
     pointer-events: all;
   }
 }
