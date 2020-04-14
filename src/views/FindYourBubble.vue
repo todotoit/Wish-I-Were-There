@@ -21,8 +21,8 @@
         <MarkerPlacer />
       </div>
       <div class="footer">
-        <button @click="prev">Back</button>
         <button @click="createNewBubble()">Place your bubble</button>
+        <p class="back">or <a @click="prev">go back</a></p>
       </div>
     </template>
     <template v-else>

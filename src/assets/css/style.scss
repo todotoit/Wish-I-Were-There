@@ -22,6 +22,10 @@ p {
   display: block;
 }
 
+button {
+  cursor: pointer;
+}
+
 button,
 input {
   z-index: 8;
@@ -33,7 +37,6 @@ input {
   border: 1px solid $col-green;
   border-radius: 20px;
   transition: all 700ms;
-  cursor: pointer;
   color: $col-green;
   @extend .medium;
   font-family: "GT America Compressed", Arial, Helvetica, sans-serif;
@@ -67,9 +70,17 @@ textarea {
   resize: none;
   background-color: $col-dark;
   width: 100%;
-  min-height: 25rem;
+  min-height: 15rem;
   padding: $spacing / 2;
   box-sizing: border-box;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 
 .view {
@@ -77,12 +88,17 @@ textarea {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 200;
   pointer-events: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  pointer-events: all;
+  button,
+  input,
+  textarea,
+  a {
+    pointer-events: all;
+  }
   .info {
     min-height: 85%;
     position: relative;
@@ -106,6 +122,13 @@ textarea {
       bottom: 0;
       left: 50%;
       transform: translate(-50%);
+      .back {
+        margin-top: 0.5rem;
+      }
+      a {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -116,23 +139,6 @@ textarea {
   padding: 0.5rem;
   pointer-events: all;
   text-align: center;
-}
-
-.editor {
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  user-select: none;
-  header,
-  footer {
-    padding: 1rem;
-    button,
-    input,
-    textarea {
-      pointer-events: all;
-    }
-  }
 }
 
 #map {
