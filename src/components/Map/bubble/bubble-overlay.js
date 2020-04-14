@@ -1,6 +1,6 @@
 import BubbleImage from './bubble-img'
 
-export function createBubble(map, center, user, options) {
+export function createBubble(map, center, user) {
     createOverlayProto()
     const c = new google.maps.LatLng(center.lat, center.lng)
     const circle = new google.maps.Circle({
@@ -11,19 +11,14 @@ export function createBubble(map, center, user, options) {
         fillColor: 'transparent'
     });
     const b = circle.getBounds();
-    return new BubbleOverlay(b, map, user, options);
+    return new BubbleOverlay(b, map, user);
 }
 
 /** @constructor */
-function BubbleOverlay(bounds, map, user, options) {
+function BubbleOverlay(bounds, map, user) {
     this.bounds_ = bounds;
     this.map_ = map;
     this.user_ = user
-    this.options_ = {
-        visible: true,
-        disabled: false,
-        ...options
-    }
     this.images = [
         require('@/assets/img/bubbles/bubbles-gradient.png'),
         require('@/assets/img/bubbles/bubbles-expanded.png')
@@ -47,11 +42,11 @@ function createOverlayProto() {
         const panes = this.getPanes();
         panes.overlayLayer.appendChild(div);
         google.maps.event.addDomListener(div, 'click', e => {
-            console.log('click', this)
             google.maps.event.trigger(this.marker, 'click');
         });
-        this.setVisible(this.options_.visible)
-        this.setDisabled(this.options_.disabled)
+        const d = this.map_.selectedUserMarker && !(this.map_.selectedUserMarker.user.id === this.user_.id)
+        this.setVisible(this.map_.showUserMarkers)
+        this.setDisabled(d)
     };
 
     BubbleOverlay.prototype.draw = function () {
@@ -79,7 +74,6 @@ function createOverlayProto() {
 
     BubbleOverlay.prototype.setVisible = function (val) {
         if (this.div_) this.div_.classList.toggle('hidden', !val)
-        this.visible_ = val
     }
     BubbleOverlay.prototype.setDisabled = function (val) {
         if (this.div_) this.div_.classList.toggle('disabled', val)
