@@ -1,25 +1,49 @@
 <template>
-  <div class="info">
-    <div class="header center">
-      <p class="large">Mappette Project</p>
-      <p
-        class="medium"
-      >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam suscipit congue dolor faucibus varius. Nam vel urna augue. Duis et accumsan quam. Nunc scelerisque tincidunt felis. Fusce vel facilisis ex, ut scelerisque nulla. Nunc sagittis, arcu in posuere suscipit, neque erat scelerisque tellus, elementum posuere nisi mi sit amet turpis. Proin sagittis iaculis urna ut hendrerit. Sed tempus id metus at lacinia. Ut id tortor vel metus rutrum volutpat.</p>
+  <div class="home">
+    <div class="view">
+      <div class="info">
+        <div class="header center">
+          <p class="large">Mappette Project</p>
+          <p class="medium">{{ $t('intro') }}</p>
+        </div>
+        <div class="footer">
+          <button @click="$router.push('/bubble')">Let's Go</button>
+        </div>
+      </div>
+      <LanguageSwitch />
     </div>
-    <div class="footer">
-      <button @click="$router.push('/bubble')">Let's Go</button>
-    </div>
+    <Cover />
   </div>
 </template>
 
 <script>
+import Cover from "@/components/Cover";
+import LanguageSwitch from "@/components/LanguageSwitch";
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: { Cover, LanguageSwitch }
 };
 </script>
 
 <style lang="scss" scoped>
-.info p {
-  margin-bottom: $spacing;
+.home {
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: #1d1b26;
+  .view {
+    pointer-events: all;
+  }
+}
+.info {
+  p {
+    margin-bottom: $spacing;
+  }
+}
+.language-switch {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 </style>
