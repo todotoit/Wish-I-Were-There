@@ -11,6 +11,9 @@ var GmapQuadraticBezier = function (startp, ctl1, endp, options, map) {
 
     var defaultOpts = {
         step: 0.05,
+        animate: {
+            step: 0.05
+        },
         lineopts: {
             geodesic: true, strokeOpacity: 0, strokeColor: '#ffffff',
             icons: [{
@@ -41,6 +44,8 @@ p.getPoints = function () {
 }
 
 p.draw = function () {
+    this.offset = 0
+    this.repeat = 100
     var points = this.points;
     var lineopts = { ...this.options.lineopts };
     lineopts.path = []
@@ -50,10 +55,35 @@ p.draw = function () {
         );
     }
     this.line = new google.maps.Polyline(lineopts);
+    this.createInterval = setInterval(() => {
+        const icons = this.line.get('icons');
+        icons[0].offset = this.offset + '%';
+        icons[0].repeat = this.repeat + '%';
+        this.line.set('icons', icons);
+        this.repeat /= 1.1
+        if (this.repeat <= 1) {
+            clearInterval(this.createInterval)
+            this.animateLine()
+        }
+    }, 10)
+
+
     this.line.setMap(this.map);
 }
 
+p.animateLine = function () {
+    if(this.stop) return
+    const icons = this.line.get('icons');
+    icons[0].offset = 100-this.offset + '%';
+    this.line.set('icons', icons);
+    this.offset += 0.05
+    if (this.offset >= 100) this.offset = 0
+    requestAnimationFrame(() => this.animateLine())
+}
+
 p.remove = function () {
+    this.stop = true
+    clearInterval(this.createInterval)
     this.line.setMap(null)
 }
 
