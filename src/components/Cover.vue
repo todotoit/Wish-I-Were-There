@@ -129,10 +129,6 @@ export default {
   width: 100%;
   height: 100%;
   background-color: $col-dark;
-  background-image: url("~@/assets/img/noise.png");
-  background-position: left top;
-  background-size: 300px;
-  animation: shiftbg 0.3s infinite;
 }
 canvas {
   mix-blend-mode: soft-light;
@@ -140,7 +136,12 @@ canvas {
 }
 .color-overlay.view {
   background-color: rgba(29, 27, 38, 0.5);
-  mix-blend-mode: color;
+  background-image: url("~@/assets/img/white-noise.jpg");
+  background-position: left top;
+  background-size: 800px;
+  animation: shiftbg 1s infinite steps(3);
+  opacity: .3;
+  mix-blend-mode: multiply;
   z-index: 100;
 }
 </style>
