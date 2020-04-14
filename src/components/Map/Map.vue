@@ -381,7 +381,6 @@ export default {
     z-index: 20;
     user-select: none;
     color: $col-green;
-    @extend .medium;
     &::before {
       content: ".";
     }

@@ -38,7 +38,6 @@ input {
   border-radius: 20px;
   transition: all 700ms;
   color: $col-green;
-  @extend .medium;
   font-family: "GT America Compressed", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   &:hover {
@@ -66,7 +65,6 @@ textarea {
   border: 1px solid white;
   outline: 0;
   color: $col-green;
-  @extend .medium;
   resize: none;
   background-color: $col-dark;
   width: 100%;
