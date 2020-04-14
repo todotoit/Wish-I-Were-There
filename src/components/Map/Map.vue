@@ -2,12 +2,16 @@
   <div class="map-container" :class="{active: isExplore, placing: placing}">
     <SearchLocation id="search-location" v-if="map && isExplore" />
     <div class="tools" v-if="map && isExplore">
-      <h4>Visualizing</h4>
+      <p class="medium">Visualizing</p>
       <ul>
-        <li :class="{active: showUserBubbles}" @click="showUserBubbles = !showUserBubbles">
+        <li
+          :class="{active: showUserBubbles}"
+          class="medium"
+          @click="showUserBubbles = !showUserBubbles"
+        >
           <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" /> Microcosms
         </li>
-        <li :class="{active: showPins}" @click="showPins = !showPins">
+        <li :class="{active: showPins}" class="medium" @click="showPins = !showPins">
           <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" /> Daydreams
         </li>
       </ul>
@@ -270,31 +274,32 @@ export default {
   left: 1rem;
   top: 1rem;
   z-index: 20;
-
-  h4 {
+  p {
     color: $col-green;
     text-transform: uppercase;
     font-family: "GT America Expanded";
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid $col-white;
   }
-  ul,
-  li {
+  ul {
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
-  }
-  li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    opacity: 0.5;
-    cursor: pointer;
-    &.active {
-      opacity: 1;
-    }
-    svg {
-      margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    li {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+      cursor: pointer;
+      &.active {
+        opacity: 1;
+      }
+      svg {
+        margin-right: 0.5rem;
+      }
     }
   }
 }
@@ -347,7 +352,7 @@ export default {
     color: $col-green;
     @extend .medium;
     &::before {
-      content: '.'
+      content: ".";
     }
   }
 }
