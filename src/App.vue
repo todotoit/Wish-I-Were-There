@@ -74,7 +74,7 @@ export default {
 
 .copyright {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 1rem;
   left: 50%;
   transform: translate(-50%, 0);
   path {
