@@ -8,6 +8,7 @@
       </div>
       <div class="footer">
         <button @click="addingMessage = true">{{ $t('phase03Btn') }}</button>
+        <p class="small" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
       </div>
     </template>
     <template v-else-if="!userPin">
@@ -77,7 +78,7 @@ export default {
           this.$store.commit("SET_USER_PINS", r);
           this.$store.commit("SET_PLACING", false);
           this.map.setCenter(r.marker.getPosition());
-          this.$router.push('/thankyou')
+          this.$router.push("/thankyou");
         });
     },
     updatePinMessage() {
