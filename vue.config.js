@@ -15,6 +15,12 @@ module.exports = {
       .use("vue-svg-inline-loader")
       .loader("vue-svg-inline-loader")
       .options({});
+    config.module
+      .rule('raw')
+      .test(/\.frag|vert$/)
+      .use('raw-loader')
+      .loader('raw-loader')
+      .end()
     config.resolve.alias.set('assets', path.resolve('src/assets'));
   },
 }

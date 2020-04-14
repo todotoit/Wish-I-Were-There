@@ -36,8 +36,8 @@ export default {
     if (this.isTutorialRoute)
       this.$router.push("/");
     Promise.all([
-      this.$store.dispatch("bindUsersRef"),
-      this.$store.dispatch("bindPinsRef"),
+      //this.$store.dispatch("bindUsersRef"),
+      //this.$store.dispatch("bindPinsRef"),
       this.includeScripts()
     ]).then(() => {
       this.$store.commit("SET_READY", true);
