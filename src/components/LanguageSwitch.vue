@@ -13,9 +13,6 @@
 
 <script>
 export default {
-  mounted() {
-    console.log(this.$i18n)
-  },
   computed: {
     locales() {
       return this.$i18n ? this.$i18n.availableLocales : [];
@@ -26,7 +23,8 @@ export default {
 
 <style lang="scss">
 .language-switch {
-  ul,li {
+  ul,
+  li {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -41,7 +39,7 @@ export default {
         text-decoration: underline;
       }
       &:not(:last-child) {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
     }
   }
