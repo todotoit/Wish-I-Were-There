@@ -28,6 +28,11 @@ export default {
   top: 1rem;
   right: 1rem;
   z-index: 10;
+  @media screen and (max-width: $mqTablet) {
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, 0);
+  }
   ul {
     list-style: none;
     margin: 0;
@@ -42,6 +47,9 @@ export default {
       }
       &:not(:last-child) {
         margin-right: 0.5rem;
+        @media screen and (max-width: $mqTablet) {
+          margin-right: 1.5rem;
+        }
       }
     }
   }

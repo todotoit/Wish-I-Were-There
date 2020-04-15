@@ -53,11 +53,20 @@ export default {
   .view {
     .info {
       width: 60%;
+      @media screen and (max-width: $mqTablet) {
+        width: 95%;
+      }
     }
     pointer-events: all;
     .header {
       .ct-font {
         font-size: 3.5rem;
+        @media screen and (max-width: $mqTablet) {
+          font-size: 3.2rem;
+        }
+        @media screen and (max-width: $mqMobile) {
+          font-size: 2rem;
+        }
       }
       align-items: center;
       svg {
@@ -66,11 +75,6 @@ export default {
         margin-bottom: 2rem;
       }
     }
-  }
-}
-.view {
-  .info {
-    width: 60%;
   }
 }
 </style>

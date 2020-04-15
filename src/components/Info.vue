@@ -2,8 +2,8 @@
   <div class="info">
     <div class="wrapper">
       <section class="project">
-        <p class="expa-large">{{ $t('aboutTitle') }}</p>
-        <p class="exte-large">{{ $t('aboutDesc') }}</p>
+        <p class="expa-large title">{{ $t('aboutTitle') }}</p>
+        <p class="exte-large desc">{{ $t('aboutDesc') }}</p>
       </section>
       <section class="social">
         <a target="_blank" class="exte-medium" href="https://www.facebook.com/todotoit">Facebook</a>
@@ -53,9 +53,24 @@ export default {
     padding: 1rem;
     padding-top: 3rem;
     z-index: 10;
+    @media screen and (max-width: $mqTablet) {
+      padding: 1.25rem 0.5rem;
+      width: auto;
+    }
     section {
       margin-bottom: 2rem;
       width: 60%;
+      @media screen and (max-width: $mqTablet) {
+        width: 90%;
+        overflow: scroll;
+      }
+    }
+    .title {
+      width: 90%;
+      margin-bottom: 1rem;
+    }
+    .desc {
+      width: 100%;
     }
     .social {
       a {

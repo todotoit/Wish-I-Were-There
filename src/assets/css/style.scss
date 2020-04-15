@@ -46,6 +46,10 @@ input {
   transition: all 700ms;
   color: $col-green;
   background-color: rgba($col-dark, 0.6);
+  @media screen and (max-width: $mqTablet) {
+    margin-right: 0;
+    margin-left: 0;
+  }
   @extend .thin-large;
   &:hover {
     background-color: $col-green;
@@ -63,6 +67,9 @@ input[type="text"] {
   color: $col-white;
   padding: 10px 25px;
   width: 35rem;
+  @media screen and (max-width: $mqTablet) {
+    width: 80%;
+  }
   background-color: rgba($col-dark, 0.6);
   &:hover {
     background-color: #1d1b2690;
@@ -80,6 +87,12 @@ textarea {
   resize: none;
   background-color: $col-dark;
   width: 30rem;
+  @media screen and (max-width: $mqTablet) {
+    width: 95%;
+    min-height: 10rem;
+    margin-top: 1rem;
+    padding: $spacing / 4;
+  }
   min-height: 15rem;
   padding: $spacing / 2;
   box-sizing: border-box;
@@ -112,6 +125,7 @@ textarea {
   }
   .info {
     min-height: 82%;
+    border: 1px solid red;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -120,6 +134,11 @@ textarea {
     max-width: 55%;
     margin-top: $spacing;
     z-index: 200;
+    @media screen and (max-width: $mqTablet) {
+      width: 95%;
+      max-width: 95%;
+      padding-top: 1.5rem;
+    }
     .header {
       width: 100%;
       p {
@@ -137,6 +156,7 @@ textarea {
       bottom: 0;
       left: 50%;
       transform: translate(-50%);
+      width: 100%;
       .back {
         margin-top: 0.5rem;
       }

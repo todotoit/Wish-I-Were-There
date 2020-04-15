@@ -36,6 +36,10 @@ export default {
   left: 1rem;
   top: 1rem;
   z-index: 20;
+  @media screen and (max-width: $mqMobile) {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
   p {
     color: $col-green;
     text-transform: uppercase;

@@ -4,34 +4,58 @@
   font-weight: 800;
   font-size: 2.6rem;
   line-height: 125%;
+  @media screen and (max-width: $mqTablet) {
+    font-size: 2.2rem;
+  }
+  @media screen and (max-width: $mqMobile) {
+    font-size: 1.8rem;
+  }
 }
 
 .exte-large {
   font-family: "GT America Extended", Arial, Helvetica, sans-serif;
   font-size: 1.3rem;
   line-height: 125%;
+  @media screen and (max-width: $mqTablet) {
+    font-size: 1.2rem;
+  }
+  @media screen and (max-width: $mqMobile) {
+    font-size: 1.1rem;
+  }
 }
 
 .exte-medium {
   font-family: "GT America Extended", Arial, Helvetica, sans-serif;
   font-size: 1.2rem;
   line-height: 140%;
+  @media screen and (max-width: $mqTablet) {
+    font-size: 1.1rem;
+  }
 }
 
 .exte-small {
   font-family: "GT America Extended", Arial, Helvetica, sans-serif;
   font-size: 1.1rem;
   line-height: 120%;
+  @media screen and (max-width: $mqTablet) {
+    font-size: 1.05rem;
+  }
 }
 
 .thin-large {
   font-family: "GT America Thin", Arial, Helvetica, sans-serif;
   font-size: 1.6rem;
   line-height: 110%;
+  @media screen and (max-width: $mqTablet) {
+    font-size: 1.4rem;
+  }
 }
 
 .thin-medium {
   font-family: "GT America Thin", Arial, Helvetica, sans-serif;
   font-size: 1.4rem;
   line-height: 110%;
+  @media screen and (max-width: $mqTablet) {
+    font-size: 1.3rem;
+  }
 }

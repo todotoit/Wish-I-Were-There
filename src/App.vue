@@ -78,6 +78,9 @@ footer {
   width: 100%;
   position: fixed;
   bottom: 1rem;
+  @media screen and (max-width: $mqMobile) {
+    bottom: 0.5rem;
+  }
   left: 0;
   text-align: center;
   z-index: 600;
@@ -92,6 +95,10 @@ footer {
   right: 1rem;
   width: 2.5rem;
   z-index: 202;
+  @media screen and (max-width: $mqMobile) {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
   cursor: pointer;
   .open {
     width: 100%;

@@ -295,6 +295,9 @@ export default {
   transform: translateX(-50%);
   z-index: 20;
   margin: 0;
+  @media screen and (max-width: $mqMobile) {
+    top: 130px;
+  }
 }
 #map > div {
   background-color: $col-dark !important;
