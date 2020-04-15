@@ -9,9 +9,11 @@
       <img v-else svg-inline class="close" src="@/assets/icons/close.svg" />
     </div>
     <Info v-if="info" />
-    <a target="_blank" class="exte-medium" href="https://todo.to.it/">
-      <img svg-inline class="copyright" src="@/assets/icons/todo-logo.svg" />
-    </a>
+    <footer>
+      <a target="_blank" class="exte-medium todo-logo" href="https://todo.to.it/">
+        <img svg-inline src="@/assets/icons/todo-logo.svg" />
+      </a>
+    </footer>
   </div>
 </template>
 
@@ -72,12 +74,13 @@ export default {
   pointer-events: all;
 }
 
-.copyright {
+footer {
+  width: 100%;
   position: fixed;
   bottom: 1rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  path {
+  left: 0;
+  text-align: center;
+  svg path {
     fill: $col-white;
   }
 }
