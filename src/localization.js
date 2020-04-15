@@ -47,7 +47,7 @@ export default {
 
         // Feedback
         phase05Title: 'Thank you!',
-        phase05Desc: 'You’ve added your star to our collective sky map of daydreams. Your daydream is {distance}km from you. You’ll get there! Stay safe.',
+        phase05Desc: 'You’ve added your star to our collective sky map of daydreams. Your daydream is <span class="distance">{distance}km </span> from you. You’ll get there! Stay safe.',
         phase05Share: 'Share your daydream',
         phase05Btn: 'Explore the map',
 
@@ -117,7 +117,7 @@ export default {
 
         // Feedback
         phase05Title: 'Grazie!',
-        phase05Desc: 'Hai aggiunto la tua stella alla nostra mappa collettiva. Il luogo che sogni è a {distance}km da te. Ci arriverai! Stay safe.',
+        phase05Desc: 'Hai aggiunto la tua stella alla nostra mappa collettiva. Il luogo che sogni è a <span class="distance">{distance}km </span> da te. Ci arriverai! Stay safe.',
         phase05Share: 'Condividi stella',
         phase05Btn: 'Esplora la mappa',
 
