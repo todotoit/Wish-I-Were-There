@@ -46,6 +46,7 @@ export default {
         exploreMode: 'Explore',
         exploreDayDream: 'Daydream stars',
         exploreSelf: 'Self-isolating stars',
+        exploreSearch: 'Search address',
 
         // About
         aboutTitle: 'The Project',
@@ -104,6 +105,7 @@ export default {
         exploreMode: 'Esplora',
         exploreDayDream: 'Stelle dei sogni',
         exploreSelf: 'Stelle in isolamento',
+        exploreSearch: 'Cerca un indirizzo',
 
         // About
         aboutTitle: 'Il Progetto',

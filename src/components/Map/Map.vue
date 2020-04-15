@@ -1,6 +1,6 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing}">
-    <SearchLocation id="search-location" v-if="map && isExplore" :placeholder="$t('phase03Input')" />
+    <SearchLocation id="search-location" v-if="map && isExplore" :placeholder="$t('exploreSearch')" />
     <div class="tools" v-if="map && isExplore">
       <p class="exte-small ">{{ $t('exploreMode') }}</p>
       <ul>
