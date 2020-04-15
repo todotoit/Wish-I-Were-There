@@ -254,23 +254,21 @@ textarea {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0.25rem 0.5rem;
+      padding: 0;
       margin: 0;
-      margin-right: .5rem;
-      border: 1px solid $col-white;
+      margin-right: 0.5rem;
+      border: 0;
       color: $col-white;
+      transition: opacity .1s;
       &:hover {
-        background-color: $col-white;
-        color: $col-dark;
-        &::before {
-          background-image: url("~@/assets/icons/link-dark.svg");
-        }
+        background-color: transparent;
+        opacity: .75;
       }
       &::before {
         content: " ";
         display: block;
         width: 26px;
-        height: 11px;
+        height: 1rem;
         background-image: url("~@/assets/icons/link.svg");
         background-position: center center;
         background-size: 75%;

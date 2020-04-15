@@ -2,7 +2,7 @@
   <div class="info">
     <div class="header">
       <p class="expa-large">{{$t('phase05Title')}}</p>
-      <p class="exte-medium" v-html="$t('phase05Desc', {distance: (distance/1000).toFixed(2)})"></p>
+      <p class="exte-medium" v-html="kmDistance"></p>
       <Share />
     </div>
     <div class="footer">
@@ -32,6 +32,9 @@ export default {
     },
     pin() {
       return this.$store.state.userPins;
+    },
+    kmDistance() {
+      return $t("phase05Desc", { distance: (distance / 1000).toFixed(2) });
     }
   },
   mounted() {

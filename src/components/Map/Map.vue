@@ -230,7 +230,7 @@ export default {
       const center = bounds.getCenter();
       const dist = spherical.computeDistanceBetween(start, end);
       const angle = spherical.computeHeading(start, end);
-      const offset = spherical.computeOffset(center, dist / 2, angle + 60);
+      const offset = spherical.computeOffset(center, dist / 2, angle + 75);
       this.line = new GmapsQuadraticBezier(start, offset, end, {}, this.map);
       this.line.draw();
       this.map.fitBounds(bounds);
