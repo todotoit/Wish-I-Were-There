@@ -29,7 +29,8 @@
   font-size: 1.2rem;
   line-height: 140%;
   @media screen and (max-width: $mqTablet) {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 120%;
   }
 }
 

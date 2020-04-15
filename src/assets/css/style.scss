@@ -21,6 +21,7 @@ p {
   padding: 0;
   display: block;
   &.link {
+    font-size: 1rem;
     text-decoration: underline;
     cursor: pointer;
     text-transform: uppercase;
@@ -141,7 +142,7 @@ textarea {
     @media screen and (max-width: $mqTablet) {
       width: 97%;
       max-width: 97%;
-      margin-top: 2.6rem;
+      margin-top: 2.8rem;
       height: 85%;
     }
     .header {
