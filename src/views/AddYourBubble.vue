@@ -22,7 +22,7 @@
       <div class="header">
         <p class="expa-large">{{ $t('phase01Title') }}</p>
         <p class="exte-medium">{{ $t('phase01Desc') }}</p>
-        <MarkerPlacer :placeholder="$t('phase01Address')" />
+        <MarkerPlacer :placeholder="$t('phase01Address')" :geolocation="true" />
       </div>
       <div class="footer">
         <button @click="createNewBubble()">{{ $t('phase01Btn') }}</button>
