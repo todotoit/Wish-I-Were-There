@@ -16,7 +16,7 @@
         <p class="expa-large">{{ $t('phase04Title') }}</p>
         <p class="exte-medium">{{ $t('phase04Desc') }}</p>
         <InputCheck v-slot="{validate}" @validate="valid = $event" :empty="false">
-          <textarea :placeholder="$t('phase04Input')" v-model="message" @input="validate"></textarea>
+          <textarea :placeholder="$t('phase04Input')" v-model="message" @input="validate" maxlength="200"></textarea>
         </InputCheck>
       </div>
       <div class="footer">
