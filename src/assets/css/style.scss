@@ -23,6 +23,7 @@ p {
   &.link {
     text-decoration: underline;
     cursor: pointer;
+    text-transform: uppercase;
   }
 }
 
@@ -34,14 +35,14 @@ button {
 button,
 input {
   z-index: 8;
-  padding: 8px 40px;
+  padding: 10px 40px;
   margin: 0 $spacing / 2;
   margin-bottom: 1rem;
   background: transparent;
   text-align: center;
   outline: 0;
   border: 1px solid $col-green;
-  border-radius: 20px;
+  border-radius: 100px;
   transition: all 700ms;
   color: $col-green;
   background-color: rgba( $col-dark, .6 );
@@ -61,10 +62,10 @@ input[type="text"] {
   border: 1px solid $col-white;
   color: $col-white;
   padding: 10px 25px;
-  width: 25rem;
+  width: 35rem;
   background-color: rgba( $col-dark, .6 );
   &:hover {
-    background-color: $col-dark;
+    background-color: #1d1b2690;
     color: $col-white;
   }
   &::placeholder {
@@ -82,6 +83,7 @@ textarea {
   min-height: 15rem;
   padding: $spacing / 2;
   box-sizing: border-box;
+  margin-top: 6rem;
   @extend .exte-small;
 }
 
@@ -115,7 +117,7 @@ textarea {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 70%;
+    max-width: 55%;
     margin-top: $spacing;
     z-index: 200;
     .header {

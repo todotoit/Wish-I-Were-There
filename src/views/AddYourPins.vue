@@ -8,7 +8,7 @@
       </div>
       <div class="footer">
         <button @click="addingMessage = true">{{ $t('phase03Btn') }}</button>
-        <p class="exte-small" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
+        <p class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
       </div>
     </template>
     <template v-else-if="!userPin">

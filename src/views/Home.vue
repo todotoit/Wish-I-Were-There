@@ -3,7 +3,7 @@
     <div class="view" v-if="step == 0">
       <div class="info">
         <div class="header center">
-          <p class="expa-large">{{ $t('title') }}</p>
+          <p class="expa-large ct-font">{{ $t('title') }}</p>
           <p class="exte-large">{{ $t('intro') }}</p>
         </div>
         <div class="footer">
@@ -51,8 +51,14 @@ export default {
   z-index: 500;
   background-color: #1d1b26;
   .view {
+    .info {
+      width: 60%;
+    }
     pointer-events: all;
     .header {
+      .ct-font {
+        font-size: 3.5rem;
+      }
       align-items: center;
       svg {
         outline: none;
@@ -60,6 +66,11 @@ export default {
         margin-bottom: 2rem;
       }
     }
+  }
+}
+.view {
+  .info {
+    width: 60%;
   }
 }
 </style>

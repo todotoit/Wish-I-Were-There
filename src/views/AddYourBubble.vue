@@ -14,7 +14,6 @@
       <div class="header">
         <p class="expa-large">{{ $t('phase01Title') }}</p>
         <p class="exte-medium">{{ $t('phase01Desc') }}</p>
-        <p class="exte-medium">{{ $t('phase01GPS') }}</p>
         <MarkerPlacer :placeholder="$t('phase01Address')" />
       </div>
       <div class="footer">
