@@ -14,22 +14,22 @@ export default {
 
         // Place your bubble
         phase01Title: 'Where are you now?',
-        phase01Desc: 'Place the first star where you are self-isolating at the moment.',
+        phase01Desc: 'Locate the little planet where you are self-isolating at the moment.',
         phase01Address: 'Enter address here',
         phase01GPS: 'Enable GPS to locate your position',
-        phase01Btn: 'Add star',
+        phase01Btn: 'Add planet',
 
         // Your bubble
         phase02Title: 'Your current cosmos',
-        phase02Desc: 'Most of Italy is now on lockdown with people not allowed to go further than 200 meters from home, unless it’s absolutely necessary for food shopping, health care or work. Staying within this small cosmos, temporarily, makes a world of difference.',
+        phase02Desc: 'Most of Italy is now on lockdown, with people not allowed to go over 200m from home unless absolutely necessary. Staying within this small cosmos, temporarily, makes a world of difference.',
         phase02Btn: 'Next',
 
         // Daydream
-        phase03Title: 'Where is your daydream?',
+        phase03Title: 'Where would you love to go?',
         phase03Desc: 'Go ahead, daydream a little. Where is the first place you want to go to, as soon as we are all free to move around again?',
         phase03Input: 'Enter address here',
         phase03Btn: 'Add Star',
-        phase03Skip: 'Skip to map',
+        phase03Skip: 'Skip to the map',
 
         // Add your message
         phase04Title: 'Add a message',
@@ -39,14 +39,14 @@ export default {
 
         // Feedback
         phase05Title: 'Thank you!',
-        phase05Desc: 'You’ve added your stars to our collective sky map of daydreams. Your daydream is [____] km from you. You’ll get there! Stay safe.',
+        phase05Desc: 'You’ve added your star to our collective sky map of daydreams. Your daydream is [____] km from you. You’ll get there! Stay safe.',
         phase05Share: 'Share your daydream',
         phase05Btn: 'Explore the map',
 
         // Explore
         exploreMode: 'Explore',
         exploreDayDream: 'Daydream stars',
-        exploreSelf: 'Self-isolating stars',
+        exploreSelf: 'Self-isolating planets',
         exploreSearch: 'Search address',
 
         // About
@@ -74,14 +74,14 @@ export default {
 
         // Place your bubble
         phase01Title: 'Dove stai passando il lockdown?',
-        phase01Desc: 'Posiziona la prima stella nel punto in cui stai passando l’auto-isolamento.',
+        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato.',
         phase01Address: 'Inserisci il tuo indirizzo',
         phase01GPS: 'Abilita la localizzazione via GPS',
-        phase01Btn: 'Aggiungi stella',
+        phase01Btn: 'Aggiungi pianeta',
 
         // Your bubble
         phase02Title: 'Il tuo microcosmo',
-        phase02Desc: 'Oggi tutta Italia è in stato di emergenza, e in buona parte del Paese è vietato allontanarsi più di 200 metri da casa, salvo reali esigenze legate alla spesa, alla salute o al lavoro. Rimanere nel nostro microcosmo, per un po’, fa un mondo di differenza.',
+        phase02Desc: 'Oggi in buona parte dell’Italia è vietato allontanarsi più di 200m da casa, salvo reali esigenze. Rimanere nel nostro microcosmo, per un po’, fa un mondo di differenza.',
         phase02Btn: 'Avanti',
 
         // Daydream
@@ -99,14 +99,14 @@ export default {
 
         // Feedback
         phase05Title: 'Grazie!',
-        phase05Desc: 'Hai aggiunto le tue stelle alla nostra mappa collettiva. Il luogo che sogni è a [____] km da te. Ci arriverai! Stay safe.',
+        phase05Desc: 'Hai aggiunto la tua stella alla nostra mappa collettiva. Il luogo che sogni è a [____] km da te. Ci arriverai! Stay safe.',
         phase05Share: 'Condividi il tuo sogno a occhi aperti',
         phase05Btn: 'Esplora la mappa',
 
         // Explore
         exploreMode: 'Esplora',
         exploreDayDream: 'Stelle dei sogni',
-        exploreSelf: 'Stelle in isolamento',
+        exploreSelf: 'Pianeti in isolamento',
         exploreSearch: 'Cerca un indirizzo',
 
         // About
