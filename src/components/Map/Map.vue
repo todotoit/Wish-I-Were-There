@@ -139,7 +139,7 @@ export default {
     if (this.isExplore && !this.init) this.createItems();
     Events.$on("select-user", id => {
       const marker = this.getUserMarker(id);
-      if (marker) this.highlightUser(marker);
+      if (marker) this.highlightUser(marker, false);
     });
   },
   methods: {
@@ -235,7 +235,7 @@ export default {
       this.line.draw();
       this.map.fitBounds(bounds);
     },
-    highlightUser(userMarker) {
+    highlightUser(userMarker, showMessage = true) {
       this.selectedUserMarker = userMarker;
       userMarker.setVisible(true);
       userMarker.overlay.setDisabled(false);
@@ -248,7 +248,7 @@ export default {
       const userCoords = userMarker.getPosition();
       this.createLink(pinCoords, userCoords);
       this.selectedPinMarker = pinMarker;
-      this.showPinMessage(pinMarker);
+      if (showMessage) this.showPinMessage(pinMarker);
     },
     highlightPin(pinMarker) {
       const userMarker = this.getUserMarker(pinMarker.pin.user.id);
