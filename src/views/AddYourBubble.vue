@@ -14,7 +14,7 @@
       <div class="header">
         <p class="expa-large">{{ $t('phase01Title') }}</p>
         <p class="exte-medium">{{ $t('phase01Desc') }}</p>
-        <p class="exte-medium gps">{{ $t('phase01GPS') }}</p>
+        <p class="exte-medium">{{ $t('phase01GPS') }}</p>
         <MarkerPlacer :placeholder="$t('phase01Address')" />
       </div>
       <div class="footer">
@@ -86,11 +86,6 @@ export default {
 .header {
   input, /deep/ input {
     margin-top: 1.5rem;
-  }
-  .gps {
-    color: $col-green;
-    text-decoration: underline;
-    cursor: pointer;
   }
 }
 </style>
