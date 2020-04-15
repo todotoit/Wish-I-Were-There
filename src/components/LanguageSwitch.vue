@@ -27,6 +27,7 @@ export default {
   position: absolute;
   top: 1rem;
   right: 1rem;
+  z-index: 10;
   ul {
     list-style: none;
     margin: 0;

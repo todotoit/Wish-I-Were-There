@@ -13,24 +13,6 @@
           href="https://www.instagram.com/todotoit/?hl=it"
         >Instagram</a>
         <a target="_blank" class="exte-medium" href="https://twitter.com/todotoit">Twitter</a>
-        <!-- <social-sharing
-        url="https://vuejs.org/"
-        title="The Progressive JavaScript Framework"
-        description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
-        quote="Vue is a progressive framework for building user interfaces."
-        hashtags="vuejs,javascript,framework"
-        twitter-user="vuejs"
-        inline-template
-      >
-        <div>
-          <network network="facebook">
-            <i class="fa fa-facebook"></i> <span class="exte-small"> Facebook </span>
-          </network>
-          <network network="twitte">
-            <i class="fa fa-twitter"></i>  <span class="exte-small"> Twitter </span>
-          </network>
-        </div>
-        </social-sharing>-->
       </section>
       <section class="copy">
         <a target="_blank" class="exte-medium" href="https://todo.to.it/">
@@ -38,12 +20,15 @@
         </a>
       </section>
     </div>
+    <Cover />
   </div>
 </template>
 
 <script>
+import Cover from "@/components/Cover";
 export default {
-  name: "Info"
+  name: "Info",
+  components: { Cover }
 };
 </script>
 
@@ -51,7 +36,6 @@ export default {
 .info {
   position: absolute;
   z-index: 201;
-  padding: 1rem;
   top: 0;
   left: 0;
   width: 100%;
@@ -61,7 +45,14 @@ export default {
   display: flex;
   flex-direction: column;
   .wrapper {
-    margin-top: 3rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    padding-top: 3rem;
+    z-index: 10;
     section {
       margin-bottom: 2rem;
       width: 60%;

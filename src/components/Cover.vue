@@ -135,6 +135,7 @@ export default {
   width: 100%;
   height: 100%;
   background-color: $col-dark;
+  position: relative;
 }
 canvas {
   mix-blend-mode: soft-light;
@@ -148,6 +149,6 @@ canvas {
   animation: shiftbg 1s infinite steps(5);
   opacity: .3;
   mix-blend-mode: multiply;
-  z-index: 100;
+  z-index: 2;
 }
 </style>

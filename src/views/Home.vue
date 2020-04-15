@@ -13,7 +13,7 @@
       </div>
       <LanguageSwitch />
     </div>
-    <Cover />
+    <Cover class="shader-bg" />
   </div>
 </template>
 
