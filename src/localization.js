@@ -11,6 +11,10 @@ export default {
         cookieDesc: 'This website uses cookies to ensure you have the best experience on our website. If you continue, you are consenting to their use.',
         cookieBtn: 'Continue',
 
+        // Input errors
+        errorEmptyMessage: 'Your message is empty. Please write a message before publishing.',
+        errorBadMessage: 'Could your message be offensive? Please review before publishing.',
+
         // Add your name
         phase00Username: 'What’s your name?',
         phase00Desc: 'Use a nickname if you want.',
@@ -76,6 +80,10 @@ export default {
         cookieDesc: 'Questo sito web utilizza i cookie per assicurarti la migliore esperienza sul nostro sito. Continuando a navigare acconsenti al loro utilizzo.',
         cookieBtn: 'Continua',
 
+        // Input errors
+        errorEmptyMessage: 'Il messaggio è vuoto. Scrivi qualcosa prima di pubblicare.',
+        errorBadMessage: 'Il tuo messaggio potrebbe essere offensivo. Controlla, prima di pubblicare.',
+        
         // Add your name
         phase00Username: 'Come ti chiami?',
         phase00Desc: 'Puoi usare un nickname se vuoi.',

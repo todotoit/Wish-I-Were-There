@@ -8,9 +8,10 @@ export function createBubble(map, center, user) {
         center: c,
         radius: 200,
         strokeColor: 'transparent',
-        fillColor: 'transparent'
+        fillColor: 'transparent',
     });
     const b = circle.getBounds();
+    circle.setMap(null)
     return new BubbleOverlay(b, map, user);
 }
 
@@ -73,6 +74,7 @@ function createOverlayProto() {
     };
 
     BubbleOverlay.prototype.setVisible = function (val) {
+        console.log(val)
         if (this.div_) this.div_.classList.toggle('hidden', !val)
     }
     BubbleOverlay.prototype.setDisabled = function (val) {

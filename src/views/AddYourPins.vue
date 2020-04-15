@@ -11,23 +11,16 @@
         <p class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
       </div>
     </template>
-    <template v-else-if="!userPin">
+    <template v-else>
       <div class="header">
         <p class="expa-large">{{ $t('phase04Title') }}</p>
         <p class="exte-medium">{{ $t('phase04Desc') }}</p>
-        <textarea :placeholder="$t('phase04Input')" v-model="message"></textarea>
+        <InputCheck v-slot="{validate}" @validate="valid = $event" :empty="false">
+          <textarea :placeholder="$t('phase04Input')" v-model="message" @input="validate"></textarea>
+        </InputCheck>
       </div>
       <div class="footer">
-        <button @click="createNewPin">{{ $t('phase04Btn') }}</button>
-      </div>
-    </template>
-    <template v-else>
-      <div class="header">
-        <p class="expa-large">{{ $t('phase05Title') }}</p>
-        <p class="exte-medium">{{ $t('phase05Desc') }}</p>
-      </div>
-      <div class="footer">
-        <button @click="$router.push('/explore')">{{ $t('phase05Btn') }}</button>
+        <button @click="createNewPin" :disabled="!message">{{ $t('phase04Btn') }}</button>
       </div>
     </template>
   </div>
@@ -35,6 +28,7 @@
 
 <script>
 import MarkerPlacer from "@/components/MarkerPlacer.vue";
+import { cleanInput } from "@/utils";
 
 export default {
   name: "FindYourBubble",
@@ -42,9 +36,14 @@ export default {
   data() {
     return {
       message: "",
-      addingMessage: false,
-      messageUpdated: false
+      valid: false,
+      addingMessage: false
     };
+  },
+  watch: {
+    message(val) {
+      this.message = filter.clean(filter);
+    }
   },
   computed: {
     marker() {
@@ -55,12 +54,6 @@ export default {
     },
     map() {
       return this.$store.state.map;
-    },
-    userPin() {
-      return this.$store.state.userPins;
-    },
-    placing() {
-      return this.$store.state.placing;
     }
   },
   mounted() {
@@ -77,18 +70,7 @@ export default {
         .then(r => {
           this.$store.commit("SET_USER_PINS", r);
           this.$store.commit("SET_PLACING", false);
-          this.map.setCenter(r.marker.getPosition());
           this.$router.push("/thankyou");
-        });
-    },
-    updatePinMessage() {
-      if (!this.message) return;
-      this.$store
-        .dispatch("updatePin", {
-          message: this.message
-        })
-        .then(r => {
-          this.messageUpdated = true;
         });
     }
   }

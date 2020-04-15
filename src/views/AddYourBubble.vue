@@ -4,10 +4,18 @@
       <div class="header">
         <p class="expa-large">{{ $t('phase00Username') }}</p>
         <p class="exte-medium">{{ $t('phase00Desc') }}</p>
-        <input type="text" v-model="name" :placeholder="$t('phase00Input')" />
+        <InputCheck v-slot="{validate}" @validate="valid = $event">
+          <input
+            type="text"
+            v-model="name"
+            @input="validate"
+            :placeholder="$t('phase00Input')"
+            maxlength="15"
+          />
+        </InputCheck>
       </div>
       <div class="footer">
-        <button @click="next">{{ $t('phase00Btn') }}</button>
+        <button @click="next" :disabled="!valid">{{ $t('phase00Btn') }}</button>
       </div>
     </template>
     <template v-else-if="!user && step == 1">
@@ -34,14 +42,17 @@
 
 <script>
 import MarkerPlacer from "@/components/MarkerPlacer.vue";
+import InputCheck from "@/components/InputCheck";
+import Events from "@/events";
 
 export default {
   name: "FindYourBubble",
-  components: { MarkerPlacer },
+  components: { MarkerPlacer, InputCheck },
   data() {
     return {
       step: 0,
-      name: ""
+      name: "",
+      valid: true
     };
   },
   computed: {
@@ -66,8 +77,7 @@ export default {
         .then(r => {
           this.$store.commit("SET_PLACING", false);
           this.$store.commit("SET_USER", r);
-          this.map.setCenter(r.marker.getPosition());
-          this.map.setZoom(17);
+          Events.$emit("select-user", r.id);
           this.$cookie.set("daydream_user", r.id, { expires: "1Y" });
         });
     },
@@ -83,7 +93,8 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  input, /deep/ input {
+  input,
+  /deep/ input {
     margin-top: 1.5rem;
   }
 }

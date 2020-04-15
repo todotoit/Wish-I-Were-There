@@ -1,3 +1,9 @@
+import BadWords from 'bad-words'
+import blacklist from '@/assets/word-blacklist.js'
+
+const filter = new BadWords()
+filter.addWords(...blacklist)
+
 export function getNewItems(array, oldArray) {
     return array.filter(n => !oldArray.some(o => o.id === n.id));
 }
@@ -5,3 +11,12 @@ export function getNewItems(array, oldArray) {
 export function getRemovedItems(array, oldArray) {
     return oldArray.filter(n => !array.some(o => o.id === n.id));
 }
+
+export function filterInput(val) {
+    return filter.clean(val)
+}
+
+export function checkInput(val) {
+    return !filter.isProfane(val)
+}
+

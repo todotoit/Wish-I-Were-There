@@ -69,6 +69,10 @@ export default {
     },
     $route(to, from) {
       if (to.meta.explore && !this.init) this.createItems();
+      if (to.meta.tutorial && this.init) {
+        this.showUserMarkers = false;
+        this.showPinMarkers = false;
+      }
     }
   },
   computed: {
@@ -140,6 +144,16 @@ export default {
       this.users.forEach(u => this.createUserBubble(u));
       this.init = true;
       this.checkHighlight();
+    },
+    removeItems() {
+      this.userMarkers.forEach(u => {
+        u.setVisible(false);
+        u.overlay.setMap(null);
+      });
+      this.pinMarkers.forEach(p => p.setVisible(false));
+      this.userMarkers = [];
+      this.pinMarkers = [];
+      this.init = false;
     },
     checkHighlight() {
       let user = this.user;
@@ -314,10 +328,10 @@ export default {
   transition: opacity 0.3s;
   z-index: -3000;
   pointer-events: auto;
-  &.hidden,
   &.disabled {
     opacity: 0.25;
   }
+  &.hidden,
   &.far {
     pointer-events: none;
     opacity: 0;
