@@ -34,7 +34,7 @@ export default {
       return this.$store.state.userPins;
     },
     kmDistance() {
-      return this.$t("phase05Desc", { distance: (distance / 1000).toFixed(2) });
+      return this.$t("phase05Desc", { distance: (this.distance / 1000).toFixed(2) });
     }
   },
   mounted() {
