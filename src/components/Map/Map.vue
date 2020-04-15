@@ -297,15 +297,14 @@ export default {
       });
     },
     toggleUserMarkers(val) {
-      this.showUserMarkers = true;
-
+      this.showUserMarkers = val;
       this.userMarkers.forEach(m => {
         m.setVisible(val);
         m.overlay.setVisible(val);
       });
     },
     togglePinMarkers(val) {
-      this.showPinMarkers = true;
+      this.showPinMarkers = val;
       this.pinMarkers.forEach(m => m.setVisible(val));
     },
     handleMapZoom(e) {
