@@ -51,8 +51,12 @@ export default {
         color: $col-white;
       }
     }
+    @extend .exte-small;
+    font-size: .6rem;
   }
   .pac-item-query {
+    font-size: .8rem;
+    line-height: 200%;
     color: $col-green;
   }
 }
