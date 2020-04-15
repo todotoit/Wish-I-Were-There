@@ -1,13 +1,12 @@
 <template>
   <div class="info">
     <div class="header">
-      <p class="expa-large">Done, Thanks!</p>
-      <p
-        class="exte-medium"
-      >Your message has been sent! Your daydream is now travelling 2,5 km away from your current galaxy</p>
+      <p class="expa-large">{{$t('phase05Title')}}</p>
+      <p class="exte-medium">{{$('phase05Desc', {distance: 15})}}</p>
+      <Share />
     </div>
     <div class="footer">
-      <button @click="$router.push('/explore')">Explore the map</button>
+      <button @click="$router.push('/explore')">{{$t('phase05Btn')}}</button>
     </div>
   </div>
 </template>
