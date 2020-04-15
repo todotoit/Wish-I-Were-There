@@ -28,22 +28,18 @@
 
 <script>
 import MarkerPlacer from "@/components/MarkerPlacer.vue";
+import InputCheck from "@/components/InputCheck";
 import { cleanInput } from "@/utils";
 
 export default {
-  name: "FindYourBubble",
-  components: { MarkerPlacer },
+  name: "AddYourPins",
+  components: { MarkerPlacer, InputCheck },
   data() {
     return {
       message: "",
       valid: false,
       addingMessage: false
     };
-  },
-  watch: {
-    message(val) {
-      this.message = filter.clean(filter);
-    }
   },
   computed: {
     marker() {
