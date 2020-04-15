@@ -6,6 +6,10 @@ export default {
         ctaStart: `Start wishing`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
 
+        // Cookie
+        cookieDesc: 'This website uses cookies to ensure you have the best experience on our website. If you continue, you are consenting to their use.',
+        cookieBtn: 'Continue',
+
         // Add your name
         phase00Username: 'What’s your name?',
         phase00Desc: 'Use a nickname if you want.',
@@ -66,6 +70,10 @@ export default {
         intro: `La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. Dopo settimane di isolamento, però, i nostri luoghi preferiti ci sembrano costellazioni di stelle lontane. Vorremmo pensare al futuro ed essere già lì. Se facciamo tutti la nostra parte, quel futuro arriverà prima. Nel frattempo, creiamo insieme la mappa di un cielo sognato a occhi aperti.`,
         ctaStart: `Inizia a sognare`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
+
+        // Cookie
+        cookieDesc: 'Questo sito web utilizza i cookie per assicurarti la migliore esperienza sul nostro sito. Continuando a navigare acconsenti al loro utilizzo.',
+        cookieBtn: 'Continua',
 
         // Add your name
         phase00Username: 'Come ti chiami?',
