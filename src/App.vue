@@ -79,11 +79,16 @@ footer {
   position: fixed;
   bottom: 1rem;
   @media screen and (max-width: $mqMobile) {
-    bottom: 0.5rem;
+    bottom: 0.2rem;
   }
   left: 0;
   text-align: center;
   z-index: 600;
+  svg {
+    @media screen and (max-width: $mqTablet) {
+      width: 70px;
+    }
+  }
   svg path {
     fill: $col-white;
   }

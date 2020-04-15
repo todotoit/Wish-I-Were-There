@@ -398,6 +398,10 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
+  @media screen and (max-width: $mqTablet) {
+    bottom: 3.3rem;
+    width: 80%;
+  }
 }
 
 .bubble {

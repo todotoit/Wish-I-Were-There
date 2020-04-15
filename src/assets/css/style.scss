@@ -146,6 +146,9 @@ textarea {
       width: 100%;
       p {
         margin-bottom: 0.8rem;
+        @media screen and (max-width: $mqTablet) {
+          margin-bottom: 0.3rem;
+        }
       }
       &.center {
         height: 100%;
@@ -211,6 +214,9 @@ textarea {
   }
 
   .gm-control-active {
+    @media screen and (max-width: $mqTablet) {
+      display: none !important;
+    }
     transform: translateY(-0.4rem);
     border: 1px solid $col-white !important;
     color: $col-white !important;
