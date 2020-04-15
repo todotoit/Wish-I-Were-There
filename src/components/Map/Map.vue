@@ -168,6 +168,7 @@ export default {
         const marker = this.getUserMarker(user.id);
         if (marker) this.highlightUser(marker);
       }
+      console.log(user)
     },
     createUserBubble(user) {
       const pos = { lat: user.coordinates.Wa, lng: user.coordinates.za };
@@ -335,13 +336,13 @@ export default {
 #map > div {
   background-color: $col-dark !important;
 }
-.map-container:not(.active)
+/* .map-container:not(.active)
   .gm-style
   > div:first-child
   > div:first-child
   > div:last-child {
   opacity: 0.2;
-}
+} */
 .bubble-container {
   position: absolute;
   transition: opacity 0.3s;

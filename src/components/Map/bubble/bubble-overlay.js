@@ -70,14 +70,13 @@ function createOverlayProto() {
         this.div_.style.width = (ne.x - sw.x) + 'px';
         this.div_.style.height = (sw.y - ne.y) + 'px';
         this.bubble_.setZoomLevel(zoomLevel)
-        //this.bubble_.setBounds(this.div_.getBoundingClientRect()) 
     };
 
     BubbleOverlay.prototype.setVisible = function (val) {
         if (this.div_) this.div_.classList.toggle('hidden', !val)
     }
     BubbleOverlay.prototype.setDisabled = function (val) {
-        if (this.div_) this.div_.classList.toggle('disabled', val)
+        if (this.div_) this.div_.classList.toggle('disabled', !!val)
     }
 }
 
