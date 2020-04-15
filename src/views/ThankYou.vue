@@ -2,7 +2,7 @@
   <div class="info">
     <div class="header">
       <p class="expa-large">{{$t('phase05Title')}}</p>
-      <p class="exte-medium">{{$('phase05Desc', {distance: 15})}}</p>
+      <p class="exte-medium">{{$t('phase05Desc', {distance: distance.toFixed(2)})}}</p>
       <Share />
     </div>
     <div class="footer">
@@ -16,18 +16,37 @@ import Share from "@/components/Share.vue";
 import Events from "@/events";
 
 export default {
-  name: "FindYourBubble",
+  name: "ThankYou",
   components: { Share },
+  data() {
+    return {
+      distance: 0
+    };
+  },
   computed: {
     map() {
       return this.$store.state.map;
     },
     user() {
       return this.$store.state.user;
+    },
+    pin() {
+      return this.$store.state.userPins;
     }
   },
   mounted() {
     Events.$emit("select-user", this.user.id);
+    const spherical = google.maps.geometry.spherical;
+/*     const start = new google.maps.LatLng({
+      lat: this.user.coordinates.latitude,
+      lng: this.user.coordinates.longitude
+    });
+    const end = new google.maps.LatLng({
+      lat: this.pin.coordinates.latitude,
+      lng: this.pin.coordinates.longitude
+    }); */
+    this.distance = spherical.computeDistanceBetween(this.user.marker.getPosition(), this.pin.marker.getPosition());
+    if(isNaN(this.distance)) this.distance = 0
   }
 };
 </script>
