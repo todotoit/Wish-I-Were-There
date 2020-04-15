@@ -4,6 +4,7 @@ export default {
         title: 'Wish I Were There',
         intro: `Self-isolating is the right thing to do during the pandemic. But it also makes our favorite places feel like a constellation of faraway stars, and we wish we could just think about the future and already be there. Stay safe and we will get there. In the meantime, let’s create a collective sky map of daydreams.`,
         ctaStart: `Start wishing`,
+        shareMessage: `#stiamoacasa e sogniamo insieme su wishiwerethere.xyz ⭐️ {msg} ⭐️`,
 
         // Add your name
         phase00Username: 'What’s your name?',
@@ -63,6 +64,7 @@ export default {
         title: 'Wish I Were There',
         intro: `La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. Dopo settimane di isolamento, però, i nostri luoghi preferiti ci sembrano costellazioni di stelle lontane. Vorremmo pensare al futuro ed essere già lì. Se facciamo tutti la nostra parte, quel futuro arriverà prima. Nel frattempo, creiamo insieme la mappa di un cielo sognato a occhi aperti.`,
         ctaStart: `Inizia a sognare`,
+        shareMessage: `#stiamoacasa e sogniamo insieme su wishiwerethere.xyz ⭐️ {msg} ⭐️`,
 
         // Add your name
         phase00Username: 'Come ti chiami?',
