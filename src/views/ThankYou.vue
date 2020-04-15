@@ -2,7 +2,7 @@
   <div class="info">
     <div class="header">
       <p class="expa-large">{{$t('phase05Title')}}</p>
-      <p class="exte-medium">{{$t('phase05Desc', {distance: distance.toFixed(2)})}}</p>
+      <p class="exte-medium">{{$t('phase05Desc', {distance: (distance/1000).toFixed(2)})}}</p>
       <Share />
     </div>
     <div class="footer">

@@ -219,6 +219,10 @@ textarea {
     background: none !important;
   }
 
+  .gm-style .gm-style-iw-t::after {
+    display: none;
+  }
+
   .gm-control-active {
     @media screen and (max-width: $mqTablet) {
       display: none !important;
@@ -265,7 +269,7 @@ textarea {
         background-position: center center;
         background-size: 75%;
         background-repeat: no-repeat;
-        transition: all .5s;
+        transition: all 0.5s;
       }
     }
   }
