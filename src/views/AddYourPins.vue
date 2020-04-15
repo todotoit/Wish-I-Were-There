@@ -75,6 +75,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+input,
+/deep/ input {
+  margin-top: 1.5rem;
+  @media screen and (max-width: $mqTablet) {
+    margin-top: 0.5rem;
+  }
+}
 .pin-placer {
   height: 100%;
   pointer-events: none;

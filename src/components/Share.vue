@@ -57,6 +57,17 @@ export default {
 .share-user {
   .share-url {
     margin-top: 1rem;
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    button {
+      border: 1px solid $col-white;
+      color: $col-white;
+    }
+    @media screen and (max-width: $mqTablet) {
+      bottom: 3.5rem;
+    }
     .share-user-url {
       height: 0;
       opacity: 0;

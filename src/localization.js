@@ -118,7 +118,7 @@ export default {
         // Feedback
         phase05Title: 'Grazie!',
         phase05Desc: 'Hai aggiunto la tua stella alla nostra mappa collettiva. Il luogo che sogni è a {distance}km da te. Ci arriverai! Stay safe.',
-        phase05Share: 'Condividi il tuo sogno a occhi aperti',
+        phase05Share: 'Condividi stella',
         phase05Btn: 'Esplora la mappa',
 
         // Explore
