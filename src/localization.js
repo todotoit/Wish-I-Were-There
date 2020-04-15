@@ -65,7 +65,9 @@ export default {
         TODO’s team has been working remotely since 16 March to stay – and keep others – safe. 
         Self-isolating is the right thing to do during the pandemic. But it also makes our favorite places feel like a constellation of faraway stars, and we wish we could just think about the future and already be there. Stay safe and we will get there. 
         In the meantime, let’s create a collective sky map of daydreams.
-        `
+        `,
+
+        socialSharing: 'Let’s #stayhome and daydream together at wishiwerethere.xyz ⭐️[MESSAGGIO] ⭐️'
 
     },
     it: {
@@ -83,7 +85,7 @@ export default {
         // Input errors
         errorEmptyMessage: 'Il messaggio è vuoto. Scrivi qualcosa prima di pubblicare.',
         errorBadMessage: 'Il tuo messaggio potrebbe essere offensivo. Controlla, prima di pubblicare.',
-        
+
         // Add your name
         phase00Username: 'Come ti chiami?',
         phase00Desc: 'Puoi usare un nickname se vuoi.',
@@ -133,6 +135,9 @@ export default {
         Fondato nel 2007, TODO ha ideato e realizzato progetti per Enel, Arduino, Mozilla Foundation, Audi, Seat, Università degli Emirati Arabi Uniti e molti altri clienti in Italia e all’estero.
         Il team di TODO lavora in remoto dal 16 marzo, per la sicurezza di tutti. 
         La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. Ma dopo settimane di isolamento i nostri luoghi preferiti ci appaiono come costellazioni di stelle lontane, e vorremmo proprio poter pensare al futuro ed essere già lì. Se facciamo tutti la nostra parte, quel futuro arriverà prima. Nel frattempo, creiamo insieme la mappa di un cielo sognato a occhi aperti.
-        `
+        `,
+
+        socialSharing: '#stayhome e sogniamo insieme su wishiwerethere.xyz ⭐️ [MESSAGGIO] ⭐️'
+
     }
 }
