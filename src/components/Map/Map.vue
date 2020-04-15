@@ -168,7 +168,6 @@ export default {
         const marker = this.getUserMarker(user.id);
         if (marker) this.highlightUser(marker);
       }
-      console.log(user)
     },
     createUserBubble(user) {
       const pos = { lat: user.coordinates.Wa, lng: user.coordinates.za };

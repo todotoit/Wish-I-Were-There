@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import { randomString } from '@/utils'
 const { GeoPoint } = firebase.firestore
 
 Vue.use(Vuex)
@@ -60,13 +61,16 @@ export default new Vuex.Store({
     }),
     createNewUser: firestoreAction((context, user) => {
       const coordinates = user.marker.getPosition()
-      return db.collection('users').add({
+      console.log(context)
+      const id = context.getters.getUniqueUserId()
+      return db.collection('users').doc(id).set({
         coordinates: new GeoPoint(coordinates.lat(), coordinates.lng()),
         created: firebase.firestore.FieldValue.serverTimestamp(),
         name: user.name
       }).then(r => {
+        console.log(r)
         return {
-          id: r.id,
+          id,
           name: user.name,
           marker: user.marker
         }
@@ -111,6 +115,13 @@ export default new Vuex.Store({
     },
     getUserUrl: (state) => id => {
       return window.location.origin + "/explore/" + id;
+    },
+    getUniqueUserId: state => () => {
+      let str = randomString(8, '_0123456789abcdefghijklmnopqrstuvwxyz')
+      while (state.users.find(u => u.id === str)) {
+        str = randomString(8, '_0123456789abcdefghijklmnopqrstuvwxyz')
+      }
+      return str
     }
   }
 })

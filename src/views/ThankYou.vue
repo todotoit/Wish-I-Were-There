@@ -37,14 +37,6 @@ export default {
   mounted() {
     Events.$emit("select-user", this.user.id);
     const spherical = google.maps.geometry.spherical;
-/*     const start = new google.maps.LatLng({
-      lat: this.user.coordinates.latitude,
-      lng: this.user.coordinates.longitude
-    });
-    const end = new google.maps.LatLng({
-      lat: this.pin.coordinates.latitude,
-      lng: this.pin.coordinates.longitude
-    }); */
     this.distance = spherical.computeDistanceBetween(this.user.marker.getPosition(), this.pin.marker.getPosition());
     if(isNaN(this.distance)) this.distance = 0
   }
