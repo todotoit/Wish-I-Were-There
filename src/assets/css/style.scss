@@ -237,16 +237,37 @@ textarea {
 
     input {
       flex: 1;
+      width: 2px;
+      height: 0;
+      opacity: 0;
     }
-    &::before {
-      content: " ";
-      display: block;
-      width: 26px;
-      height: 11px;
-      background-image: url("~@/assets/icons/link.svg");
-      background-position: center center;
-      background-size: 75%;
-      background-repeat: no-repeat;
+    button {
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.25rem 0.5rem;
+      margin: 0;
+      border: 1px solid $col-white;
+      color: $col-white;
+      &:hover {
+        background-color: $col-white;
+        color: $col-dark;
+        &::before {
+          background-image: url("~@/assets/icons/link-dark.svg");
+        }
+      }
+      &::before {
+        content: " ";
+        display: block;
+        width: 26px;
+        height: 11px;
+        background-image: url("~@/assets/icons/link.svg");
+        background-position: center center;
+        background-size: 75%;
+        background-repeat: no-repeat;
+        transition: all .5s;
+      }
     }
   }
 }

@@ -268,7 +268,7 @@ export default {
         url: this.$store.getters.getUserUrl(user.id),
         msg: message
       });
-      content += `<p class="share-url thin-medium"><input type="text" readonly onfocus="this.select(); document.execCommand('copy');" value="${shareMessage}" /></p>`;
+      content += `<p class="share-url thin-medium"><button onclick="this.nextSibling.select(); document.execCommand('copy');">Share</button><input type="text" readonly value="${shareMessage}" /></p>`;
       const info = new google.maps.InfoWindow({
         content,
         maxWidth: 400
