@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import FindYourBubble from '../views/FindYourBubble.vue'
+import AddYourBubble from '../views/AddYourBubble.vue'
 import AddYourPins from '../views/AddYourPins.vue'
 import ThankYou from '../views/ThankYou.vue'
 
@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/bubble',
     name: 'find-your-bubble',
-    component: FindYourBubble,
+    component: AddYourBubble,
     meta: {
       tutorial: true
     }
