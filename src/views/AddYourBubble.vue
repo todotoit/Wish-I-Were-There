@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     createNewBubble() {
-      if(!this.valid) return
+      if (!this.valid) return;
       this.$store
         .dispatch("createNewUser", { name: this.name, marker: this.marker })
         .then(r => {
@@ -97,6 +97,9 @@ export default {
   input,
   /deep/ input {
     margin-top: 1.5rem;
+    @media screen and (max-width: $mqTablet) {
+      margin-top: 0.8rem;
+    }
   }
 }
 </style>
