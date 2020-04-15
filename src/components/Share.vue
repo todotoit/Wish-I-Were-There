@@ -7,13 +7,11 @@
           type="text"
           class="share-user-url"
           readonly
-          :value="url"
+          :value="message"
           @click="copyUrl"
         />
         <transition name="fade">
-          <p
-            v-if="notice"
-          >{{$t('shareLinkCopied')}}</p>
+          <p v-if="notice">{{$t('shareLinkCopied')}}</p>
         </transition>
       </div>
     </template>
@@ -35,8 +33,11 @@ export default {
     user() {
       return this.$store.state.user;
     },
-    url() {
-      return this.store.getters.getUserUrl(this.user.id)
+    message() {
+      return this.$t("shareMessage", {
+        url: this.store.getters.getUserUrl(this.user.id),
+        msg: message
+      });
     }
   },
   methods: {
