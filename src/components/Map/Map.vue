@@ -346,7 +346,9 @@ export default {
     z-index: 20;
     user-select: none;
     color: $col-green;
-    @extend .exte-medium;
+    @extend .exte-small;
+    font-size: 1rem;
+    white-space: nowrap;
     &::before {
       content: ".";
     }
