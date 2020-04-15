@@ -44,6 +44,7 @@ export default {
   @media screen and (max-width: $mqMobile) {
     top: 0.5rem;
     left: 0.5rem;
+    width: 100%;
   }
   p {
     color: $col-green;

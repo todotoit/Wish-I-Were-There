@@ -326,7 +326,7 @@ export default {
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 20;
+  z-index: 25;
   margin: 0;
   @media screen and (max-width: $mqMobile) {
     top: 130px;
