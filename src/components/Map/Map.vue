@@ -117,7 +117,7 @@ export default {
       mapTypeId: "roadmap",
       disableDefaultUI: true,
       zoomControl: true,
-      styles: styles["mappette"],
+      styles: styles["daydream"],
       clickableIcons: false
     });
     this.$store.commit("SET_MAP", map);
