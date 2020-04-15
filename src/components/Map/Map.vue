@@ -130,12 +130,8 @@ export default {
     google.maps.event.addListener(map, "zoom_changed", e =>
       this.handleMapZoom(e)
     );
-    google.maps.event.addListener(map, "click", e => {
-      if (this.line) this.line.remove();
-      if (this.infoWindow) this.infoWindow.close();
-      this.selectedUserMarker = null;
-      this.selectedPinMarker = null;
-    });
+    google.maps.event.addListener(map, "click", e => this.deselect(e));
+    google.maps.event.addListener(map, "touch", e => this.deselect(e));
     if (this.isExplore && !this.init) this.createItems();
     Events.$on("select-user", id => {
       const marker = this.getUserMarker(id);
@@ -295,6 +291,12 @@ export default {
         lat: coordinates.latitude,
         lng: coordinates.longitude
       });
+    },
+    deselect(e) {
+      if (this.line) this.line.remove();
+      if (this.infoWindow) this.infoWindow.close();
+      this.selectedUserMarker = null;
+      this.selectedPinMarker = null;
     },
     toggleUserMarkers(val) {
       this.showUserMarkers = val;
