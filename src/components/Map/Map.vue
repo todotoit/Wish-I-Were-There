@@ -28,6 +28,7 @@ import { getNewItems, getRemovedItems } from "@/utils";
 import SearchLocation from "@/components/SearchLocation.vue";
 import GmapsQuadraticBezier from "./line/gm-bezier";
 import Tools from "./Tools";
+import Events from "@/events";
 
 export default {
   name: "Map",
@@ -42,15 +43,10 @@ export default {
       newPins.forEach(pin => this.createPin(pin));
     },
     showUserMarkers(val) {
-      this.userMarkers.forEach(m => {
-        m.setVisible(val);
-        m.overlay.setVisible(val);
-      });
-      this.map.showUserMarkers = val;
+      this.toggleUserMarkers(val);
     },
     showPinMarkers(val) {
-      this.pinMarkers.forEach(m => m.setVisible(val));
-      this.map.showPinMarkers = val;
+      this.togglePinMarkers(val);
     },
     selectedUserMarker(val) {
       this.userMarkers.forEach(m => {
@@ -69,9 +65,13 @@ export default {
     },
     $route(to, from) {
       if (to.meta.explore && !this.init) this.createItems();
-      if (to.meta.tutorial && this.init) {
-        this.showUserMarkers = false;
-        this.showPinMarkers = false;
+      if (from.meta.tutorial && to.meta.explore) {
+        this.toggleUserMarkers(true);
+        this.togglePinMarkers(true);
+      }
+      if (!from.meta.tutorial && to.meta.tutorial) {
+        this.toggleUserMarkers(false);
+        this.togglePinMarkers(false);
       }
     }
   },
@@ -137,6 +137,10 @@ export default {
       this.selectedPinMarker = null;
     });
     if (this.isExplore && !this.init) this.createItems();
+    Events.$on("select-user", id => {
+      const marker = this.getUserMarker(id);
+      if (marker) this.highlightUser(marker);
+    });
   },
   methods: {
     createItems() {
@@ -183,7 +187,7 @@ export default {
         visible: this.showUserMarkers,
         disabled: this.selectedUserMarker
       };
-      const overlay = createBubble(this.map, pos, user);
+      const overlay = createBubble(this.map, pos, { user });
       marker.addListener("click", e => {
         if (e) e.stop();
         this.highlightUser(marker);
@@ -232,11 +236,14 @@ export default {
       this.map.fitBounds(bounds);
     },
     highlightUser(userMarker) {
-      console.log("highlight", userMarker.user);
       this.selectedUserMarker = userMarker;
+      userMarker.setVisible(true);
+      userMarker.overlay.setDisabled(false);
+      userMarker.overlay.setVisible(true);
       const pin = this.$store.getters.getUserPin(userMarker.user.id);
       if (!pin) return this.zoomOnCoords(userMarker.position);
       const pinMarker = this.getPinMarker(pin.id);
+      pinMarker.setVisible(true);
       const pinCoords = pinMarker.getPosition();
       const userCoords = userMarker.getPosition();
       this.createLink(pinCoords, userCoords);
@@ -288,6 +295,18 @@ export default {
         lat: coordinates.latitude,
         lng: coordinates.longitude
       });
+    },
+    toggleUserMarkers(val) {
+      this.showUserMarkers = true;
+
+      this.userMarkers.forEach(m => {
+        m.setVisible(val);
+        m.overlay.setVisible(val);
+      });
+    },
+    togglePinMarkers(val) {
+      this.showPinMarkers = true;
+      this.pinMarkers.forEach(m => m.setVisible(val));
     },
     handleMapZoom(e) {
       const zoom = this.map.getZoom();

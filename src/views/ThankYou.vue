@@ -14,10 +14,22 @@
 
 <script>
 import Share from "@/components/Share.vue";
+import Events from "@/events";
 
 export default {
   name: "FindYourBubble",
-  components: { Share }
+  components: { Share },
+  computed: {
+    map() {
+      return this.$store.state.map;
+    },
+    user() {
+      return this.$store.state.user;
+    }
+  },
+  mounted() {
+    Events.$emit("select-user", this.user.id);
+  }
 };
 </script>
 
