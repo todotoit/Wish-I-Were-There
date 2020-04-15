@@ -1,16 +1,19 @@
 <template>
   <div class="tools">
-    <p class="exte-small">{{ $t('exploreMode') }}</p>
-    <ul>
-      <li :class="{active: showUserMarkers}" class="exte-small" @click="$emit('toggle-users');">
-        <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" />
-        {{ $t('exploreSelf') }}
-      </li>
-      <li :class="{active: showPinMarkers}" class="exte-small" @click="$emit('toggle-pins');">
-        <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" />
-        {{ $t('exploreDayDream') }}
-      </li>
-    </ul>
+    <div class="tools-wrap">
+      <p class="exte-small">{{ $t('exploreMode') }}</p>
+      <ul>
+        <li :class="{active: showUserMarkers}" class="exte-small" @click="$emit('toggle-users');">
+          <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" />
+          {{ $t('exploreSelf') }}
+        </li>
+        <li :class="{active: showPinMarkers}" class="exte-small" @click="$emit('toggle-pins');">
+          <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" />
+          {{ $t('exploreDayDream') }}
+        </li>
+      </ul>
+    </div>
+    <div class="tools-bg"></div>
   </div>
 </template>
 
@@ -33,9 +36,11 @@ export default {
 <style lang="scss">
 .tools {
   position: absolute;
-  left: 1rem;
-  top: 1rem;
+  left: 0;
+  top: 0;
+  min-width: 18rem;
   z-index: 20;
+  height: 8rem;
   @media screen and (max-width: $mqMobile) {
     top: 0.5rem;
     left: 0.5rem;
@@ -67,6 +72,22 @@ export default {
         margin-right: 0.5rem;
       }
     }
+  }
+  .tools-wrap,
+  .tools-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+  }
+  .tools-wrap {
+    padding: 1rem;
+    z-index: 2;
+  }
+  .tools-bg {
+    background-color: rgba($col-dark, 0.8);
+    filter: blur(1rem);
   }
 }
 </style>
