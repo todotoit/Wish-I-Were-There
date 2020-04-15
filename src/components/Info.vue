@@ -12,7 +12,7 @@
           class="exte-medium"
           href="https://www.instagram.com/todotoit/?hl=it"
         >Instagram</a>
-        <a target="_blank" class="exte-medium" href="https://twitter.com/todotoit">Twitter</a>
+        <a target="_blank" class="exte-medium" href="https://vimeo.com/todotoit">Vimeo</a>
       </section>
       <section class="copy">
         <a target="_blank" class="exte-medium" href="https://todo.to.it/">
