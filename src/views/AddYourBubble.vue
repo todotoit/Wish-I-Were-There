@@ -72,6 +72,7 @@ export default {
   },
   methods: {
     createNewBubble() {
+      if(!this.valid) return
       this.$store
         .dispatch("createNewUser", { name: this.name, marker: this.marker })
         .then(r => {

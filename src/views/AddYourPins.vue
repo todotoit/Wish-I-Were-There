@@ -61,6 +61,7 @@ export default {
   },
   methods: {
     createNewPin() {
+      if (!this.valid) return;
       this.$store
         .dispatch("createNewPin", {
           user: this.user,
