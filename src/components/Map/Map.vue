@@ -1,27 +1,17 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing}">
-    <SearchLocation id="search-location" v-if="map && isExplore" :placeholder="$t('exploreSearch')" />
-    <div class="tools" v-if="map && isExplore">
-      <p class="exte-small ">{{ $t('exploreMode') }}</p>
-      <ul>
-        <li
-          :class="{active: showUserMarkers}"
-          class="exte-small "
-          @click="showUserMarkers = !showUserMarkers"
-        >
-          <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" />
-          {{ $t('exploreSelf') }}
-        </li>
-        <li
-          :class="{active: showPinMarkers}"
-          class="exte-small "
-          @click="showPinMarkers = !showPinMarkers"
-        >
-          <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" />
-          {{ $t('exploreDayDream') }}
-        </li>
-      </ul>
-    </div>
+    <SearchLocation
+      id="search-location"
+      v-if="map && isExplore"
+      :placeholder="$t('exploreSearch')"
+    />
+    <Tools
+      v-if="map && isExplore"
+      :show-user-markers="showUserMarkers"
+      :show-pin-markers="showPinMarkers"
+      @toggle-users="showUserMarkers = !showUserMarkers"
+      @toggle-pins="showPinMarkers = !showPinMarkers"
+    />
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -32,10 +22,11 @@ import { createBubble } from "./bubble/bubble-overlay";
 import { getNewItems, getRemovedItems } from "@/utils";
 import SearchLocation from "@/components/SearchLocation.vue";
 import GmapsQuadraticBezier from "./line/gm-bezier";
+import Tools from "@/components/Tools";
 
 export default {
   name: "Map",
-  components: { SearchLocation },
+  components: { SearchLocation, Tools },
   watch: {
     users(val, oldVal) {
       const newUsers = getNewItems(val, oldVal);
@@ -247,9 +238,11 @@ export default {
       // let content = `<h4>${user.name || "anonymous"}</h4>`;
       let message = pin.message || "No message.";
       let content = `<p class="exte-small">${message}</p>`;
-      content += `<p class="share-url thin-medium"><input type="text" readonly onfocus="this.select(); document.execCommand('copy');" value="${this.$store.getters.getUserUrl(
-        user.id
-      )}" /></p>`;
+      const shareMessage = this.$t("shareMessage", {
+        url: this.$store.getters.getUserUrl(user.id),
+        msg: message
+      });
+      content += `<p class="share-url thin-medium"><input type="text" readonly onfocus="this.select(); document.execCommand('copy');" value="${shareMessage}" /></p>`;
       const info = new google.maps.InfoWindow({
         content,
         maxWidth: 400
@@ -299,40 +292,6 @@ export default {
 }
 #map > div {
   background-color: $col-dark !important;
-}
-.tools {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  z-index: 20;
-  p {
-    color: $col-green;
-    text-transform: uppercase;
-    font-family: "GT America Expanded";
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid $col-white;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-top: 0.5rem;
-    li {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      opacity: 0.5;
-      cursor: pointer;
-      &.active {
-        opacity: 1;
-      }
-      svg {
-        margin-right: 0.5rem;
-      }
-    }
-  }
 }
 .map-container:not(.active)
   .gm-style
