@@ -67,7 +67,8 @@ export default {
       @media screen and (max-width: $mqTablet) {
         width: 95%;
         padding-top: 0;
-        margin-top: 1rem;
+        margin-top: 0rem;
+        transform: translate(0, -1%);
       }
     }
     pointer-events: all;
@@ -79,6 +80,9 @@ export default {
         }
         @media screen and (max-width: $mqMobile) {
           font-size: 2rem;
+        }
+        @media screen and (max-width: $mqSmallMobile) {
+          font-size: 1.8rem;
         }
       }
       align-items: center;
