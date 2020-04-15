@@ -192,6 +192,9 @@ textarea {
   .gm-style .gm-style-iw-c {
     padding: 0;
     border-radius: 0;
+    .gm-ui-hover-effect {
+      display: none !important;
+    }
   }
   .gm-style-iw-d {
     padding: 1rem;
