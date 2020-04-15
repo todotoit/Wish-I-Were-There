@@ -20,8 +20,7 @@ export default {
   mounted() {
     const input = this.$el;
     const autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.bindTo("bounds", this.map);
-    autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
+    autocomplete.setFields(["address_components", "geometry", "name"]);
     autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
       if (!place || !place.geometry) return;
@@ -37,5 +36,24 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.pac-container {
+  border-top: none;
+  background-color: rgba($col-dark, 0.9);
+  .pac-item:first-child {
+    border-top: none;
+  }
+  .pac-item {
+    &:hover {
+      background-color: $col-green;
+      color: $col-white;
+      .pac-item-query {
+        color: $col-white;
+      }
+    }
+  }
+  .pac-item-query {
+    color: $col-green;
+  }
+}
 </style>
