@@ -22,7 +22,7 @@ import { createBubble } from "./bubble/bubble-overlay";
 import { getNewItems, getRemovedItems } from "@/utils";
 import SearchLocation from "@/components/SearchLocation.vue";
 import GmapsQuadraticBezier from "./line/gm-bezier";
-import Tools from "@/components/Tools";
+import Tools from "./Tools";
 
 export default {
   name: "Map",
