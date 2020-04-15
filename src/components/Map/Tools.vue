@@ -52,6 +52,9 @@ export default {
     font-family: "GT America Expanded";
     padding-bottom: 0.5rem;
     border-bottom: 1px solid $col-white;
+    @media screen and (max-width: $mqMobile) {
+      width: 80%;
+    }
   }
   ul {
     list-style: none;
@@ -84,6 +87,9 @@ export default {
   }
   .tools-wrap {
     padding: 1rem;
+    @media screen and (max-width: $mqMobile) {
+      padding: 0rem;
+    }
     z-index: 2;
   }
   .tools-bg {
