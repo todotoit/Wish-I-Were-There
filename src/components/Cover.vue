@@ -50,6 +50,7 @@ export default {
       this.mouseX = event.pageX;
       this.mouseY = event.pageY;
     });
+    window.addEventListener("resize", event => this.resize());
   },
   methods: {
     run() {
@@ -89,8 +90,7 @@ export default {
         0,
         0
       );
-      this.uResolution.set(this.width, this.height);
-      this.gl.viewport(0, 0, this.width, this.height);
+      this.resize()
       this.animate();
     },
     addShader(source, type) {
@@ -119,6 +119,12 @@ export default {
       this.billboard.render(this.gl);
       // animate next frame
       requestAnimationFrame(() => this.animate());
+    },
+    resize() {
+      this.width = window.innerWidth
+      this.height = window.innerHeight
+      this.uResolution.set(this.width, this.height);
+      this.gl.viewport(0, 0, this.width, this.height);
     }
   }
 };
@@ -139,7 +145,7 @@ canvas {
   background-image: url("~@/assets/img/white-noise.jpg");
   background-position: left top;
   background-size: 800px;
-  animation: shiftbg 1s infinite steps(3);
+  animation: shiftbg 1s infinite steps(5);
   opacity: .3;
   mix-blend-mode: multiply;
   z-index: 100;
