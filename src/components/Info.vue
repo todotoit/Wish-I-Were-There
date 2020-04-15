@@ -61,7 +61,7 @@ export default {
       margin-bottom: 2rem;
       width: 60%;
       @media screen and (max-width: $mqTablet) {
-        width: 90%;
+        width: 100%;
         overflow: scroll;
       }
     }
