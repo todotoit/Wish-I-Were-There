@@ -9,7 +9,7 @@
       <img v-else svg-inline class="close" src="@/assets/icons/close.svg" />
     </div>
     <Info v-if="info" />
-    <footer>
+    <footer v-if="!info">
       <a target="_blank" class="exte-medium todo-logo" href="https://todo.to.it/">
         <img svg-inline src="@/assets/icons/todo-logo.svg" />
       </a>
@@ -80,6 +80,7 @@ footer {
   bottom: 1rem;
   left: 0;
   text-align: center;
+  z-index: 600;
   svg path {
     fill: $col-white;
   }
