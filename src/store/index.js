@@ -26,7 +26,9 @@ export default new Vuex.Store({
     ready: false,
     user: null,
     userPins: null,
-    placing: false
+    placing: false,
+    selectedUserMarker: null,
+    selectedPinMarker: null
   },
 
   mutations: {
