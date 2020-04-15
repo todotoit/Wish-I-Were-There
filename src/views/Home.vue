@@ -55,6 +55,8 @@ export default {
       width: 60%;
       @media screen and (max-width: $mqTablet) {
         width: 95%;
+        padding-top: 0;
+        margin-top: 1rem;
       }
     }
     pointer-events: all;

@@ -53,6 +53,7 @@ input {
   @media screen and (max-width: $mqTablet) {
     margin-right: 0;
     margin-left: 0;
+    margin-bottom: 0.2rem;
   }
   @extend .thin-large;
   &:hover:not(:disabled) {
@@ -138,16 +139,17 @@ textarea {
     margin-top: $spacing;
     z-index: 200;
     @media screen and (max-width: $mqTablet) {
-      width: 95%;
-      max-width: 95%;
-      padding-top: 1.5rem;
+      width: 97%;
+      max-width: 97%;
+      margin-top: 2.6rem;
+      height: 85%;
     }
     .header {
       width: 100%;
       p {
         margin-bottom: 0.8rem;
         @media screen and (max-width: $mqTablet) {
-          margin-bottom: 0.3rem;
+          margin-bottom: 0.2rem;
         }
       }
       &.center {

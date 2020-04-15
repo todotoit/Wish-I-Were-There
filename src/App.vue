@@ -99,6 +99,9 @@ footer {
   top: 1rem;
   right: 1rem;
   width: 2.5rem;
+  @media screen and (max-width: $mqTablet) {
+   width: 2rem;
+  }
   z-index: 202;
   @media screen and (max-width: $mqMobile) {
     top: 0.5rem;

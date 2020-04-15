@@ -8,7 +8,8 @@
 
 @font-face {
   font-family: "GT America Extended";
-  src: url("./GT-America-Extended-Light.woff") format("woff");
+  src: url("./GT-America-Extended-Regular.woff") format("woff"),
+    url("./GT-America-Extended-Regular.woff") format("woff2");
   font-weight: 400;
   font-style: normal;
 }

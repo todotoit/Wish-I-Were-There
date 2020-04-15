@@ -98,7 +98,7 @@ export default {
   /deep/ input {
     margin-top: 1.5rem;
     @media screen and (max-width: $mqTablet) {
-      margin-top: 0.8rem;
+      margin-top: 0.5rem;
     }
   }
 }
