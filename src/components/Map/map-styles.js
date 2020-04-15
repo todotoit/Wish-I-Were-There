@@ -129,7 +129,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#878590"
+          "color": "#5f5f5f"
         }
       ]
     },
@@ -146,7 +146,7 @@ export default {
       "elementType": "geometry",
       "stylers": [
         {
-          "color": "#757575"
+          "color": "#515151"
         },
         {
           "visibility": "off"
@@ -158,7 +158,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#bdbbc6"
+          "color": "#5f5f5f"
         }
       ]
     },
@@ -178,7 +178,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#bdbbc6"
+          "color": "#5f5f5f"
         }
       ]
     },
@@ -187,7 +187,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#bdbbc6"
+          "color": "#5f5f5f"
         }
       ]
     },
@@ -196,7 +196,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#878590"
+          "color": "#5f5f5f"
         }
       ]
     },
@@ -241,7 +241,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#878590"
+          "color": "#5f5f5f"
         }
       ]
     },
@@ -280,7 +280,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#878590"
+          "color": "#5f5f5f"
         }
       ]
     },
@@ -307,7 +307,7 @@ export default {
       "elementType": "labels.text.fill",
       "stylers": [
         {
-          "color": "#48435c"
+          "color": "#5f5f5f"
         }
       ]
     }
