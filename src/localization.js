@@ -5,6 +5,7 @@ export default {
         intro: `Self-isolating is the right thing to do during the pandemic. But it also makes our favorite places feel like a constellation of faraway stars, and we wish we could just think about the future and already be there. Stay safe and we will get there. In the meantime, let’s create a collective sky map of daydreams.`,
         ctaStart: `Start wishing`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
+        shareLinkCopied: `Link copied to clipboard, paste it in your favorite social network to share your message!`,
 
         // Cookie
         cookieDesc: 'This website uses cookies to ensure you have the best experience on our website. If you continue, you are consenting to their use.',
@@ -69,6 +70,7 @@ export default {
         intro: `La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. Dopo settimane di isolamento, però, i nostri luoghi preferiti ci sembrano costellazioni di stelle lontane. Vorremmo pensare al futuro ed essere già lì. Se facciamo tutti la nostra parte, quel futuro arriverà prima. Nel frattempo, creiamo insieme la mappa di un cielo sognato a occhi aperti.`,
         ctaStart: `Inizia a sognare`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
+        shareLinkCopied: `Link copiato negli appunti, incollalo nel tuo social network preferito per condividere il tuo messaggio!`,
 
         // Cookie
         cookieDesc: 'Questo sito web utilizza i cookie per assicurarti la migliore esperienza sul nostro sito. Continuando a navigare acconsenti al loro utilizzo.',

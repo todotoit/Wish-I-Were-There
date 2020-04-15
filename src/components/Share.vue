@@ -13,7 +13,7 @@
         <transition name="fade">
           <p
             v-if="notice"
-          >Link copied to clipboard, paste it in your favorite social network to share!</p>
+          >{{$t('shareLinkCopied')}}</p>
         </transition>
       </div>
     </template>
