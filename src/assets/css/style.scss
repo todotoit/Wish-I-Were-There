@@ -28,6 +28,7 @@ p {
 
 button {
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 button,
@@ -43,7 +44,6 @@ input {
   border-radius: 20px;
   transition: all 700ms;
   color: $col-green;
-  text-transform: uppercase;
   @extend .thin-large;
   &:hover {
     background-color: $col-green;
@@ -53,7 +53,7 @@ input {
 
 input {
   @extend .thin-medium;
-  background-color: $col-dark;
+  background-color: #1d1b2690;
 }
 
 input[type="text"] {
