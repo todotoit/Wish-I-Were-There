@@ -17,13 +17,13 @@ export default {
 
         // Add your name
         phase00Username: 'What’s your name?',
-        phase00Desc: 'Use a nickname if you want.',
+        phase00Desc: 'Use a nickname or just stay anonymous.',
         phase00Input: 'Enter your name here',
         phase00Btn: 'Next',
 
         // Place your bubble
         phase01Title: 'Where are you now?',
-        phase01Desc: 'Locate the little planet where you are self-isolating at the moment or enable GPS to locate your position',
+        phase01Desc: 'Locate the little planet where you are self-isolating at the moment or enable GPS to locate your position.',
         phase01Address: 'Enter address here',
         phase01Btn: 'Add planet',
 
@@ -87,13 +87,13 @@ export default {
 
         // Add your name
         phase00Username: 'Come ti chiami?',
-        phase00Desc: 'Puoi usare un nickname se vuoi.',
+        phase00Desc: 'Puoi usare un nickname o rimanere anonimo.',
         phase00Input: 'Inserisci il tuo nome qui',
         phase00Btn: 'Avanti',
 
         // Place your bubble
         phase01Title: 'Dove passi il lockdown?',
-        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato oppure abilita la localizzazione via GPS',
+        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato oppure abilita la localizzazione via GPS.',
         phase01Address: 'Inserisci il tuo indirizzo',
         phase01Btn: 'Aggiungi pianeta',
 
