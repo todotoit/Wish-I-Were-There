@@ -1,21 +1,19 @@
 <template>
   <div class="share-user">
-    <template v-if="sharing">
-      <div class="share-url">
-        Use this url to share your daydream
-        <input
-          type="text"
-          class="share-user-url"
-          readonly
-          :value="message"
-          @click="copyUrl"
-        />
-        <transition name="fade">
-          <p v-if="notice">{{$t('shareLinkCopied')}}</p>
-        </transition>
-      </div>
-    </template>
-    <button v-else @click="sharing=true">Share your daydream</button>
+    <div class="share-url">
+      <input
+        type="text"
+        class="share-user-url"
+        readonly
+        :value="message"
+        @click="copyUrl"
+        ref="input"
+      />
+      <button @click="copyUrl">{{$t('phase05Share')}}</button>
+      <transition name="fade">
+        <p v-if="notice">{{$t('shareLinkCopied')}}</p>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -33,16 +31,19 @@ export default {
     user() {
       return this.$store.state.user;
     },
+    pin() {
+      return this.$store.getters.getUserPin(this.user.id);
+    },
     message() {
       return this.$t("shareMessage", {
-        url: this.store.getters.getUserUrl(this.user.id),
-        msg: message
+        url: this.$store.getters.getUserUrl(this.user.id),
+        msg: this.pin.message
       });
     }
   },
   methods: {
-    copyUrl(e) {
-      e.target.select();
+    copyUrl() {
+      this.$refs.input.select();
       document.execCommand("copy");
       this.notice = true;
       clearTimeout(this.noticeTimeout);
@@ -57,9 +58,8 @@ export default {
   .share-url {
     margin-top: 1rem;
     .share-user-url {
-      display: block;
-      margin: 0;
-      text-transform: lowercase;
+      height: 0;
+      opacity: 0;
     }
   }
 }
