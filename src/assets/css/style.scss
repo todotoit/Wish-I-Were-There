@@ -45,7 +45,7 @@ input {
   border-radius: 100px;
   transition: all 700ms;
   color: $col-green;
-  background-color: rgba( $col-dark, .6 );
+  background-color: rgba($col-dark, 0.6);
   @extend .thin-large;
   &:hover {
     background-color: $col-green;
@@ -63,7 +63,7 @@ input[type="text"] {
   color: $col-white;
   padding: 10px 25px;
   width: 35rem;
-  background-color: rgba( $col-dark, .6 );
+  background-color: rgba($col-dark, 0.6);
   &:hover {
     background-color: #1d1b2690;
     color: $col-white;
