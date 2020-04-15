@@ -18,9 +18,8 @@ export default {
 
         // Place your bubble
         phase01Title: 'Where are you now?',
-        phase01Desc: 'Locate the little planet where you are self-isolating at the moment.',
+        phase01Desc: 'Locate the little planet where you are self-isolating at the moment or enable GPS to locate your position',
         phase01Address: 'Enter address here',
-        phase01GPS: 'Enable GPS to locate your position',
         phase01Btn: 'Add planet',
 
         // Your bubble
@@ -82,10 +81,9 @@ export default {
         phase00Btn: 'Avanti',
 
         // Place your bubble
-        phase01Title: 'Dove stai passando il lockdown?',
-        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato.',
+        phase01Title: 'Dove passi il lockdown?',
+        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato oppure abilita la localizzazione via GPS',
         phase01Address: 'Inserisci il tuo indirizzo',
-        phase01GPS: 'Abilita la localizzazione via GPS',
         phase01Btn: 'Aggiungi pianeta',
 
         // Your bubble
