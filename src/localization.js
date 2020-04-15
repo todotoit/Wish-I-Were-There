@@ -67,7 +67,6 @@ export default {
         In the meantime, let’s create a collective sky map of daydreams.
         `,
 
-        socialSharing: 'Let’s #stayhome and daydream together at wishiwerethere.xyz ⭐️[MESSAGGIO] ⭐️'
 
     },
     it: {
@@ -137,7 +136,6 @@ export default {
         La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. Ma dopo settimane di isolamento i nostri luoghi preferiti ci appaiono come costellazioni di stelle lontane, e vorremmo proprio poter pensare al futuro ed essere già lì. Se facciamo tutti la nostra parte, quel futuro arriverà prima. Nel frattempo, creiamo insieme la mappa di un cielo sognato a occhi aperti.
         `,
 
-        socialSharing: '#stayhome e sogniamo insieme su wishiwerethere.xyz ⭐️ [MESSAGGIO] ⭐️'
 
     }
 }
