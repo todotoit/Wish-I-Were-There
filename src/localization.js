@@ -48,6 +48,7 @@ export default {
         exploreDayDream: 'Daydream stars',
         exploreSelf: 'Self-isolating planets',
         exploreSearch: 'Search address',
+        exploreAddYours: 'Add your star',
 
         // About
         aboutTitle: 'The Project',
@@ -108,6 +109,7 @@ export default {
         exploreDayDream: 'Stelle dei sogni',
         exploreSelf: 'Pianeti in isolamento',
         exploreSearch: 'Cerca un indirizzo',
+        exploreAddYours: 'Aggiungi la tua stella',
 
         // About
         aboutTitle: 'Il Progetto',

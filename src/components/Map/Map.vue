@@ -12,6 +12,11 @@
       @toggle-users="showUserMarkers = !showUserMarkers"
       @toggle-pins="showPinMarkers = !showPinMarkers"
     />
+    <button
+      v-if="!user && isExplore"
+      class="add-your-star"
+      @click="$router.push('/bubble')"
+    >{{ $t('exploreAddYours') }}</button>
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -287,8 +292,9 @@ export default {
   position: fixed;
   top: 1rem;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translateX(-50%);
   z-index: 20;
+  margin: 0;
 }
 #map > div {
   background-color: $col-dark !important;
@@ -345,6 +351,14 @@ export default {
       content: ".";
     }
   }
+}
+
+.add-your-star {
+  position: absolute;
+  bottom: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
 }
 
 .bubble {
