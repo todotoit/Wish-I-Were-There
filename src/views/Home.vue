@@ -7,7 +7,7 @@
           <p class="exte-large">{{ $t('intro') }}</p>
         </div>
         <div class="footer">
-          <button @click="step = 1">{{ $t('ctaStart') }}</button>
+          <button @click="next">{{ $t('ctaStart') }}</button>
           <p class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
         </div>
       </div>
@@ -40,6 +40,17 @@ export default {
     return {
       step: 0
     };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
+  methods: {
+    next() {
+      if (this.user) return this.$router.push("/explore");
+      else this.step = 1;
+    }
   }
 };
 </script>
