@@ -1,6 +1,9 @@
 <template>
   <div class="share-user">
     <div class="share-url">
+      <transition name="fade">
+        <p v-if="notice">{{$t('shareLinkCopied')}}</p>
+      </transition>
       <input
         type="text"
         class="share-user-url"
@@ -10,9 +13,6 @@
         ref="input"
       />
       <button @click="copyUrl">{{$t('phase05Share')}}</button>
-      <transition name="fade">
-        <p v-if="notice">{{$t('shareLinkCopied')}}</p>
-      </transition>
     </div>
   </div>
 </template>
