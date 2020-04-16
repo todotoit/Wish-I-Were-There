@@ -25,17 +25,15 @@
       </div>
       <LanguageSwitch />
     </div>
-    <Cover class="shader-bg" />
   </div>
 </template>
 
 <script>
-import Cover from "@/components/Cover";
 import LanguageSwitch from "@/components/LanguageSwitch";
 
 export default {
   name: "Home",
-  components: { Cover, LanguageSwitch },
+  components: { LanguageSwitch },
   data() {
     return {
       step: 0
@@ -60,7 +58,6 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 500;
-  background-color: #1d1b26;
   .view {
     .info {
       width: 60%;
