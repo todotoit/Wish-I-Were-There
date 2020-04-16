@@ -35,36 +35,49 @@ export default {
   },
   mounted() {
     let url;
-    if (this.type === "bubble") url = require("@/assets/icons/bubble.svg");
-    else url = require("@/assets/icons/pin.svg");
+    if (this.type === "bubble") url = require("@/assets/icons/bubble-pointer.svg");
+    else url = require("@/assets/icons/pin-pointer.svg");
     const img = {
       url,
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(12.5, 12.5),
-      scaledSize: new google.maps.Size(30, 30)
+      scaledSize: new google.maps.Size(50, 50)
     };
     const marker = new google.maps.Marker({
       position: this.map.getCenter(),
       map: this.map,
       draggable: true,
+      animation: google.maps.Animation.BOUNCE,
       icon: img
     });
     this.$store.commit("SET_MARKER", marker);
-    google.maps.event.addListener(this.map, "click", event => {
-      this.updateMarker(event.latLng);
-    });
+    google.maps.event.addListener(
+      this.map,
+      "click",
+      this.handleInput.bind(this)
+    );
+    google.maps.event.addListener(
+      this.map,
+      "touch",
+      this.handleInput.bind(this)
+    );
     if (this.geolocation) this.locateUser();
   },
   destroyed() {
-    google.maps.event.clearListeners(this.map, "click");
+    google.maps.event.clearListeners(this.map, "click", this.updateMarker);
+    google.maps.event.clearListeners(this.map, "touch", this.updateMarker);
     this.marker.setMap(null);
   },
   methods: {
     centerMarker() {
-      this.marker.setPosition(this.map.getCenter());
+      this.updateMarker(this.map.getCenter());
     },
     updateMarker(pos) {
       this.marker.setPosition(pos);
+      this.$emit("update");
+    },
+    handleInput(e) {
+      this.updateMarker(e.latLng)
     },
     locateUser() {
       if (navigator.geolocation) {
