@@ -22,10 +22,14 @@
       <div class="header">
         <p class="expa-large">{{ $t('phase01Title') }}</p>
         <p class="exte-medium">{{ $t('phase01Desc') }}</p>
-        <MarkerPlacer :placeholder="$t('phase01Address')" :geolocation="true" />
+        <MarkerPlacer
+          :placeholder="$t('phase01Address')"
+          :geolocation="true"
+          @update="markerPlaced = true"
+        />
       </div>
       <div class="footer">
-        <button @click="createNewBubble()">{{ $t('phase01Btn') }}</button>
+        <button @click="createNewBubble()" :disabled="!markerPlaced">{{ $t('phase01Btn') }}</button>
       </div>
     </template>
     <template v-else>
@@ -52,7 +56,8 @@ export default {
     return {
       step: 0,
       name: "",
-      valid: true
+      valid: true,
+      markerPlaced: false
     };
   },
   computed: {
@@ -72,7 +77,7 @@ export default {
   },
   methods: {
     createNewBubble() {
-      if (!this.valid) return;
+      if (!this.valid || !this.markerPlaced) return;
       this.$store
         .dispatch("createNewUser", { name: this.name, marker: this.marker })
         .then(r => {

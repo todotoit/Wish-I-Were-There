@@ -35,7 +35,8 @@ export default {
   },
   mounted() {
     let url;
-    if (this.type === "bubble") url = require("@/assets/icons/bubble-pointer.svg");
+    if (this.type === "bubble")
+      url = require("@/assets/icons/bubble-pointer.svg");
     else url = require("@/assets/icons/pin-pointer.svg");
     const img = {
       url,
@@ -61,6 +62,9 @@ export default {
       "touch",
       this.handleInput.bind(this)
     );
+    marker.addListener("drag", () => {
+      this.$emit('update')
+    });
     if (this.geolocation) this.locateUser();
   },
   destroyed() {
@@ -77,7 +81,7 @@ export default {
       this.$emit("update");
     },
     handleInput(e) {
-      this.updateMarker(e.latLng)
+      this.updateMarker(e.latLng);
     },
     locateUser() {
       if (navigator.geolocation) {

@@ -4,10 +4,10 @@
       <div class="header">
         <p class="expa-large">{{ $t('phase03Title') }}</p>
         <p class="exte-medium">{{ $t('phase03Desc') }}</p>
-        <MarkerPlacer type="pin" :placeholder="$t('phase03Input')" />
+        <MarkerPlacer type="pin" :placeholder="$t('phase03Input')" @update="markerPlaced = true"/>
       </div>
       <div class="footer">
-        <button @click="addingMessage = true">{{ $t('phase03Btn') }}</button>
+        <button @click="addingMessage = true" :disabled="!markerPlaced">{{ $t('phase03Btn') }}</button>
         <p class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
       </div>
     </template>
@@ -48,7 +48,8 @@ export default {
       message: "",
       valid: false,
       addingMessage: false,
-      messageLength: 200
+      messageLength: 200,
+      markerPlaced: false
     };
   },
   computed: {
@@ -67,7 +68,7 @@ export default {
   },
   methods: {
     createNewPin() {
-      if (!this.valid) return;
+      if (!this.valid || !this.markerPlaced) return;
       this.$store
         .dispatch("createNewPin", {
           user: this.user,
