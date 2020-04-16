@@ -6,7 +6,7 @@
       <Share />
     </div>
     <div class="footer">
-      <button @click="$router.push('/explore')">{{$t('phase05Btn')}}</button>
+      <button @click="next">{{$t('phase05Btn')}}</button>
     </div>
   </div>
 </template>
@@ -45,6 +45,12 @@ export default {
       this.pin.marker.getPosition()
     );
     if (isNaN(this.distance)) this.distance = 0;
+  },
+  methods: {
+    next() {
+      this.$router.push('/explore')
+      this.map.setZoom(12)
+    }
   }
 };
 </script>
