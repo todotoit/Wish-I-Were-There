@@ -41,6 +41,9 @@ function createOverlayProto() {
         div.classList.add('bubble-container');
         this.bubble_ = new BubbleImage(div, this.images)
         this.div_ = div;
+/*         this.div_.style.top = '0'
+        this.div_.style.left = '0' */
+        //this.div_.style.transformOrigin = 'top left'
         const panes = this.getPanes();
         panes.overlayLayer.appendChild(div);
         google.maps.event.addDomListener(div, 'click', e => {
@@ -52,12 +55,13 @@ function createOverlayProto() {
     };
 
     BubbleOverlay.prototype.draw = function () {
-        if (!this.debounce) this.update()
+        //if (this.debounce) return
+        this.update()
     };
 
     BubbleOverlay.prototype.update = function () {
-        this.debounce = true
-        setTimeout(() => this.debounce = false, 12)
+        //this.debounce = true
+        //setTimeout(() => this.debounce = false, 12)
         const overlayProjection = this.getProjection();
         const zoom = overlayProjection['T'].zoom
         let zoomLevel = 0
@@ -66,12 +70,13 @@ function createOverlayProto() {
         const sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
         const ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
 
-        if (zoom < 14) {
+/*         if (zoom < 14) {
             this.div_.classList.add('far')
             return
         }
-        else this.div_.classList.remove('far')
+        else this.div_.classList.remove('far') */
 
+        //this.div_.style.transform = 'translate(' + ne.y + 'px, ' + sw.x + 'px)';
         this.div_.style.left = sw.x + 'px';
         this.div_.style.top = ne.y + 'px';
         this.div_.style.width = (ne.x - sw.x) + 'px';

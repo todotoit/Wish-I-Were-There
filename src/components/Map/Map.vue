@@ -127,9 +127,6 @@ export default {
     this.$store.commit("SET_MAP", map);
     this.map.showUserMarkers = this.showUserMarkers;
     this.map.showPinMarkers = this.showPinMarkers;
-    google.maps.event.addListener(map, "zoom_changed", e =>
-      this.handleMapZoom(e)
-    );
     google.maps.event.addListener(map, "click", e => this.deselect(e));
     google.maps.event.addListener(map, "touch", e => this.deselect(e));
     if (this.isExplore && !this.init) this.createItems();
@@ -199,7 +196,7 @@ export default {
       const coordinates = pin.coordinates;
       const img = {
         url: require("@/assets/icons/pin.svg"),
-        size: new google.maps.Size(25, 25),
+        size: new google.maps.Size(35, 35),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(12.5, 12.5)
       };
@@ -308,9 +305,6 @@ export default {
     togglePinMarkers(val) {
       this.showPinMarkers = val;
       this.pinMarkers.forEach(m => m.setVisible(val));
-    },
-    handleMapZoom(e) {
-      const zoom = this.map.getZoom();
     }
   }
 };
@@ -353,7 +347,6 @@ export default {
   }
   &.hidden,
   &.far {
-    pointer-events: none;
     opacity: 0;
   }
   img {
