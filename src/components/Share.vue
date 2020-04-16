@@ -2,7 +2,7 @@
   <div class="share-user">
     <div class="share-url">
       <transition name="fade">
-        <p v-if="notice">{{$t('shareLinkCopied')}}</p>
+        <p v-if="notice" class="notice">{{$t('shareLinkCopied')}}</p>
       </transition>
       <input
         type="text"
@@ -61,6 +61,7 @@ export default {
     bottom: 5rem;
     left: 50%;
     transform: translate(-50%, 0);
+    width: 100%;
     button {
       border: 1px solid $col-white;
       color: $col-white;
@@ -69,8 +70,13 @@ export default {
       bottom: 3.5rem;
     }
     .share-user-url {
+      position: absolute;
+      left: -99999%;
       height: 0;
       opacity: 0;
+    }
+    .notice {
+      width: 100%;
     }
   }
 }
