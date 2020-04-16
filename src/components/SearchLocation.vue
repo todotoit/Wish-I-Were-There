@@ -51,11 +51,20 @@ export default {
         color: $col-white;
       }
     }
-    @extend .exte-small;
-    font-size: .6rem;
+    font-family: "GT America Extended", Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    line-height: 120%;
+    @media screen and (max-width: $mqTablet) {
+      font-size: 1.05rem;
+    }
+    @media screen and (max-width: $mqSmallMobile) {
+      font-size: 1rem;
+      line-height: 120%;
+    }
+    font-size: 0.6rem;
   }
   .pac-item-query {
-    font-size: .8rem;
+    font-size: 0.8rem;
     line-height: 200%;
     color: $col-green;
   }

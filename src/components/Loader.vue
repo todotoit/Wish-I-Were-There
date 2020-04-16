@@ -3,7 +3,6 @@
     <div class="wrap">
       <div>
         <img src="@/assets/icons/pin.svg" svg-inline class="loader-icon" />
-        <h3>Loading</h3>
       </div>
     </div>
   </div>
@@ -33,7 +32,6 @@ export default {
     }
   }
   h3 {
-    @extend .expa-large;
     text-transform: uppercase;
     font-size: 2rem;
   }

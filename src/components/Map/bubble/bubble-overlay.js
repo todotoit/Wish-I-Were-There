@@ -36,6 +36,7 @@ function createOverlayProto() {
         const div = document.createElement('div');
         const label = document.createElement('label');
         div.appendChild(label)
+        label.classList.add('exte-small');
         label.innerText = this.user_.name
         div.classList.add('bubble-container');
         this.bubble_ = new BubbleImage(div, this.images)

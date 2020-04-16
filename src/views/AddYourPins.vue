@@ -22,6 +22,7 @@
               v-model="message"
               @input="validate"
               :maxlength="messageLength"
+              class="exte-small"
             ></textarea>
             <span class="char-count">{{message.length}}/{{messageLength}}</span>
           </div>
@@ -127,7 +128,6 @@ p {
     width: 100%;
     min-height: 8rem;
     border: none;
-    @extend .exte-small;
   }
   .char-count {
     display: block;
