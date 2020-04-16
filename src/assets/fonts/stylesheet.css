@@ -1,23 +1,23 @@
 @font-face {
-  font-family: "GT America Thin";
-  src: url("./GTAmerica-CompressedLight.woff") format("woff"),
-    url("./GTAmerica-CompressedLight.woff2") format("woff2");
+  font-family: "GT America Light";
+  src: url("./GT-America-Compressed-Light.woff") format("woff"),
+    url("./GT-America-Compressed-Light.woff2") format("woff2");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: "GT America Extended";
-  src: url("./GTAmerica-ExtendedRegular.woff") format("woff"),
-    url("./GTAmerica-ExtendedRegular.woff") format("woff2");
+  src: url("./GT-America-Extended-Regular.woff") format("woff"),
+    url("./GT-America-Extended-Regular.woff") format("woff2");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "GT America Expanded";
-  src: url("./GTAmerica-ExpandedMedium.woff2") format("woff2"),
-    url("./GTAmerica-ExpandedMedium.woff") format("woff");
+  src: url("./GT-America-Expanded-Medium.woff2") format("woff2"),
+    url("./GT-America-Expanded-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
