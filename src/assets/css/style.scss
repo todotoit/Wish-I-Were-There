@@ -1,7 +1,11 @@
-@import './typography.scss';
+@import "./typography.scss";
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html,
@@ -18,7 +22,7 @@ body {
   height: 100%;
 }
 
-p {
+p, h2 {
   margin: 0;
   padding: 0;
   display: block;
@@ -123,12 +127,16 @@ input[type="text"] {
     text-align: center;
     max-width: 55%;
     margin-top: $spacing;
+    pointer-events: none;
     z-index: 200;
     @media screen and (max-width: $mqTablet) {
       width: 97%;
       max-width: 97%;
       margin-top: 2.8rem;
       height: 85%;
+    }
+    @media screen and (max-width: $mqMobile) {
+      height: 90%;
     }
     .header {
       width: 100%;
@@ -213,7 +221,7 @@ input[type="text"] {
     margin-bottom: 0.5rem;
     transform: translateY(-50%);
     &:hover {
-      opacity: .6;
+      opacity: 0.6;
     }
     &::before {
       content: " ";
@@ -224,9 +232,8 @@ input[type="text"] {
       height: 100%;
     }
     &:last-child {
-      margin-top: .5rem!important;
-      &::before{
-
+      margin-top: 0.5rem !important;
+      &::before {
         background-image: url("~@/assets/icons/minor.svg");
       }
     }

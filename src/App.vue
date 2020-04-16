@@ -17,13 +17,13 @@
             <img svg-inline src="@/assets/icons/todo-logo.svg" />
           </a>
         </footer>
-        <div class="assets-preload">
-          <img src="@/assets/img/bubbles/bubbles-expanded.png" />
-          <img src="@/assets/img/bubbles/bubbles-gradient.png" />
-        </div>
       </div>
     </transition>
-    <Cover class="shader-bg" v-if="info || (!isExplore && !isTutorial)"/>
+    <Cover class="shader-bg" v-if="info || (!isExplore && !isTutorial)" />
+    <div class="assets-preload">
+      <img src="@/assets/img/bubbles/bubbles-expanded.png" />
+      <img src="@/assets/img/bubbles/bubbles-gradient.png" />
+    </div>
   </div>
 </template>
 
@@ -96,6 +96,10 @@ export default {
 </script>
 
 <style lang="scss">
+#app {
+  overflow: hidden;
+  width: 100%;
+}
 .close {
   cursor: pointer;
   pointer-events: all;
@@ -104,11 +108,9 @@ export default {
 footer {
   width: 100%;
   position: fixed;
+  padding: .25rem;
   bottom: 1rem;
   pointer-events: none;
-  @media screen and (max-width: $mqMobile) {
-    bottom: 0.2rem;
-  }
   left: 0;
   text-align: center;
   z-index: 600;
@@ -131,12 +133,12 @@ footer {
   right: 1rem;
   width: 2.5rem;
   @media screen and (max-width: $mqTablet) {
-    width: 2rem;
+    width: 2.5rem;
   }
   z-index: 202;
   @media screen and (max-width: $mqMobile) {
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 1rem;
+    right: 1rem;
   }
   cursor: pointer;
   .open {
@@ -157,7 +159,7 @@ footer {
 .assets-preload {
   position: absolute;
   top: 0;
-  left: 0;
+  left: -1000%;
   pointer-events: none;
   opacity: 0;
   z-index: -9999;

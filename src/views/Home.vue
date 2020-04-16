@@ -3,17 +3,18 @@
     <div class="view" v-if="step == 0">
       <div class="info">
         <div class="header center">
-          <p class="expa-large ct-font">{{ $t('title') }}</p>
-          <p class="exte-large">{{ $t('intro') }}</p>
+          <h2 class="expa-large ct-font">{{ $t('title') }}</h2>
+          <p class="exte-medium">{{ $t('intro') }}</p>
         </div>
         <div class="footer">
           <button @click="next">{{ $t('ctaStart') }}</button>
-          <p class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
+          <a class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</a>
         </div>
       </div>
       <LanguageSwitch />
     </div>
     <div class="view" v-else>
+      <LanguageSwitch />
       <div class="info">
         <div class="header center">
           <img svg-inline class="logo" src="@/assets/icons/cookie.svg" />
@@ -23,7 +24,6 @@
           <button @click="$router.push('/bubble')">{{ $t('cookieBtn') }}</button>
         </div>
       </div>
-      <LanguageSwitch />
     </div>
   </div>
 </template>
@@ -70,6 +70,9 @@ export default {
     }
     pointer-events: all;
     .header {
+      h2 {
+        margin-bottom: 1rem;
+      }
       .ct-font {
         font-size: 3.5rem;
         @media screen and (max-width: $mqTablet) {
@@ -87,6 +90,11 @@ export default {
         outline: none;
         user-select: none;
         margin-bottom: 2rem;
+      }
+    }
+    .footer {
+      .link {
+        display: block;
       }
     }
   }
