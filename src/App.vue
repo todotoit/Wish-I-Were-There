@@ -14,6 +14,10 @@
         <img svg-inline src="@/assets/icons/todo-logo.svg" />
       </a>
     </footer>
+    <div class="assets-preload">
+      <img src="@/assets/img/bubbles/bubbles-expanded.png" />
+      <img src="@/assets/img/bubbles/bubbles-gradient.png" />
+    </div>
   </div>
 </template>
 
@@ -126,5 +130,13 @@ footer {
       outline: none;
     }
   }
+}
+.assets-preload {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -9999;
 }
 </style>

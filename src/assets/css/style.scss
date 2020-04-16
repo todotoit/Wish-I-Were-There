@@ -51,7 +51,7 @@ input {
   outline: 0;
   border: 1px solid $col-green;
   border-radius: 100px;
-  transition: all 700ms;
+  transition: all 500ms;
   color: $col-green;
   background-color: rgba($col-dark, 0.6);
   @media screen and (max-width: $mqTablet) {
