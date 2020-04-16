@@ -1,47 +1,68 @@
 <template>
   <div id="app">
-    <div class="view" v-show="!$route.meta.explore">
-      <router-view v-if="ready" />
-    </div>
-    <Map v-if="ready" />
-    <div class="btn-info" @click="info = !info">
-      <img v-if="!info" svg-inline class="open" src="@/assets/icons/info.svg" />
-      <img v-else svg-inline class="close" src="@/assets/icons/close.svg" />
-    </div>
-    <Info v-if="info" />
-    <footer v-if="!info">
-      <a target="_blank" class="exte-medium todo-logo" href="https://todo.to.it/">
-        <img svg-inline src="@/assets/icons/todo-logo.svg" />
-      </a>
-    </footer>
-    <div class="assets-preload">
-      <img src="@/assets/img/bubbles/bubbles-expanded.png" />
-      <img src="@/assets/img/bubbles/bubbles-gradient.png" />
-    </div>
+    <transition name="fade">
+      <Loader v-if="!loaded" />
+      <div class="wrapper" v-else>
+        <div class="view" v-show="!isExplore">
+          <router-view v-if="ready" />
+        </div>
+        <Map v-if="ready" v-show="!info && (isExplore || isTutorial)" />
+        <div class="btn-info" @click="info = !info" v-show="isExplore">
+          <img v-if="!info" svg-inline class="open" src="@/assets/icons/info.svg" />
+          <img v-else svg-inline class="close" src="@/assets/icons/close.svg" />
+        </div>
+        <Info v-if="info" />
+        <footer v-if="!info">
+          <a target="_blank" class="exte-medium todo-logo" href="https://todo.to.it/">
+            <img svg-inline src="@/assets/icons/todo-logo.svg" />
+          </a>
+        </footer>
+        <div class="assets-preload">
+          <img src="@/assets/img/bubbles/bubbles-expanded.png" />
+          <img src="@/assets/img/bubbles/bubbles-gradient.png" />
+        </div>
+      </div>
+    </transition>
+    <Cover class="shader-bg" v-if="info || (!isExplore && !isTutorial)"/>
   </div>
 </template>
 
 <script>
 import Map from "@/components/Map/Map";
 import Info from "@/components/Info";
+import Loader from "@/components/Loader";
+import Cover from "@/components/Cover";
 export default {
   name: "App",
+  components: { Map, Info, Loader, Cover },
   data() {
     return {
       mapsKey: process.env.VUE_APP_MAPS_KEY,
-      info: false
+      info: false,
+      loaded: false
     };
   },
   computed: {
     ready() {
       return this.$store.state.ready;
     },
-    isTutorialRoute() {
+    isExplore() {
+      return this.$route.meta.explore === true;
+    },
+    isTutorial() {
       return this.$route.meta.tutorial === true;
     }
   },
   mounted() {
-    if (this.isTutorialRoute) this.$router.push("/");
+    if (document.readyState === "complete") this.init();
+    else {
+      document.onreadystatechange = () => {
+        if (document.readyState === "complete") {
+          this.init();
+        }
+      };
+    }
+    if (this.isTutorial) this.$router.push("/");
     Promise.all([
       this.$store.dispatch("bindUsersRef"),
       this.$store.dispatch("bindPinsRef"),
@@ -53,6 +74,9 @@ export default {
     });
   },
   methods: {
+    init() {
+      setTimeout(() => (this.loaded = true), 1000);
+    },
     includeScripts() {
       if (document.getElementsByClassName("gm-src").length)
         return Promise.resolve();
@@ -67,8 +91,7 @@ export default {
         document.head.appendChild(script);
       });
     }
-  },
-  components: { Map, Info }
+  }
 };
 </script>
 
@@ -108,7 +131,7 @@ footer {
   right: 1rem;
   width: 2.5rem;
   @media screen and (max-width: $mqTablet) {
-   width: 2rem;
+    width: 2rem;
   }
   z-index: 202;
   @media screen and (max-width: $mqMobile) {
@@ -138,5 +161,13 @@ footer {
   pointer-events: none;
   opacity: 0;
   z-index: -9999;
+}
+.wrapper,
+.loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 100;
 }
 </style>

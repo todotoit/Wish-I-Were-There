@@ -20,15 +20,12 @@
         </a>
       </section>
     </div>
-    <Cover />
   </div>
 </template>
 
 <script>
-import Cover from "@/components/Cover";
 export default {
   name: "Info",
-  components: { Cover }
 };
 </script>
 
@@ -40,7 +37,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $col-dark;
   color: $col-white;
   display: flex;
   flex-direction: column;

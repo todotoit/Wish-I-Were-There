@@ -280,15 +280,12 @@ input[type="text"] {
 @keyframes spin {
   0% {
     transform: rotate(0deg);
-    opacity: 0.5;
   }
   50% {
     transform: rotate(180deg);
-    opacity: 0.3;
   }
   100% {
     transform: rotate(360deg);
-    opacity: 0.5;
   }
 }
 @keyframes pulse {
