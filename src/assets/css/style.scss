@@ -22,7 +22,8 @@ body {
   height: 100%;
 }
 
-p, h2 {
+p,
+h2 {
   margin: 0;
   padding: 0;
   display: block;
@@ -183,10 +184,10 @@ input[type="text"] {
     padding: 0;
     border-radius: 0;
     .gm-ui-hover-effect {
-      top: 0!important;
-      right: 0!important;
+      top: 0 !important;
+      right: 0 !important;
       &::before {
-        content: ' ';
+        content: " ";
         display: block;
         height: 100%;
         width: 100%;
@@ -197,15 +198,19 @@ input[type="text"] {
         margin: 0;
       }
       img {
-        display: none!important;
+        display: none !important;
       }
     }
   }
   .gm-style-iw-d {
-    padding: 1rem;
+    padding: .75rem;
+    padding-top: 1.5rem;
     background-color: $col-dark;
     color: $col-green;
     border: 1px solid $col-white;
+    .exte-small {
+      font-size: 0.9rem;
+    }
   }
   .gm-style .gm-style-iw-c input {
     border: none;
@@ -285,6 +290,7 @@ input[type="text"] {
       }
       &::before {
         content: " ";
+        transform: translateX(-3px);
         display: block;
         width: 26px;
         height: 1rem;
