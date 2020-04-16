@@ -1,11 +1,13 @@
 
 // constructor
+var repeatInterval = 35
 var GmapQuadraticBezier = function (startp, ctl1, endp, options, map) {
 
     var lineSymbol = {
-        path: 'M 0,-1 0,1',
+        path: 'M 0,-4 0,4',
         strokeOpacity: 1,
-        strokeWeight: 3,
+        strokeWeight: 2,
+        strokeLineCap: 'butt',
         scale: 2
     };
 
@@ -15,11 +17,11 @@ var GmapQuadraticBezier = function (startp, ctl1, endp, options, map) {
             step: 0.05
         },
         lineopts: {
-            geodesic: true, strokeOpacity: 0, strokeColor: '#ffffff',
+            geodesic: true, strokeOpacity: 0, strokeColor: '#ffffff', 
             icons: [{
                 icon: lineSymbol,
                 offset: '0',
-                repeat: '15px'
+                repeat: repeatInterval+'px'
             }],
         }
     };
@@ -61,7 +63,7 @@ p.draw = function () {
         icons[0].repeat = this.repeat + 'px';
         this.line.set('icons', icons);
         this.repeat /= 1.1
-        if (this.repeat <= 15) {
+        if (this.repeat <= repeatInterval) {
             clearInterval(this.createInterval)
             this.animateLine()
         }
