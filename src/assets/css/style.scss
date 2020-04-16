@@ -183,7 +183,22 @@ input[type="text"] {
     padding: 0;
     border-radius: 0;
     .gm-ui-hover-effect {
-      display: none !important;
+      top: 0!important;
+      right: 0!important;
+      &::before {
+        content: ' ';
+        display: block;
+        height: 100%;
+        width: 100%;
+        background-image: url(~@/assets/icons/close-white.svg);
+        background-size: 50%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        margin: 0;
+      }
+      img {
+        display: none!important;
+      }
     }
   }
   .gm-style-iw-d {
@@ -200,10 +215,7 @@ input[type="text"] {
     color: $col-white;
     text-align: left;
   }
-  .gmnoprint a,
-  .gmnoprint span {
-    display: none;
-  }
+
   .gm-style-cc {
     background: none !important;
     display: none;
