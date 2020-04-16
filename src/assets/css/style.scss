@@ -89,26 +89,6 @@ input[type="text"] {
   }
 }
 
-textarea {
-  border: 1px solid white;
-  outline: 0;
-  color: $col-green;
-  resize: none;
-  background-color: $col-dark;
-  width: 30rem;
-  @media screen and (max-width: $mqTablet) {
-    width: 95%;
-    min-height: 10rem;
-    margin-top: 1rem;
-    padding: $spacing / 4;
-  }
-  min-height: 15rem;
-  padding: $spacing / 2;
-  box-sizing: border-box;
-  margin-top: 6rem;
-  @extend .exte-small;
-}
-
 .overlay {
   position: absolute;
   top: 0;

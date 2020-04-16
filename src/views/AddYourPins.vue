@@ -16,7 +16,15 @@
         <p class="expa-large">{{ $t('phase04Title') }}</p>
         <p class="exte-medium">{{ $t('phase04Desc') }}</p>
         <InputCheck v-slot="{validate}" @validate="valid = $event" :empty="false">
-          <textarea :placeholder="$t('phase04Input')" v-model="message" @input="validate" maxlength="200"></textarea>
+          <div class="textarea-wrap">
+            <textarea
+              :placeholder="$t('phase04Input')"
+              v-model="message"
+              @input="validate"
+              :maxlength="messageLength"
+            ></textarea>
+            <span class="char-count">{{message.length}}/{{messageLength}}</span>
+          </div>
         </InputCheck>
       </div>
       <div class="footer">
@@ -38,7 +46,8 @@ export default {
     return {
       message: "",
       valid: false,
-      addingMessage: false
+      addingMessage: false,
+      messageLength: 200
     };
   },
   computed: {
@@ -93,6 +102,39 @@ p {
   pointer-events: all;
   p {
     cursor: pointer;
+  }
+}
+.textarea-wrap {
+  position: relative;
+  width: 26rem;
+  margin: 1rem auto;
+  border: 1px solid white;
+  background-color: $col-dark;
+  padding: $spacing / 2;
+  padding-bottom: $spacing / 4;
+  @media screen and (max-width: $mqTablet) {
+    width: 95%;
+    margin-top: 1rem;
+    padding: $spacing / 4;
+  }
+  textarea {
+    box-sizing: border-box;
+    outline: 0;
+    padding: 0;
+    resize: none;
+    color: $col-green;
+    background-color: transparent;
+    width: 100%;
+    min-height: 8rem;
+    border: none;
+    @extend .exte-small;
+  }
+  .char-count {
+    display: block;
+    text-align: right;
+    font-size: 0.75rem;
+    opacity: 0.5;
+    margin-bottom: 0;
   }
 }
 </style>
