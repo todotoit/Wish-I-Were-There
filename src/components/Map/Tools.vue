@@ -4,11 +4,11 @@
       <p class="exte-small">{{ $t('exploreMode') }}</p>
       <ul>
         <li :class="{active: showUserMarkers}" class="exte-small" @click="$emit('toggle-users');">
-          <img src="@/assets/icons/bubble-small.svg" svg-inline class="toggle-icon" />
+          <img src="@/assets/icons/bubble.svg" svg-inline class="toggle-icon" />
           {{ $t('exploreSelf') }}
         </li>
         <li :class="{active: showPinMarkers}" class="exte-small" @click="$emit('toggle-pins');">
-          <img src="@/assets/icons/pin-small.svg" svg-inline class="toggle-icon" />
+          <img src="@/assets/icons/pin.svg" svg-inline class="toggle-icon" />
           {{ $t('exploreDayDream') }}
         </li>
       </ul>
@@ -41,6 +41,9 @@ export default {
   min-width: 18rem;
   z-index: 20;
   height: 8rem;
+  .toggle-icon {
+    width: 2rem;
+  }
   @media screen and (max-width: $mqMobile) {
     top: 0.5rem;
     left: 0.5rem;
