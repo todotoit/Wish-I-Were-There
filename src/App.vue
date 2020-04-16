@@ -78,12 +78,16 @@ footer {
   width: 100%;
   position: fixed;
   bottom: 1rem;
+  pointer-events: none;
   @media screen and (max-width: $mqMobile) {
     bottom: 0.2rem;
   }
   left: 0;
   text-align: center;
   z-index: 600;
+  a {
+    pointer-events: all;
+  }
   svg {
     @media screen and (max-width: $mqTablet) {
       width: 70px;
