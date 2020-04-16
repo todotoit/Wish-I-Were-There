@@ -25,15 +25,17 @@
         </div>
       </div>
     </div>
+    <HomeAnimations />
   </div>
 </template>
 
 <script>
 import LanguageSwitch from "@/components/LanguageSwitch";
+import HomeAnimations from "@/components/HomeAnimations";
 
 export default {
   name: "Home",
-  components: { LanguageSwitch },
+  components: { LanguageSwitch, HomeAnimations },
   data() {
     return {
       step: 0
