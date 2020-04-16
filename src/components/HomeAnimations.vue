@@ -17,22 +17,28 @@ export default {
     };
   },
   mounted() {
-    gsap.to(".home-container", 10, {
+    this.tweens = [];
+    const wobble = gsap.to(".home-container", 10, {
       y: "+=30",
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut"
     });
+    this.tweens.push(wobble);
     const paths = Array.from(document.getElementsByClassName("link"));
     paths.forEach(s => {
-      gsap.to(s, 6, {
+      const tween = gsap.to(s, 6, {
         strokeDashoffset: 100,
         repeat: -1,
         yoyo: true,
         delay: 0,
         ease: "sine.inOut"
       });
+      this.tweens.push(tween);
     });
+  },
+  destroyed() {
+    this.tweens.forEach(t => t.kill());
   }
 };
 </script>
@@ -50,6 +56,7 @@ export default {
     height: 100%;
   }
   svg {
+    opacity: 0.8;
     .star path {
       animation: float 5s infini;
     }
