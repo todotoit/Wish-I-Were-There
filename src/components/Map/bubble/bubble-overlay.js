@@ -51,6 +51,12 @@ function createOverlayProto() {
     };
 
     BubbleOverlay.prototype.draw = function () {
+        if (!this.debounce) this.update()
+    };
+
+    BubbleOverlay.prototype.update = function () {
+        this.debounce = true
+        setTimeout(() => this.debounce = false, 12)
         const overlayProjection = this.getProjection();
         const zoom = overlayProjection['T'].zoom
         let zoomLevel = 0
