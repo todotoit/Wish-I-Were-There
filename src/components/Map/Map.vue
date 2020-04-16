@@ -367,7 +367,7 @@ export default {
     left: 0;
     transition: opacity 0.5s;
     &.far {
-      animation: spin 54s linear infinite;
+      animation: spin 80s linear infinite;
     }
     opacity: 0.5;
     &.hidden {
