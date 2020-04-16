@@ -90,7 +90,7 @@ export default {
         0,
         0
       );
-      this.resize()
+      this.resize();
       this.animate();
     },
     addShader(source, type) {
@@ -121,8 +121,8 @@ export default {
       requestAnimationFrame(() => this.animate());
     },
     resize() {
-      this.width = window.innerWidth
-      this.height = window.innerHeight
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
       this.uResolution.set(this.width, this.height);
       this.gl.viewport(0, 0, this.width, this.height);
     }
@@ -147,7 +147,11 @@ canvas {
   background-position: left top;
   background-size: 800px;
   animation: shiftbg 1s infinite steps(5);
-  opacity: .3;
+  @media screen and (max-width: $mqTablet) {
+    animation: shiftbg 1s infinite steps(2);
+    opacity: .15;
+  }
+  opacity: 0.3;
   mix-blend-mode: multiply;
   z-index: 2;
 }
