@@ -1,7 +1,7 @@
 <template>
   <div class="view-content">
     <header>
-      <p class="expa-large">{{$t('phase05Title')}}</p>
+      <h2 class="expa-large">{{$t('phase05Title')}}</h2>
       <p class="exte-medium" v-html="kmDistance"></p>
       <Share />
     </header>
