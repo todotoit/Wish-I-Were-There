@@ -25,3 +25,15 @@ export function randomString(length, chars) {
     for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
     return result;
 }
+
+export function hasWebGl() {
+    const supports = 'probablySupportsContext' in canvas
+        ? 'probablySupportsContext'
+        : 'supportsContext';
+
+    if (supports in canvas) {
+        return canvas[supports]('webgl') || canvas[supports]('experimental-webgl');
+    }
+
+    return 'WebGLRenderingContext' in window;
+}

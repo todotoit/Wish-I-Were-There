@@ -8,6 +8,7 @@
 <script>
 import fragment from "@/assets/frags/noise.frag";
 import vertex from "@/assets/frags/base.vert";
+import { hasWebGl } from "@/utils";
 
 function Uniform(name, suffix, gl, program) {
   this.name = name;
@@ -42,6 +43,7 @@ export default {
     };
   },
   mounted() {
+    if (!hasWebGl) return;
     this.mouseX = 0;
     this.mouseY = 0;
     this.startTime = new Date().getTime();
@@ -149,7 +151,7 @@ canvas {
   animation: shiftbg 1s infinite steps(5);
   @media screen and (max-width: $mqTablet) {
     animation: shiftbg 1s infinite steps(2);
-    opacity: .15;
+    opacity: 0.15;
   }
   opacity: 0.3;
   mix-blend-mode: multiply;
