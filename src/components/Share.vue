@@ -1,9 +1,6 @@
 <template>
   <div class="share-user">
     <div class="share-url">
-      <transition name="fade">
-        <p v-if="notice" class="notice">{{$t('shareLinkCopied')}}</p>
-      </transition>
       <input
         type="text"
         class="share-user-url"
@@ -12,7 +9,10 @@
         @click="copyUrl"
         ref="input"
       />
-      <button @click="copyUrl">{{$t('phase05Share')}}</button>
+      <button @click="copyUrl" class="white">{{$t('phase05Share')}}</button>
+      <transition name="fade">
+        <p v-if="notice" class="notice">{{$t('shareLinkCopied')}}</p>
+      </transition>
     </div>
   </div>
 </template>
@@ -56,18 +56,12 @@ export default {
 <style lang="scss">
 .share-user {
   .share-url {
-    margin-top: 1rem;
-    position: absolute;
-    bottom: 5rem;
-    left: 50%;
-    transform: translate(-50%, 0);
-    width: 100%;
+    margin: 0.5rem auto;
     button {
+      width: auto;
       border: 1px solid $col-white;
       color: $col-white;
-    }
-    @media screen and (max-width: $mqTablet) {
-      bottom: 3.5rem;
+      background-color: transparent;
     }
     .share-user-url {
       position: absolute;
@@ -76,6 +70,7 @@ export default {
       opacity: 0;
     }
     .notice {
+      margin-bottom: 0.5rem;
       width: 100%;
     }
   }
