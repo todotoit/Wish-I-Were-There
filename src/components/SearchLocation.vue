@@ -37,6 +37,14 @@ export default {
 </script>
 
 <style lang="scss">
+@media screen and (max-width: $mqMobile) {
+  input[type="text"].search-input {
+    margin-top: .5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.05rem;
+  }
+}
 .pac-container {
   border-top: none;
   background-color: rgba($col-dark, 0.9);

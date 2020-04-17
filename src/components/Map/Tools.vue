@@ -63,6 +63,9 @@ export default {
       align-items: center;
       margin-bottom: 0.5rem;
       opacity: 0.5;
+      @media screen and (max-width: $mqMobile) {
+        margin-bottom: .25rem;
+      }
       cursor: pointer;
       pointer-events: all;
       &.active {
