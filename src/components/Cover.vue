@@ -1,5 +1,5 @@
 <template>
-  <div class="cover-background">
+  <div class="cover-background" :class="{'no-webgl': !webgl}">
     <div class="color-overlay view"></div>
     <canvas ref="canvas" :width="width" :height="height"></canvas>
   </div>
@@ -38,12 +38,14 @@ Rect.prototype.render = function(gl) {
 export default {
   data() {
     return {
+      webgl: false,
       width: window.innerWidth,
       height: window.innerHeight
     };
   },
   mounted() {
-    if (!hasWebGl) return;
+    if (!hasWebGl) this.webgl = false;
+    if (!this.webgl) return;
     this.mouseX = 0;
     this.mouseY = 0;
     this.startTime = new Date().getTime();
@@ -138,6 +140,12 @@ export default {
   height: 100%;
   background-color: $col-dark;
   position: relative;
+  &.no-webgl {
+    background-size: cover;
+    .color-overlay.view {
+      opacity: .5;
+    }
+  }
 }
 canvas {
   mix-blend-mode: soft-light;
