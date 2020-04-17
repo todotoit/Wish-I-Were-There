@@ -2,13 +2,13 @@ export default {
     en: {
         // Intro
         title: 'Wish I Were There',
-        intro: `Self-isolating is the right thing to do during the pandemic. But it also makes our favorite places feel like a constellation of faraway stars, and we wish we could just think about the future and already be there. Stay safe and we will get there. In the meantime, let’s create a collective sky map of daydreams.`,
+        intro: `Self-isolating is the right thing to do during the pandemic, but it also makes our favorite places feel like a constellation of faraway stars. So let’s create a collective sky map of daydreams, of all the places where our heart goes while we need to stay at home. Sharing these new stars will bring us closer, even while we need to stay apart.`,
         ctaStart: `Start wishing`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
         shareLinkCopied: `Link copied, paste it in your favorite social network!`,
 
         // Cookie
-        cookieDesc: 'This website uses cookies to ensure you have the best experience on our website. If you continue, you are consenting to their use.',
+        cookieDesc: 'We use cookies to ensure you have the best experience on our website. If you continue, you are consenting to their use.',
         cookieBtn: 'Continue',
 
         // Input errors
@@ -17,7 +17,7 @@ export default {
 
         // Add your name
         phase00Username: 'What’s your name?',
-        phase00Desc: 'Use a nickname or just stay anonymous.',
+        phase00Desc: 'Use a nickname if you want.',
         phase00Input: 'Enter your name here',
         phase00Btn: 'Next',
 
@@ -29,7 +29,7 @@ export default {
 
         // Your bubble
         phase02Title: 'Your current cosmos',
-        phase02Desc: 'Most of Italy is now on lockdown, with people not allowed to go over 200m from home unless absolutely necessary. Staying within this small cosmos, temporarily, makes a world of difference.',
+        phase02Desc: 'Your planet is at the center of a 200m-radius cosmos, because that’s how far most Italians can go from home while on lockdown. Staying within this small range makes a big difference against COVID-19.',
         phase02Btn: 'Next',
 
         // Daydream
@@ -41,14 +41,14 @@ export default {
 
         // Add your message
         phase04Title: 'Add a message',
-        phase04Desc: 'Leave a note to others exploring the map. It’s a hard time for everyone, so please be kind.',
+        phase04Desc: 'Leave a note to others exploring the map. Why is this star special to you? Maybe it’s tied to memories, a tradition you miss, or someone you care about. Share your daydream, your story, your hopes.',
         phase04Input: 'Add message here',
         phase04Btn: 'Publish',
 
         // Feedback
-        phase05Title: 'Thank you!',
-        phase05Desc: 'You’ve added your star to our collective sky map of daydreams. Your daydream is <span class="distance">{distance}km </span> from you. You’ll get there! Stay safe.',
-        phase05Share: 'Share your daydream',
+        phase05Title: 'Done!',
+        phase05Desc: 'Thanks for adding your star to our collective sky map. Your daydream is <span class="distance">{distance}km </span> from you. You’ll get there! Stay safe. Share your message or explore the map to see others’ daydreams.',
+        phase05Share: 'Share your message',
         phase05Btn: 'Explore the map',
 
         // Explore
@@ -60,25 +60,21 @@ export default {
 
         // About
         aboutTitle: 'The Project',
-        aboutDesc: `Wish I Were There is a project by TODO, a design studio where physical and digital, technology and the human touch are brought together into communication ecosystems where people can feel, enjoy, and learn. 
-        Founded in 2007, TODO has designed and delivered playful and profound experiences for Enel, Arduino, the Mozilla Foundation, Audi, Seat, the United Arab Emirates University and many more Italian and international clients.
-        TODO’s team has been working remotely since 16 March to stay – and keep others – safe. 
-        Self-isolating is the right thing to do during the pandemic. But it also makes our favorite places feel like a constellation of faraway stars, and we wish we could just think about the future and already be there. Stay safe and we will get there. 
-        In the meantime, let’s create a collective sky map of daydreams.
-        `,
-
-
-    },
+        aboutDesc: `<p>Wish I Were There stems from the awareness that self-isolating is the right thing to do during the pandemic, but it also makes our favorite places feel like a constellation of faraway stars. It allows us to create a collective sky map of daydreams, of all the places where our heart goes while we need to stay at home. Sharing these new stars will bring us closer, even while we need to stay apart.</p>
+        <p>Wish I Were There is a project by TODO, a design studio where physical and digital, technology and the human touch are brought together into communication ecosystems where people can feel, enjoy, and learn. <br/>
+        Founded in 2007, TODO has designed and delivered playful and profound experiences for Enel, Arduino, the Mozilla Foundation, Audi, Seat, the United Arab Emirates University and many more Italian and international clients.</p>
+        <p>TODO’s team has been working remotely since 10 March to stay – and keep others – safe.</p>`,
+        },
     it: {
         // Intro
         title: 'Wish I Were There',
-        intro: `La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. Dopo settimane di isolamento, però, i nostri luoghi preferiti ci sembrano costellazioni di stelle lontane. Vorremmo pensare al futuro ed essere già lì. Se facciamo tutti la nostra parte, quel futuro arriverà prima. Nel frattempo, creiamo insieme la mappa di un cielo sognato a occhi aperti.`,
+        intro: `La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. E se, nell’isolamento, i nostri luoghi preferiti iniziano a sembrare costellazioni lontane, creiamo la mappa dei nostri sogni, con tutti i posti che visitiamo con il cuore anche se siamo costretti a casa. Condividere queste nuove stelle ci farà sentire più vicini, nonostante tutto.`,
         ctaStart: `Inizia a sognare`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
         shareLinkCopied: `Link copiato, incollalo nel tuo social network preferito!`,
 
         // Cookie
-        cookieDesc: 'Questo sito web utilizza i cookie per assicurarti la migliore esperienza sul nostro sito. Continuando a navigare acconsenti al loro utilizzo.',
+        cookieDesc: 'Questo sito utilizza cookie per assicurarti la migliore esperienza. Continuando a navigare acconsenti al loro utilizzo.',
         cookieBtn: 'Continua',
 
         // Input errors
@@ -87,7 +83,7 @@ export default {
 
         // Add your name
         phase00Username: 'Come ti chiami?',
-        phase00Desc: 'Puoi usare un nickname o rimanere anonimo.',
+        phase00Desc: 'Puoi usare un nickname se vuoi.',
         phase00Input: 'Inserisci il tuo nome qui',
         phase00Btn: 'Avanti',
 
@@ -99,7 +95,7 @@ export default {
 
         // Your bubble
         phase02Title: 'Il tuo microcosmo',
-        phase02Desc: 'Oggi in buona parte dell’Italia è vietato allontanarsi più di 200m da casa, salvo reali esigenze. Rimanere nel nostro microcosmo, per un po’, fa un mondo di differenza.',
+        phase02Desc: 'Il tuo pianeta è il centro di un microcosmo di 200m di raggio: il massimo della distanza da casa per molti italiani oggi. Limitarci a questo spazio aiuta a combattere la COVID-19.',
         phase02Btn: 'Avanti',
 
         // Daydream
@@ -111,14 +107,14 @@ export default {
 
         // Add your message
         phase04Title: 'Aggiungi un messaggio',
-        phase04Desc: 'Lascia un messaggio alle altre persone che esploreranno la mappa. Sii gentile: è un momento difficile per tutti.',
+        phase04Desc: 'Lascia un messaggio a chi esplorerà la mappa. Sulla stella c’è un ricordo speciale, un’abitudine che ti manca, una persona cara? Condividi il tuo sogno a occhi aperti, la tua storia, le tue speranze.',
         phase04Input: 'Aggiungi un messaggio',
         phase04Btn: 'Pubblica',
 
         // Feedback
-        phase05Title: 'Grazie!',
-        phase05Desc: 'Hai aggiunto la tua stella alla nostra mappa collettiva. Il luogo che sogni è a <span class="distance">{distance}km </span> da te. Ci arriverai! Stay safe.',
-        phase05Share: 'Condividi stella',
+        phase05Title: 'Fatto!',
+        phase05Desc: 'Grazie di aver aggiunto la tua stella alla mappa collettiva. Il luogo che sogni è a <span class="distance">{distance}km </span> da te. Ci arriverai! Stay safe. Condividi il tuo messaggio o esplora la mappa per vedere i sogni degli altri.',
+        phase05Share: 'Condividi il tuo messaggio',
         phase05Btn: 'Esplora la mappa',
 
         // Explore
@@ -130,11 +126,10 @@ export default {
 
         // About
         aboutTitle: 'Il Progetto',
-        aboutDesc: `Wish I Were There è un progetto di TODO, uno studio di design dove fisico e digitale, tecnologia e sensibilità umana compongono ecosistemi di comunicazione che permettono alle persone di emozionarsi, divertirsi e imparare. 
-        Fondato nel 2007, TODO ha ideato e realizzato progetti per Enel, Arduino, Mozilla Foundation, Audi, Seat, Università degli Emirati Arabi Uniti e molti altri clienti in Italia e all’estero.
-        Il team di TODO lavora in remoto dal 16 marzo, per la sicurezza di tutti. 
-        La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. Ma dopo settimane di isolamento i nostri luoghi preferiti ci appaiono come costellazioni di stelle lontane, e vorremmo proprio poter pensare al futuro ed essere già lì. Se facciamo tutti la nostra parte, quel futuro arriverà prima. Nel frattempo, creiamo insieme la mappa di un cielo sognato a occhi aperti.
-        `,
+        aboutDesc: `<p>Wish I Were There nasce dalla consapevolezza che la cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. E se, nell’isolamento, i nostri luoghi preferiti iniziano a sembrare costellazioni lontane, creiamo la mappa dei nostri sogni, con tutti i posti che visitiamo con il cuore anche se siamo costretti a casa. Condividere queste nuove stelle ci farà sentire più vicini, nonostante tutto.</p>
+        <p>Wish I Were There è un progetto di TODO, uno studio di design dove fisico e digitale, tecnologia e sensibilità umana compongono ecosistemi di comunicazione che permettono alle persone di emozionarsi, divertirsi e imparare.<br/>
+        Fondato nel 2007, TODO ha ideato e realizzato progetti per Enel, Arduino, Mozilla Foundation, Audi, Seat, Università degli Emirati Arabi Uniti e molti altri clienti in Italia e all’estero.</p>
+        <p>Il team di TODO lavora in remoto dal 10 marzo, per la sicurezza di tutti.</p>`,
 
 
     }
