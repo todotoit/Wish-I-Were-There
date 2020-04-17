@@ -3,7 +3,7 @@
     <div class="wrapper">
       <section class="project">
         <p class="expa-large title">{{ $t('aboutTitle') }}</p>
-        <p class="exte-large desc">{{ $t('aboutDesc') }}</p>
+        <div class="exte-large desc" v-html="$t('aboutDesc')"></div>
       </section>
       <section class="social">
         <a target="_blank" class="exte-medium" href="https://www.facebook.com/todotoit">Facebook</a>
@@ -52,6 +52,9 @@ export default {
     @media screen and (max-width: $mqTablet) {
       padding: 1.25rem 0.5rem;
       width: auto;
+    }
+    ::v-deep .project p {
+      margin-bottom: 1rem;
     }
     section {
       margin-bottom: 2rem;
