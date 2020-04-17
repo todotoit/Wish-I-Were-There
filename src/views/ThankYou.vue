@@ -1,19 +1,19 @@
 <template>
-  <div class="info">
-    <div class="header">
+  <div class="view-content">
+    <header>
       <p class="expa-large">{{$t('phase05Title')}}</p>
       <p class="exte-medium" v-html="kmDistance"></p>
       <Share />
-    </div>
-    <div class="footer">
+    </header>
+    <footer>
       <button @click="next">{{$t('phase05Btn')}}</button>
-    </div>
+    </footer>
   </div>
 </template>
 
 <script>
 import Share from "@/components/Share.vue";
-import Events from "@/events";
+import Events from "@/plugins/events";
 
 export default {
   name: "ThankYou",
@@ -34,7 +34,9 @@ export default {
       return this.$store.state.userPins;
     },
     kmDistance() {
-      return this.$t("phase05Desc", { distance: (this.distance / 1000).toFixed(2) });
+      return this.$t("phase05Desc", {
+        distance: (this.distance / 1000).toFixed(2)
+      });
     }
   },
   mounted() {
@@ -48,15 +50,15 @@ export default {
   },
   methods: {
     next() {
-      this.$router.push('/explore')
-      this.map.setZoom(12)
+      this.$router.push("/explore");
+      this.map.setZoom(12);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-p /deep/ span {
+::v-deep p .distance {
   color: $col-green;
 }
 </style>

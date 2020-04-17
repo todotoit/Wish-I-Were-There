@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade">
       <Loader v-if="!loaded" />
-      <div class="wrapper" v-else>
+      <div class="container" v-else>
         <div class="view" v-show="!isExplore">
           <router-view v-if="ready" />
         </div>
@@ -12,7 +12,7 @@
           <img v-else svg-inline class="close" src="@/assets/icons/close.svg" />
         </div>
         <Info v-if="info" />
-        <footer v-if="!info">
+        <footer v-if="showFooter">
           <a target="_blank" class="exte-medium todo-logo" href="https://todo.to.it/">
             <img svg-inline src="@/assets/icons/todo-logo.svg" />
           </a>
@@ -51,6 +51,12 @@ export default {
     },
     isTutorial() {
       return this.$route.meta.tutorial === true;
+    },
+    showFooter() {
+      return (
+        !this.info &&
+        (!this.$mq.includes("sm") || (!this.isExplore && !this.isTutorial))
+      );
     }
   },
   mounted() {
@@ -105,13 +111,13 @@ export default {
   pointer-events: all;
 }
 
-footer {
+.container > footer {
   width: 100%;
   position: fixed;
-  padding: .25rem;
-  bottom: 1rem;
+  padding: 0 $spacing/6;
+  bottom: 0;
   pointer-events: none;
-  left: 0;
+  right: 0;
   text-align: center;
   z-index: 600;
   a {
@@ -129,17 +135,13 @@ footer {
 
 .btn-info {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: $spacing/2;
+  right: $spacing/3;
   width: 2.5rem;
   @media screen and (max-width: $mqTablet) {
     width: 2.5rem;
   }
   z-index: 202;
-  @media screen and (max-width: $mqMobile) {
-    top: 1rem;
-    right: 1rem;
-  }
   cursor: pointer;
   .open {
     width: 100%;
@@ -164,7 +166,7 @@ footer {
   opacity: 0;
   z-index: -9999;
 }
-.wrapper,
+.container,
 .loader {
   width: 100%;
   height: 100%;

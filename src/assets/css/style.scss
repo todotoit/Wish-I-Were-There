@@ -9,17 +9,18 @@
 }
 
 html,
-body {
+body,
+#app {
+  height: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
   background-color: #212121;
   font-family: "GT America Extended", Arial, Helvetica, sans-serif;
   color: $col-white;
-}
-
-#app {
-  height: 100%;
 }
 
 p,
@@ -29,13 +30,12 @@ h2 {
   display: block;
 }
 
-.link {
+a {
   text-decoration: underline;
   cursor: pointer;
   text-transform: uppercase;
-  margin-top: 0.4rem;
-  font-size: 0.85rem !important;
   letter-spacing: 0.5px;
+  color: $col-white;
 }
 
 button {
@@ -53,12 +53,11 @@ input {
   padding: 10px 40px;
   margin: 0 $spacing / 2;
   margin-bottom: 1rem;
-  background: transparent;
   text-align: center;
   outline: 0;
   border: 1px solid $col-green;
   border-radius: 100px;
-  transition: all 500ms;
+  transition: background-color 500ms, color 500ms;
   color: $col-green;
   background-color: rgba($col-dark, 0.6);
   @media screen and (max-width: $mqTablet) {
@@ -96,14 +95,6 @@ input[type="text"] {
   }
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2000;
-}
-
 .view {
   position: absolute;
   top: 0;
@@ -113,70 +104,37 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 100;
+  text-align: center;
   button,
   input,
   textarea,
   a {
     pointer-events: all;
   }
-  .info {
-    min-height: 82%;
-    position: relative;
+  & > div {
+    height: 100%;
+  }
+  .view-content {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 55%;
-    margin-top: $spacing;
-    pointer-events: none;
-    z-index: 200;
-    @media screen and (max-width: $mqTablet) {
-      width: 97%;
-      max-width: 97%;
-      margin-top: 2.8rem;
-      height: 85%;
+    justify-content: space-between;
+    padding: $spacing/2 $spacing/3 $spacing * 1.5 $spacing/3;
+    a {
+      display: block;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
     }
-    @media screen and (max-width: $mqMobile) {
-      height: 90%;
+    h2 {
+      margin-bottom: 1rem;
     }
-    .header {
-      width: 100%;
-      p {
-        margin-bottom: 0.8rem;
-        @media screen and (max-width: $mqTablet) {
-          margin-bottom: 0.2rem;
-        }
-      }
-      &.center {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-    }
-    .footer {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%);
-      width: 100%;
-      .back {
-        margin-top: 0.5rem;
-      }
-      a {
-        cursor: pointer;
-        text-decoration: underline;
-      }
+    .input-container,
+    .marker-placer {
+      margin-top: 1rem;
     }
   }
-}
-
-.panel {
-  width: 50%;
-  height: auto;
-  padding: 0.5rem;
-  pointer-events: all;
-  text-align: center;
 }
 
 #map {
@@ -219,6 +177,7 @@ input[type="text"] {
     margin: 0;
     color: $col-white;
     text-align: left;
+    max-width: 244px!important;
   }
 
   .gm-style-cc {

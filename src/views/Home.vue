@@ -1,30 +1,27 @@
 <template>
   <div class="home">
-    <div class="view" v-if="step == 0">
-      <div class="info">
-        <div class="header center">
-          <h2 class="expa-large ct-font">{{ $t('title') }}</h2>
+    <template>
+      <div class="view-content" v-if="step==0">
+          <LanguageSwitch />
+        <header>
+          <h2 class="expa-large">{{ $t('title') }}</h2>
           <p class="exte-medium">{{ $t('intro') }}</p>
-        </div>
-        <div class="footer">
+        </header>
+        <footer>
           <button @click="next">{{ $t('ctaStart') }}</button>
-          <a class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</a>
-        </div>
+          <a @click="$router.push('/explore')">{{ $t('phase03Skip') }}</a>
+        </footer>
       </div>
-      <LanguageSwitch />
-    </div>
-    <div class="view" v-else>
-      <LanguageSwitch />
-      <div class="info">
-        <div class="header center">
+      <div class="view-content" v-else>
+        <header>
           <img svg-inline class="logo" src="@/assets/icons/cookie.svg" />
           <p class="exte-large">{{ $t('cookieDesc') }}</p>
-        </div>
-        <div class="footer">
+        </header>
+        <footer>
           <button @click="$router.push('/bubble')">{{ $t('cookieBtn') }}</button>
-        </div>
+        </footer>
       </div>
-    </div>
+    </template>
     <HomeAnimations />
   </div>
 </template>
@@ -55,49 +52,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .home {
-  width: 100%;
-  height: 100%;
-  z-index: 500;
-  .view {
-    .info {
-      width: 60%;
-      @media screen and (max-width: $mqTablet) {
-        width: 95%;
-        padding-top: 0;
-        margin-top: 0rem;
-        transform: translate(0, -1%);
-      }
-    }
-    pointer-events: all;
-    .header {
-      h2 {
-        margin-bottom: 1rem;
-      }
-      .ct-font {
-        font-size: 3.5rem;
-        @media screen and (max-width: $mqTablet) {
-          font-size: 3.2rem;
-        }
-        @media screen and (max-width: $mqMobile) {
-          font-size: 2rem;
-        }
-        @media screen and (max-width: $mqSmallMobile) {
-          font-size: 1.8rem;
-        }
-      }
-      align-items: center;
-      svg {
-        outline: none;
-        user-select: none;
-        margin-bottom: 2rem;
-      }
-    }
-    .footer {
-      .link {
-        display: block;
-      }
+  header {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    svg {
+      margin-bottom: 1rem;
     }
   }
 }

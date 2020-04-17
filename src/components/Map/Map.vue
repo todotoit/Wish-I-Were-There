@@ -1,22 +1,30 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing}">
-    <SearchLocation
-      id="search-location"
-      v-if="map && isExplore"
-      :placeholder="$t('exploreSearch')"
-    />
-    <Tools
-      v-if="map && isExplore"
-      :show-user-markers="showUserMarkers"
-      :show-pin-markers="showPinMarkers"
-      @toggle-users="showUserMarkers = !showUserMarkers"
-      @toggle-pins="showPinMarkers = !showPinMarkers"
-    />
-    <button
-      v-if="!user && isExplore"
-      class="add-your-star"
-      @click="$router.push('/bubble')"
-    >{{ $t('exploreAddYours') }}</button>
+    <div class="view">
+      <div class="view-content">
+        <header>
+          <Tools
+            v-if="map && isExplore"
+            :show-user-markers="showUserMarkers"
+            :show-pin-markers="showPinMarkers"
+            @toggle-users="showUserMarkers = !showUserMarkers"
+            @toggle-pins="showPinMarkers = !showPinMarkers"
+          />
+          <SearchLocation
+            id="search-location"
+            v-if="map && isExplore"
+            :placeholder="$t('exploreSearch')"
+          />
+        </header>
+        <footer>
+          <button
+            v-if="!user && isExplore"
+            class="add-your-star"
+            @click="$router.push('/bubble')"
+          >{{ $t('exploreAddYours') }}</button>
+        </footer>
+      </div>
+    </div>
     <div id="map" ref="map"></div>
   </div>
 </template>
@@ -28,7 +36,7 @@ import { getNewItems, getRemovedItems } from "@/utils";
 import SearchLocation from "@/components/SearchLocation.vue";
 import GmapsQuadraticBezier from "./line/gm-bezier";
 import Tools from "./Tools";
-import Events from "@/events";
+import Events from "@/plugins/events";
 
 export default {
   name: "Map",
@@ -264,7 +272,7 @@ export default {
       content += `<p class="share-url thin-medium"><button onclick="this.nextSibling.select(); document.execCommand('copy'); var t = this.nextSibling.nextSibling; t.innerText='copied'; setTimeout(function () {t.innerText = ''}, 2000)">Share</button><input type="text" readonly value="${shareMessage}" /><span></span></p>`;
       const info = new google.maps.InfoWindow({
         content,
-        maxWidth: 400
+        maxWidth: 500
       });
       return info;
     },
@@ -316,19 +324,11 @@ export default {
   height: 100%;
   background-color: $col-dark;
 }
-#search-location {
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 25;
-  margin: 0;
-  @media screen and (max-width: $mqMobile) {
-    top: 130px;
-  }
-}
 #map > div {
   background-color: $col-dark !important;
+}
+#search-location {
+  width: 100%;
 }
 /* .map-container:not(.active)
   .gm-style
@@ -384,18 +384,6 @@ export default {
   }
 }
 
-.add-your-star {
-  position: absolute;
-  bottom: 6rem;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  @media screen and (max-width: $mqTablet) {
-    bottom: 3.3rem;
-    width: 80%;
-  }
-}
-
 .bubble {
   display: block;
 }
@@ -407,6 +395,7 @@ export default {
 .bubble-area {
   fill: rgba(255, 255, 255, 0.2);
 }
+
 .bubble-dot {
   fill: rgba(255, 255, 255, 0.5);
 }

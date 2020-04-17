@@ -1,19 +1,19 @@
 <template>
-  <div class="info">
+  <div class="view-content">
     <template v-if="!addingMessage">
-      <div class="header">
-        <p class="expa-large">{{ $t('phase03Title') }}</p>
+      <header>
+        <h2 class="expa-large">{{ $t('phase03Title') }}</h2>
         <p class="exte-medium">{{ $t('phase03Desc') }}</p>
-        <MarkerPlacer type="pin" :placeholder="$t('phase03Input')" @update="markerPlaced = true"/>
-      </div>
-      <div class="footer">
+        <MarkerPlacer type="pin" :placeholder="$t('phase03Input')" @update="markerPlaced = true" />
+      </header>
+      <footer>
         <button @click="addingMessage = true" :disabled="!markerPlaced">{{ $t('phase03Btn') }}</button>
-        <p class="exte-small link" @click="$router.push('/explore')">{{ $t('phase03Skip') }}</p>
-      </div>
+        <a @click="$router.push('/explore')">{{ $t('phase03Skip') }}</a>
+      </footer>
     </template>
     <template v-else>
-      <div class="header">
-        <p class="expa-large">{{ $t('phase04Title') }}</p>
+      <header>
+        <h2 class="expa-large">{{ $t('phase04Title') }}</h2>
         <p class="exte-medium">{{ $t('phase04Desc') }}</p>
         <InputCheck v-slot="{validate}" @validate="valid = $event" :empty="false">
           <div class="textarea-wrap">
@@ -27,10 +27,10 @@
             <span class="char-count">{{message.length}}/{{messageLength}}</span>
           </div>
         </InputCheck>
-      </div>
-      <div class="footer">
+      </header>
+      <footer>
         <button @click="createNewPin" :disabled="!message">{{ $t('phase04Btn') }}</button>
-      </div>
+      </footer>
     </template>
   </div>
 </template>
@@ -86,26 +86,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input,
-/deep/ input {
-  margin-top: 1.5rem;
-  @media screen and (max-width: $mqTablet) {
-    margin-top: 0.5rem;
-  }
-}
-.pin-placer {
-  height: 100%;
-  pointer-events: none;
-}
-p {
-  margin-bottom: $spacing;
-}
-.footer {
-  pointer-events: all;
-  p {
-    cursor: pointer;
-  }
-}
 .textarea-wrap {
   position: relative;
   width: 26rem;

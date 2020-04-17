@@ -57,6 +57,9 @@ export default {
   }
   svg {
     opacity: 0.8;
+    @media screen and (max-width: $mqTablet) {
+      opacity: 0.4;
+    }
     .star path {
       animation: float 5s infini;
     }

@@ -1,8 +1,8 @@
 <template>
-  <div class="info">
+  <div class="view-content">
     <template v-if="!user && step == 0">
-      <div class="header">
-        <p class="expa-large">{{ $t('phase00Username') }}</p>
+      <header>
+        <h2 class="expa-large">{{ $t('phase00Username') }}</h2>
         <p class="exte-medium">{{ $t('phase00Desc') }}</p>
         <InputCheck v-slot="{validate}" @validate="valid = $event">
           <input
@@ -13,33 +13,33 @@
             maxlength="15"
           />
         </InputCheck>
-      </div>
-      <div class="footer">
+      </header>
+      <footer>
         <button @click="next" :disabled="!valid">{{ $t('phase00Btn') }}</button>
-      </div>
+      </footer>
     </template>
     <template v-else-if="!user && step == 1">
-      <div class="header">
-        <p class="expa-large">{{ $t('phase01Title') }}</p>
+      <header>
+        <h2 class="expa-large">{{ $t('phase01Title') }}</h2>
         <p class="exte-medium">{{ $t('phase01Desc') }}</p>
         <MarkerPlacer
           :placeholder="$t('phase01Address')"
           :geolocation="true"
           @update="markerPlaced = true"
         />
-      </div>
-      <div class="footer">
+      </header>
+      <footer>
         <button @click="createNewBubble()" :disabled="!markerPlaced">{{ $t('phase01Btn') }}</button>
-      </div>
+      </footer>
     </template>
     <template v-else>
-      <div class="header">
-        <p class="expa-large">{{ $t('phase02Title') }}</p>
+      <header>
+        <h2 class="expa-large">{{ $t('phase02Title') }}</h2>
         <p class="exte-medium">{{ $t('phase02Desc') }}</p>
-      </div>
-      <div class="footer">
+      </header>
+      <footer>
         <button @click="$router.push('/pins')">{{ $t('phase02Btn') }}</button>
-      </div>
+      </footer>
     </template>
   </div>
 </template>
@@ -47,7 +47,7 @@
 <script>
 import MarkerPlacer from "@/components/MarkerPlacer.vue";
 import InputCheck from "@/components/InputCheck";
-import Events from "@/events";
+import Events from "@/plugins/events";
 
 export default {
   name: "FindYourBubble",
@@ -97,14 +97,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.header {
-  input,
-  /deep/ input {
-    margin-top: 1.5rem;
-    @media screen and (max-width: $mqTablet) {
-      margin-top: 0.5rem;
-    }
-  }
-}
+<style>
+
 </style>

@@ -35,19 +35,10 @@ export default {
 
 <style lang="scss">
 .tools {
-  position: absolute;
-  left: 0;
-  top: 0;
-  min-width: 18rem;
-  z-index: 20;
-  height: 8rem;
+  position: relative;
+  text-align: left;
   .toggle-icon {
     width: 2rem;
-  }
-  @media screen and (max-width: $mqMobile) {
-    top: 0.5rem;
-    left: 0.5rem;
-    width: 100%;
   }
   p {
     color: $col-green;
@@ -80,7 +71,6 @@ export default {
       }
     }
   }
-  .tools-wrap,
   .tools-bg {
     position: absolute;
     width: 100%;
@@ -89,6 +79,7 @@ export default {
     z-index: 1;
   }
   .tools-wrap {
+    position: relative;
     padding: 1rem;
     @media screen and (max-width: $mqMobile) {
       padding: 0rem;

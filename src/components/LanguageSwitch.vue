@@ -22,17 +22,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .language-switch {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
-  @media screen and (max-width: $mqTablet) {
-    left: 50%;
-    text-align: center;
-    transform: translate(-50%, 0);
-  }
   ul {
     list-style: none;
     margin: 0;
@@ -41,6 +32,7 @@ export default {
       color: $col-green;
       display: inline-block;
       text-transform: uppercase;
+      pointer-events: all;
       cursor: pointer;
       &.active {
         text-decoration: underline;

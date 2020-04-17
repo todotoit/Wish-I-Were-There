@@ -1,6 +1,6 @@
 <template>
-  <div class="info">
-    <div class="wrapper">
+  <div class="info-panel view">
+    <div class="view-content">
       <section class="project">
         <p class="expa-large title">{{ $t('aboutTitle') }}</p>
         <div class="exte-large desc" v-html="$t('aboutDesc')"></div>
@@ -14,7 +14,7 @@
         >Instagram</a>
         <a target="_blank" class="exte-medium" href="https://vimeo.com/todotoit">Vimeo</a>
       </section>
-      <section class="copy">
+      <section class="copyright">
         <a target="_blank" class="exte-medium" href="https://todo.to.it/">
           <img svg-inline class="logo" src="@/assets/icons/todo-logo.svg" />
         </a>
@@ -25,12 +25,12 @@
 
 <script>
 export default {
-  name: "Info",
+  name: "Info"
 };
 </script>
 
 <style lang="scss" scoped>
-.info {
+.info-panel {
   position: absolute;
   z-index: 201;
   top: 0;
@@ -38,52 +38,31 @@ export default {
   width: 100%;
   height: 100%;
   color: $col-white;
-  display: flex;
-  flex-direction: column;
-  .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 1rem;
-    padding-top: 3rem;
-    z-index: 10;
+  text-align: left;
+  overflow: auto;
+  pointer-events: all;
+  ::v-deep .project p {
+    margin-bottom: 1rem;
+  }
+  section {
+    margin-bottom: 2rem;
+    width: 60%;
     @media screen and (max-width: $mqTablet) {
-      padding: 1.25rem 0.5rem;
-      width: auto;
-    }
-    ::v-deep .project p {
-      margin-bottom: 1rem;
-    }
-    section {
-      margin-bottom: 2rem;
-      width: 60%;
-      @media screen and (max-width: $mqTablet) {
-        width: 100%;
-        overflow: scroll;
-      }
-    }
-    .title {
-      width: 90%;
-      margin-bottom: 1rem;
-    }
-    .desc {
       width: 100%;
     }
-    .social {
-      a {
-        color: $col-white;
-        margin-right: 0.5rem;
-        &:hover {
-          color: $col-green;
-        }
+  }
+  .social {
+    a {
+      color: $col-white;
+      margin-right: 0.5rem;
+      &:hover {
+        color: $col-green;
       }
     }
-    .logo {
-      path {
-        fill: $col-white;
-      }
+  }
+  .logo {
+    path {
+      fill: $col-white;
     }
   }
 }

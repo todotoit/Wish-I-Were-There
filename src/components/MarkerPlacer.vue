@@ -51,6 +51,7 @@ export default {
       animation: google.maps.Animation.BOUNCE,
       icon: img
     });
+    setTimeout(() => marker.setAnimation(null), 3000);
     this.$store.commit("SET_MARKER", marker);
     google.maps.event.addListener(
       this.map,
@@ -63,7 +64,7 @@ export default {
       this.handleInput.bind(this)
     );
     marker.addListener("drag", () => {
-      this.$emit('update')
+      this.$emit("update");
     });
     if (this.geolocation) this.locateUser();
   },
