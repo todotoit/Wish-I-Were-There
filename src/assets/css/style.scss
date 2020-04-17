@@ -141,6 +141,9 @@ input[type="text"] {
   .gm-style .gm-style-iw-c {
     padding: 0;
     border-radius: 0;
+    @media screen and (max-width: $mqMobile) {
+      max-width: 266px !important;
+    }
     .gm-ui-hover-effect {
       top: 0 !important;
       right: 0 !important;
@@ -177,7 +180,6 @@ input[type="text"] {
     margin: 0;
     color: $col-white;
     text-align: left;
-    max-width: 244px!important;
   }
 
   .gm-style-cc {
