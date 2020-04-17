@@ -5,7 +5,7 @@
         <LanguageSwitch />
         <header>
           <h2 class="expa-large">{{ $t('title') }}</h2>
-          <p class="exte-medium">{{ $t('intro') }}</p>
+          <p class="exte-medium" v-html="$t('intro')"></p>
         </header>
         <footer>
           <button @click="next">{{ $t('ctaStart') }}</button>
