@@ -41,8 +41,8 @@ function createOverlayProto() {
         div.classList.add('bubble-container');
         this.bubble_ = new BubbleImage(div, this.images)
         this.div_ = div;
-/*         this.div_.style.top = '0'
-        this.div_.style.left = '0' */
+        /*         this.div_.style.top = '0'
+                this.div_.style.left = '0' */
         //this.div_.style.transformOrigin = 'top left'
         const panes = this.getPanes();
         panes.overlayLayer.appendChild(div);
@@ -70,11 +70,11 @@ function createOverlayProto() {
         const sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
         const ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
 
-/*         if (zoom < 14) {
+        if (zoom < 14) {
             this.div_.classList.add('far')
             return
         }
-        else this.div_.classList.remove('far') */
+        else this.div_.classList.remove('far')
 
         //this.div_.style.transform = 'translate(' + ne.y + 'px, ' + sw.x + 'px)';
         this.div_.style.left = sw.x + 'px';
