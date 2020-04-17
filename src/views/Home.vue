@@ -2,7 +2,7 @@
   <div class="home">
     <template>
       <div class="view-content" v-if="step==0">
-          <LanguageSwitch />
+        <LanguageSwitch />
         <header>
           <h2 class="expa-large">{{ $t('title') }}</h2>
           <p class="exte-medium">{{ $t('intro') }}</p>
@@ -22,7 +22,9 @@
         </footer>
       </div>
     </template>
-    <HomeAnimations />
+    <transition name="fade">
+      <HomeAnimations v-if="step===0" />
+    </transition>
   </div>
 </template>
 

@@ -55,6 +55,7 @@ export default {
 
 <style lang="scss">
 .share-user {
+  margin-top: 1rem;
   .share-url {
     margin: 0.5rem auto;
     button {

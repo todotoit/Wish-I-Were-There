@@ -86,6 +86,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media screen and (min-width: $mqTablet) {
+  ::v-deep .input-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .textarea-wrap {
   position: relative;
   width: 26rem;

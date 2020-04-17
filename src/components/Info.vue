@@ -44,6 +44,11 @@ export default {
   ::v-deep .project p {
     margin-bottom: 1rem;
   }
+  @media screen and (min-width: $mqDesktop) {
+    .exte-large {
+      font-size: 1.1rem;
+    }
+  }
   section {
     margin-bottom: 2rem;
     width: 60%;
