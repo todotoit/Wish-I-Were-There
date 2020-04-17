@@ -6,6 +6,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 html,
@@ -45,6 +46,14 @@ button {
     pointer-events: none;
     opacity: 0.5;
   }
+  &:hover:not(:disabled) {
+    background-color: $col-green;
+    color: $col-white;
+  }
+  &.white:hover:not(:disabled) {
+    background-color: $col-white;
+    color: $col-dark;
+  }
 }
 
 button,
@@ -66,10 +75,6 @@ input {
     margin-bottom: 0.2rem;
   }
   @extend .thin-large;
-  &:hover:not(:disabled) {
-    background-color: $col-green;
-    color: $col-white;
-  }
 }
 
 input {
