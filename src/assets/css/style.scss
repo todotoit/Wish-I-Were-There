@@ -139,6 +139,13 @@ input[type="text"] {
     .marker-placer {
       margin-top: 1rem;
     }
+    @media screen and (min-width: $mqTablet) {
+      header,
+      footer {
+        width: 60%;
+        margin: 0 auto;
+      }
+    }
   }
 }
 

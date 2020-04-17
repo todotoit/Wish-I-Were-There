@@ -120,6 +120,9 @@ export default {
   right: 0;
   text-align: center;
   z-index: 600;
+  @media screen and (min-width: $mqTablet) {
+    padding-bottom: 0.5rem;
+  }
   a {
     pointer-events: all;
   }

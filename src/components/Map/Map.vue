@@ -330,6 +330,34 @@ export default {
 #search-location {
   width: 100%;
 }
+@media screen and (min-width: $mqTablet) {
+  .map-container .view .view-content {
+    header {
+      width: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      &::after {
+        content: ' ';
+        display: block;
+      }
+      .tools {
+        flex: 1;
+        max-width: 25%;
+        .tools-wrap {
+          padding: 0;
+        }
+      }
+      #search-location {
+        width: 26rem;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}
 /* .map-container:not(.active)
   .gm-style
   > div:first-child

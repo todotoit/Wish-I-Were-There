@@ -61,7 +61,7 @@ export default {
       width: auto;
       border: 1px solid $col-white;
       color: $col-white;
-      background-color: transparent;
+      background-color: rgba($col-dark, 0.7);
     }
     .share-user-url {
       position: absolute;
