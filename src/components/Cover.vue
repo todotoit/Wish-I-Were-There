@@ -38,7 +38,7 @@ Rect.prototype.render = function(gl) {
 export default {
   data() {
     return {
-      webgl: false,
+      webgl: true,
       width: window.innerWidth,
       height: window.innerHeight
     };
