@@ -39,6 +39,7 @@ export default {
   text-align: left;
   .toggle-icon {
     width: 2rem;
+    outline: none;
   }
   p {
     color: $col-green;
@@ -63,6 +64,7 @@ export default {
       margin-bottom: 0.5rem;
       opacity: 0.5;
       cursor: pointer;
+      pointer-events: all;
       &.active {
         opacity: 1;
       }
