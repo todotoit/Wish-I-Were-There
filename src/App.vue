@@ -69,15 +69,19 @@ export default {
       };
     }
     if (this.isTutorial) this.$router.push("/");
-    Promise.all([
-      this.$store.dispatch("bindUsersRef"),
-      this.$store.dispatch("bindPinsRef"),
-      this.includeScripts()
-    ]).then(() => {
-      this.$store.commit("SET_READY", true);
-      const userId = this.$cookie.get("daydream_user");
-      if (userId) this.$store.dispatch("setCurrentUser", userId);
-    });
+    this.$store
+      .dispatch("getUsers")
+      .then(() => {
+        return Promise.all([
+          this.$store.dispatch("getPins"),
+          this.includeScripts()
+        ]);
+      })
+      .then(() => {
+        this.$store.commit("SET_READY", true);
+        const userId = this.$cookie.get("daydream_user");
+        if (userId) this.$store.dispatch("setCurrentUser", userId);
+      });
   },
   methods: {
     init() {
