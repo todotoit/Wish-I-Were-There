@@ -8,6 +8,12 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_time;
 
+float y_smoothstep(float a, float b, float x) {
+    float t = clamp((x - a) / (b - a), 0.0, 1.0);
+ 
+    return t * t * (3.0 - (2.0 * t));
+}
+
 // 2D Random
 float random (in vec2 st) {
     return fract(sin(dot(st.xy,
@@ -45,7 +51,7 @@ float noise (in vec2 st) {
 
     // Cubic Hermine Curve.  Same as SmoothStep()
     vec2 u = f*f*(3.0-2.0*f);
-    // u = smoothstep(0.,1.,f);
+    // u = y_smoothstep(0.,1.,f);
 
     // Mix 4 coorners percentages
     return mix(a, b, u.x) +
@@ -55,33 +61,31 @@ float noise (in vec2 st) {
 
 void main() {
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
-	vec2 mt = u_mouse.xy/u_resolution.xy;
 
     // Scale the coordinate system to see
     // some noise in action
     vec2 pos = vec2(st*4.0);
     vec2 translate = vec2(cos(u_time),sin(u_time));
     float coeff = sin(u_time*0.000000001)+u_time*random(st*u_time);
-    float n = smoothstep(0.1,0.8, 1.0-smoothstep(0.1, 0.6, noise(pos*rotate2d(noise(pos)+u_time))));
+    float n = y_smoothstep(0.1,0.8, 1.0-y_smoothstep(0.1, 0.6, noise(pos*rotate2d(noise(pos)+u_time))));
 	pos = rotate2d( noise(pos)+u_time) * (pos+translate) * 0.5;
     
-        // Use polar coordinates instead of cartesian
-    vec2 toCenter = vec2(0.5)-st;
-    float angle = atan(toCenter.y,toCenter.x);
-    float radius = length(toCenter)*2.0;
+    // Use polar coordinates instead of cartesian
+    // vec2 toCenter = vec2(0.5)-st;
+    // float angle = atan(toCenter.y,toCenter.x);
+    // float radius = length(toCenter)*2.0;
 
     // Map the angle (-PI to PI) to the Hue (from 0 to 1)
     // and the Saturation to the radius
-    vec3 color = hsb2rgb(vec3((angle/TWO_PI)+0.5,radius,1.0));
+    // vec3 color = hsb2rgb(vec3((angle/TWO_PI)+0.5,radius,1.0));
     // Use the noise function
 
-    float r = smoothstep(0.3, 0.5, pos.x);
-        float b = smoothstep(0.3, 0.4, n);
+    // float r = y_smoothstep(0.3, 0.5, pos.x);
+    // float b = y_smoothstep(0.3, 0.4, n);
     
-    vec3 corona = smoothstep(vec3(0.900,0.224,0.695), vec3(0.964,0.980,1.000) , vec3(0,0,noise(pos)));
+    // vec3 corona = y_smoothstep(vec3(0.900,0.224,0.695), vec3(0.964,0.980,1.000) , vec3(0,0,noise(pos)));
 
     float k = noise(pos);
-
     gl_FragColor = vec4(vec3(k), 1.0);
 
     //gl_FragColor = vec4(corona*100000.0, 1.0);
