@@ -12,7 +12,7 @@ var GmapQuadraticBezier = function (startp, ctl1, endp, options, map) {
     };
 
     var defaultOpts = {
-        step: 0.05,
+        step: 0.02,
         animate: {
             step: 0.05
         },
@@ -68,17 +68,15 @@ p.draw = function () {
             this.animateLine()
         }
     }, 10)
-
-
     this.line.setMap(this.map);
 }
 
 p.animateLine = function () {
     if (this.stop) return
     const icons = this.line.get('icons');
-    icons[0].offset = 100 - this.offset + '%';
+    icons[0].offset = 100 - this.offset + 'px';
     this.line.set('icons', icons);
-    this.offset += 0.05
+    this.offset += 0.3
     if (this.offset >= 100) this.offset = 0
     requestAnimationFrame(() => this.animateLine())
 }
