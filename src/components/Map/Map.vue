@@ -206,7 +206,7 @@ export default {
         url: require("@/assets/icons/pin.svg"),
         size: new google.maps.Size(35, 35),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(12.5, 12.5)
+        anchor: new google.maps.Point(17.5, 17.5)
       };
       const marker = new google.maps.Marker({
         position: { lat: coordinates.Wa, lng: coordinates.za },
@@ -244,6 +244,7 @@ export default {
       userMarker.overlay.setDisabled(false);
       userMarker.overlay.setVisible(true);
       userMarker.overlay.forceVisible(true);
+      this.selectedPinMarker = null;
       const pin = this.$store.getters.getUserPin(userMarker.user.id);
       if (!pin) return this.zoomOnCoords(userMarker.position);
       const pinMarker = this.getPinMarker(pin.id);
