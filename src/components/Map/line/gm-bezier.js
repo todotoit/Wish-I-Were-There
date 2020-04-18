@@ -74,10 +74,10 @@ p.draw = function () {
 p.animateLine = function () {
     if (this.stop) return
     const icons = this.line.get('icons');
-    icons[0].offset = 100 - this.offset + 'px';
+    icons[0].offset = 36 - this.offset + 'px';
     this.line.set('icons', icons);
-    this.offset += 0.3
-    if (this.offset >= 100) this.offset = 0
+    this.offset += 0.5
+    if (this.offset >= 36) this.offset = 0
     requestAnimationFrame(() => this.animateLine())
 }
 
