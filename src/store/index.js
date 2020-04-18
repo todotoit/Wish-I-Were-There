@@ -29,7 +29,7 @@ const firebaseProdConfig = {
 }
 
 
-const db = firebase.initializeApp(firebaseDevConfig).firestore()
+const db = firebase.initializeApp(firebaseProdConfig).firestore()
 firebase.auth().signInWithEmailAndPassword(process.env.VUE_APP_FIREBASE_USER, process.env.VUE_APP_FIREBASE_PASS)
 
 export default new Vuex.Store({
