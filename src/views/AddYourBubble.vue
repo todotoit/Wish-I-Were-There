@@ -9,6 +9,7 @@
             type="text"
             v-model="name"
             @input="validate"
+            @keyup.enter="next"
             :placeholder="$t('phase00Input')"
             maxlength="15"
           />
@@ -83,8 +84,8 @@ export default {
         .then(r => {
           this.$store.commit("SET_PLACING", false);
           this.$store.commit("SET_USER", r);
-          Events.$emit("select-user", r.id);
           this.$cookie.set("daydream_user", r.id, { expires: "1Y" });
+          Events.$emit("select-user", r.id);
         });
     },
     next() {
@@ -98,5 +99,4 @@ export default {
 </script>
 
 <style>
-
 </style>
