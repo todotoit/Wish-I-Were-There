@@ -72,7 +72,7 @@ function createOverlayProto() {
 
         if (zoom < 14) {
             this.div_.classList.add('far')
-            return
+            if(!this.div_.classList.contains('force-visible')) return
         }
         else this.div_.classList.remove('far')
 
@@ -89,6 +89,10 @@ function createOverlayProto() {
     }
     BubbleOverlay.prototype.setDisabled = function (val) {
         if (this.div_) this.div_.classList.toggle('disabled', !!val)
+    }
+    BubbleOverlay.prototype.forceVisible = function (val) {
+        console.log(this, val)
+        if (this.div_) this.div_.classList.toggle('force-visible', !!val)
     }
 }
 

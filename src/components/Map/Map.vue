@@ -237,10 +237,13 @@ export default {
       this.map.fitBounds(bounds);
     },
     highlightUser(userMarker, showMessage = true) {
+      if (this.selectedUserMarker)
+        this.selectedUserMarker.overlay.forceVisible(false);
       this.selectedUserMarker = userMarker;
       userMarker.setVisible(true);
       userMarker.overlay.setDisabled(false);
       userMarker.overlay.setVisible(true);
+      userMarker.overlay.forceVisible(true);
       const pin = this.$store.getters.getUserPin(userMarker.user.id);
       if (!pin) return this.zoomOnCoords(userMarker.position);
       const pinMarker = this.getPinMarker(pin.id);
@@ -252,7 +255,10 @@ export default {
       if (showMessage) this.showPinMessage(pinMarker);
     },
     highlightPin(pinMarker) {
+      if (this.selectedUserMarker)
+        this.selectedUserMarker.overlay.forceVisible(false);
       const userMarker = this.getUserMarker(pinMarker.pin.user.id);
+      userMarker.overlay.forceVisible(true);
       this.selectedUserMarker = userMarker;
       this.selectedPinMarker = pinMarker;
       const pinCoords = pinMarker.getPosition();
@@ -300,6 +306,9 @@ export default {
     deselect(e) {
       if (this.line) this.line.remove();
       if (this.infoWindow) this.infoWindow.close();
+      if (this.selectedUserMarker)
+        this.selectedUserMarker.overlay.forceVisible(false);
+
       this.selectedUserMarker = null;
       this.selectedPinMarker = null;
     },
@@ -339,7 +348,7 @@ export default {
       justify-content: space-between;
       align-items: flex-start;
       &::after {
-        content: ' ';
+        content: " ";
         display: block;
       }
       .tools {
@@ -376,6 +385,9 @@ export default {
   &.hidden,
   &.far {
     opacity: 0;
+    &.force-visible {
+      opacity: 1;
+    }
   }
   img {
     display: block;
