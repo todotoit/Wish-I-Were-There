@@ -91,7 +91,6 @@ function createOverlayProto() {
         if (this.div_) this.div_.classList.toggle('disabled', !!val)
     }
     BubbleOverlay.prototype.forceVisible = function (val) {
-        console.log(this, val)
         if (this.div_) this.div_.classList.toggle('force-visible', !!val)
     }
 }
