@@ -123,7 +123,7 @@ export default {
   mounted() {
     const map = new google.maps.Map(this.$refs.map, {
       center: { lat: this.startPos.lat, lng: this.startPos.lng },
-      zoom: 15,
+      zoom: 13,
       minZoom: 3,
       maxZoom: 18,
       mapTypeId: "roadmap",
