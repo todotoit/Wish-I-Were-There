@@ -8,8 +8,8 @@
           <p class="exte-medium" v-html="$t('intro')"></p>
         </header>
         <footer>
-          <button @click="next">{{ $t('ctaStart') }}</button>
-          <a @click="$router.push('/explore')">{{ $t('phase03Skip') }}</a>
+          <button @click="next">{{ cta }}</button>
+          <a @click="$router.push('/explore')" v-if="!user">{{ $t('phase03Skip') }}</a>
         </footer>
       </div>
       <div class="view-content" v-else>
@@ -43,6 +43,14 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    pin() {
+      return this.$store.state.userPins;
+    },
+    cta() {
+      if(this.pin) return this.$t('ctaHasPin')
+      else if(this.user) return this.$t('ctaHasUser')
+      else return this.$t('ctaStart')
     }
   },
   methods: {

@@ -4,6 +4,8 @@ export default {
         title: 'Wish I Were There',
         intro: `Self-isolating is the right thing to do during the pandemic, but it also makes our favorite places feel like a constellation of faraway stars. So let’s create a collective sky map of daydreams, of all the places where our heart goes while we need to stay at home. Sharing these new stars will bring us closer, even while we need to stay apart.`,
         ctaStart: `Start wishing`,
+        ctaHasUser: `See your planet`,
+        ctaHasPin: `Visit your star`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
         shareLinkCopied: `Link copied, paste it in your favorite social network!`,
 
@@ -68,8 +70,10 @@ export default {
     it: {
         // Intro
         title: 'Wish I Were There',
-        intro: `La cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. E se, nell’isolamento, i nostri luoghi preferiti iniziano a sembrare costellazioni lontane, creiamo la mappa dei nostri sogni, con tutti i posti che visitiamo con il cuore anche se siamo costretti a casa. Condividere queste nuove stelle ci farà sentire più vicini, nonostante tutto.`,
+        intro: `La cosa migliore che possiamo fare durante la pandemia è rimanere a casa. E se i nostri luoghi preferiti iniziano a sembrarci costellazioni lontane? Creiamo la mappa dei nostri sogni, quella dei posti che visitiamo con il cuore. Condividere queste nuove stelle ci farà sentire più vicini, nonostante tutto.`,
         ctaStart: `Inizia a sognare`,
+        ctaHasUser: `Vedi il tuo pianeta`,
+        ctaHasPin: `Visita la tua stella`,
         shareMessage: `#stiamoacasa e sogniamo insieme su {url} ⭐️ {msg} ⭐️`,
         shareLinkCopied: `Link copiato, incollalo nel tuo social network preferito!`,
 
