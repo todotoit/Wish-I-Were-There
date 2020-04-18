@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { vuexfireMutations, firestoreAction } from 'vuexfire'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
@@ -9,8 +8,17 @@ const { GeoPoint } = firebase.firestore
 
 Vue.use(Vuex)
 
+const firebaseDevConfig = {
+  apiKey: process.env.VUE_APP_FIREBASE_DEV_KEY,
+  authDomain: "mappette-14132.firebaseapp.com",
+  databaseURL: "https://mappette-14132.firebaseio.com",
+  projectId: "mappette-14132",
+  storageBucket: "mappette-14132.appspot.com",
+  messagingSenderId: "825156378615",
+  appId: "1:825156378615:web:cbc44e0051c1a04861d8f2"
+};
 
-const db = firebase.initializeApp({
+const firebaseProdConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_KEY,
   authDomain: "apt-icon-231614.firebaseapp.com",
   databaseURL: "https://apt-icon-231614.firebaseio.com",
@@ -18,7 +26,10 @@ const db = firebase.initializeApp({
   storageBucket: "apt-icon-231614.appspot.com",
   messagingSenderId: "1033507690718",
   appId: "1:1033507690718:web:2f7070f62653394d940a4f"
-}).firestore()
+}
+
+
+const db = firebase.initializeApp(firebaseDevConfig).firestore()
 firebase.auth().signInWithEmailAndPassword(process.env.VUE_APP_FIREBASE_USER, process.env.VUE_APP_FIREBASE_PASS)
 
 export default new Vuex.Store({
@@ -34,9 +45,14 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    ...vuexfireMutations,
     SET_MAP(state, data) {
       state.map = data
+    },
+    SET_USERS(state, data) {
+      state.users = data
+    },
+    SET_PINS(state, data) {
+      state.pins = data
     },
     SET_MARKER(state, data) {
       state.marker = data
@@ -56,50 +72,70 @@ export default new Vuex.Store({
   },
 
   actions: {
-    bindUsersRef: firestoreAction(context => {
-      return context.bindFirestoreRef('users', db.collection('users'))
-    }),
-    bindPinsRef: firestoreAction(context => {
-      return context.bindFirestoreRef('pins', db.collection('pins'))
-    }),
-    createNewUser: firestoreAction((context, user) => {
-      const coordinates = user.marker.getPosition()
-      console.log(context)
+    getUsers: context => {
+      return db.collection('users')
+        .get()
+        .then(querySnapshot => {
+          const users = querySnapshot.docs.map(user => {
+            return { ...user.data(), id: user.id }
+          })
+          context.commit('SET_USERS', users)
+        })
+    },
+    getPins: context => {
+      return db.collection('pins')
+        .get()
+        .then(querySnapshot => {
+          const pins = querySnapshot.docs.map(pin => {
+            const data = pin.data()
+            data.user = context.getters.getUser(data.user.id)
+            data.id = pin.id
+            return data
+          })
+          context.commit('SET_PINS', pins)
+        })
+    },
+    createNewUser: (context, data) => {
+      const coordinates = data.marker.getPosition()
       const id = context.getters.getUniqueUserId()
-      return db.collection('users').doc(id).set({
+      const userData = {
         coordinates: new GeoPoint(coordinates.lat(), coordinates.lng()),
         created: firebase.firestore.FieldValue.serverTimestamp(),
-        name: user.name
-      }).then(r => {
-        console.log(r)
+        name: data.name
+      }
+      return db.collection('users').doc(id).set(userData).then(r => {
+        const user = {
+          ...userData,
+          id
+        }
+        context.commit('SET_USERS', [...context.state.users, user])
         return {
-          id,
-          name: user.name,
-          marker: user.marker
+          ...user,
+          marker: data.marker
         }
       })
-    }),
-    createNewPin: firestoreAction((context, data) => {
+    },
+    createNewPin: (context, data) => {
       const coordinates = data.marker.getPosition()
-      return db.collection('pins').add({
+      const pinData = {
         coordinates: new GeoPoint(coordinates.lat(), coordinates.lng()),
         created: firebase.firestore.FieldValue.serverTimestamp(),
         user: db.collection('users').doc(data.user.id),
         message: data.message
-      }).then(r => {
-        return {
+      }
+      return db.collection('pins').add(pinData).then(r => {
+        const pin = {
+          ...pinData,
           id: r.id,
-          user: data.user,
-          marker: data.marker,
-          message: data.message
+        }
+        context.commit('SET_PINS', [...context.state.pins, pin])
+        return {
+          pin,
+          marker: data.marker
+
         }
       })
-    }),
-    updatePin: firestoreAction((context, data) => {
-      return db.collection('pins')
-        .doc(context.state.userPins.id)
-        .update({ message: data.message })
-    }),
+    },
     setCurrentUser: (context, id) => {
       context.commit('SET_USER', context.getters.getUser(id))
       context.commit('SET_USER_PINS', context.getters.getUserPin(id))
@@ -114,7 +150,9 @@ export default new Vuex.Store({
       return state.users.find(user => user.id === id)
     },
     getUserByRef: (state) => (ref) => {
-      return state.users.find(user => user.id === ref.split('/')[1])
+      let id = ref
+      if (id.includes('/')) id = ref.split('/')[1]
+      return state.users.find(user => user.id === id)
     },
     getUserUrl: (state) => id => {
       return window.location.origin + "/explore/" + id;
