@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-import { firebaseDevConfig, firebaseProdConfig } from './config.js'
+import { firebaseProdConfig } from './config.js'
 const { GeoPoint } = firebase.firestore
 
 export const db = firebase.initializeApp(firebaseProdConfig).firestore()
@@ -72,10 +72,6 @@ export const store = {
 
                 }
             })
-        },
-        setCurrentUser: (context, id) => {
-            context.commit('SET_USER', context.getters.getUser(id))
-            context.commit('SET_USER_PINS', context.getters.getUserPin(id))
         }
     }
 }

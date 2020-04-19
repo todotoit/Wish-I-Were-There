@@ -46,7 +46,11 @@ export default new Vuex.Store({
   },
 
   actions: {
-    ...store.actions
+    ...store.actions,
+    setCurrentUser: (context, id) => {
+      context.commit('SET_USER', context.getters.getUser(id))
+      context.commit('SET_USER_PINS', context.getters.getUserPin(id))
+    }
   },
 
   getters: {

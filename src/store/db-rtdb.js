@@ -1,12 +1,10 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
-import 'firebase/firestore'
 import { firebaseProdConfig } from './config.js'
 
 export const db = firebase.initializeApp(firebaseProdConfig).database()
 firebase.auth().signInWithEmailAndPassword(process.env.VUE_APP_FIREBASE_USER, process.env.VUE_APP_FIREBASE_PASS)
-
 
 export const store = {
     mutations: {},
@@ -70,10 +68,6 @@ export const store = {
                 context.commit('SET_PINS', [...context.state.pins, pin])
                 return { pin, marker: data.marker }
             })
-        },
-        setCurrentUser: (context, id) => {
-            context.commit('SET_USER', context.getters.getUser(id))
-            context.commit('SET_USER_PINS', context.getters.getUserPin(id))
         }
     }
 }
