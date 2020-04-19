@@ -37,6 +37,7 @@ import SearchLocation from "@/components/SearchLocation.vue";
 import GmapsQuadraticBezier from "./line/gm-bezier";
 import Tools from "./Tools";
 import Events from "@/plugins/events";
+import MarkerClusterer from "@google/markerclustererplus";
 
 export default {
   name: "Map",
@@ -132,7 +133,14 @@ export default {
       styles: styles["daydream"],
       clickableIcons: false
     });
+    this.oms = new OverlappingMarkerSpiderfier(map, {
+      markersWontMove: true,
+      markersWontHide: true,
+      basicFormatEvents: true
+    });
     this.$store.commit("SET_MAP", map);
+    this.createUserCluster();
+    this.createPinCluster();
     this.map.showUserMarkers = this.showUserMarkers;
     this.map.showPinMarkers = this.showPinMarkers;
     google.maps.event.addListener(map, "click", e => this.deselect(e));
@@ -170,6 +178,25 @@ export default {
         if (marker) this.highlightUser(marker);
       }
     },
+    createUserCluster() {
+      this.userCluster = new MarkerClusterer(this.map, this.userMarkers, {
+        styles: null,
+        maxZoom: 13,
+        gridSize: 30,
+        clusterClass: "map-cluster",
+        imageExtension: "svg"
+      });
+    },
+    createPinCluster() {
+      this.pinCluster = new MarkerClusterer(this.map, this.pinMarkers, {
+        styles: null,
+        maxZoom: 13,
+        gridSize: 30,
+        imagePath: "../images/s",
+        clusterClass: "map-cluster",
+        imageExtension: "svg"
+      });
+    },
     createUserBubble(user) {
       const pos = { lat: user.coordinates.Wa, lng: user.coordinates.za };
       const img = {
@@ -180,7 +207,6 @@ export default {
       };
       const marker = new google.maps.Marker({
         position: pos,
-        map: this.map,
         icon: img,
         visible: this.showUserMarkers
       });
@@ -188,13 +214,15 @@ export default {
         visible: this.showUserMarkers,
         disabled: this.selectedUserMarker
       };
-      const overlay = createBubble(this.map, pos, { user });
-      marker.addListener("click", e => {
+      const overlay = createBubble(this.map, pos, { user, marker });
+      marker.addListener("spider_click", e => {
         if (e) e.stop();
         this.highlightUser(marker);
       });
       marker.user = user;
       marker.overlay = overlay;
+      this.userCluster.addMarker(marker);
+      this.oms.addMarker(marker);
       this.userMarkers.push(marker);
     },
     createPin(pin) {
@@ -210,16 +238,17 @@ export default {
       };
       const marker = new google.maps.Marker({
         position: { lat: coordinates.Wa, lng: coordinates.za },
-        map: this.map,
         icon: img,
         visible: this.showUserMarkers
       });
       const infoWindow = this.createInfoWindow(pin);
-      marker.addListener("click", () => {
+      marker.addListener("spider_click", () => {
         this.highlightPin(marker);
       });
       marker.infoWindow = infoWindow;
       marker.pin = pin;
+      this.pinCluster.addMarker(marker);
+      this.oms.addMarker(marker);
       this.pinMarkers.push(marker);
     },
     createLink(start, end) {
@@ -410,17 +439,27 @@ export default {
       pointer-events: none;
     }
   }
-  label {
-    position: absolute;
-    top: 48%;
-    left: 56%;
-    z-index: 20;
-    user-select: none;
-    color: $col-green;
-    font-size: 1rem;
-    white-space: nowrap;
-    &::before {
-      content: ".";
+}
+label.bubble-label {
+  position: absolute;
+  z-index: 20;
+  user-select: none;
+  color: $col-green;
+  font-size: 1rem;
+  white-space: nowrap;
+  display: block;
+  transform: translate(15px, -100%);
+  &::before {
+    content: ".";
+  }
+  &.disabled {
+    opacity: 0.25;
+  }
+  &.hidden,
+  &.far {
+    opacity: 0;
+    &.force-visible {
+      opacity: 1;
     }
   }
 }
@@ -439,5 +478,13 @@ export default {
 
 .bubble-dot {
   fill: rgba(255, 255, 255, 0.5);
+}
+
+.map-cluster > div > span {
+  font-family: "GT America Light", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  display: block;
+  transform: translateY(-15%);
+  color: $col-green;
 }
 </style>
