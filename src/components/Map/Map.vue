@@ -1,5 +1,5 @@
 <template>
-  <div class="map-container" :class="{active: isExplore, placing: placing}">
+  <div class="map-container" :class="{active: isExplore, placing: placing, highlight}">
     <div class="view">
       <div class="view-content">
         <header>
@@ -67,6 +67,8 @@ export default {
         val.overlay.setDisabled(false);
       }
       this.map.selectedUserMarker = val;
+      this.highlight = !!val;
+      this.toggleClustering(this.highlight);
     },
     selectedPinMarker(val) {
       this.pinMarkers.forEach(m => m.setOpacity(val ? 0.3 : 1));
@@ -118,7 +120,8 @@ export default {
       infoWindow: null,
       init: false,
       selectedUserMarker: null,
-      selectedPinMarker: null
+      selectedPinMarker: null,
+      highlight: false
     };
   },
   mounted() {
@@ -126,7 +129,7 @@ export default {
       center: { lat: this.startPos.lat, lng: this.startPos.lng },
       zoom: 13,
       minZoom: 3,
-      maxZoom: 18,
+      maxZoom: 19,
       mapTypeId: "roadmap",
       disableDefaultUI: true,
       zoomControl: true,
@@ -136,8 +139,12 @@ export default {
     this.oms = new OverlappingMarkerSpiderfier(map, {
       markersWontMove: true,
       markersWontHide: true,
-      basicFormatEvents: true
+      basicFormatEvents: true,
+      nearbyDistance: 50,
+      circleFootSeparation: 50,
     });
+    const mti = google.maps.MapTypeId;
+    this.oms.legColors.highlighted[mti.ROADMAP] = '#02E19F'
     this.$store.commit("SET_MAP", map);
     this.createUserCluster();
     this.createPinCluster();
@@ -184,7 +191,8 @@ export default {
         maxZoom: 13,
         gridSize: 30,
         clusterClass: "map-cluster",
-        imageExtension: "svg"
+        imageExtension: "svg",
+        ignoreHidden: true
       });
     },
     createPinCluster() {
@@ -194,7 +202,8 @@ export default {
         gridSize: 30,
         imagePath: "../images/s",
         clusterClass: "map-cluster",
-        imageExtension: "svg"
+        imageExtension: "svg",
+        ignoreHidden: true
       });
     },
     createUserBubble(user) {
@@ -266,14 +275,12 @@ export default {
       this.map.fitBounds(bounds);
     },
     highlightUser(userMarker, showMessage = true) {
-      if (this.selectedUserMarker)
-        this.selectedUserMarker.overlay.forceVisible(false);
+      this.deselect();
       this.selectedUserMarker = userMarker;
       userMarker.setVisible(true);
       userMarker.overlay.setDisabled(false);
       userMarker.overlay.setVisible(true);
       userMarker.overlay.forceVisible(true);
-      this.selectedPinMarker = null;
       const pin = this.$store.getters.getUserPin(userMarker.user.id);
       if (!pin) return this.zoomOnCoords(userMarker.position);
       const pinMarker = this.getPinMarker(pin.id);
@@ -285,8 +292,7 @@ export default {
       if (showMessage) this.showPinMessage(pinMarker);
     },
     highlightPin(pinMarker) {
-      if (this.selectedUserMarker)
-        this.selectedUserMarker.overlay.forceVisible(false);
+      this.deselect();
       const userMarker = this.getUserMarker(pinMarker.pin.user.id);
       userMarker.overlay.forceVisible(true);
       this.selectedUserMarker = userMarker;
@@ -298,7 +304,6 @@ export default {
     },
     createInfoWindow(pin) {
       let user = pin.user;
-      // let content = `<h4>${user.name || "anonymous"}</h4>`;
       let message = pin.message || "No message.";
       let content = `<p class="exte-small">${message}</p>`;
       const shareMessage = this.$t("shareMessage", {
@@ -352,6 +357,14 @@ export default {
     togglePinMarkers(val) {
       this.showPinMarkers = val;
       this.pinMarkers.forEach(m => m.setVisible(val));
+    },
+    toggleClustering(disable) {
+      this.userCluster.setMaxZoom(disable ? 1 : 13);
+      this.userCluster.setGridSize(disable ? 1 : 30);
+      this.userCluster.repaint();
+      this.pinCluster.setMaxZoom(disable ? 1 : 13);
+      this.pinCluster.setGridSize(disable ? 1 : 30);
+      this.pinCluster.repaint();
     }
   }
 };
@@ -432,7 +445,7 @@ export default {
     &.far {
       animation: spin 80s linear infinite;
     }
-    opacity: 0.5;
+    opacity: 0.3;
     &.hidden {
       opacity: 0;
       animation: none;
