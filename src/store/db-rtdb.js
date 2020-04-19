@@ -1,9 +1,9 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
-import { firebaseDevConfig } from './config.js'
+import { firebaseProdConfig } from './config.js'
 
-export const db = firebase.initializeApp(firebaseDevConfig).database()
+export const db = firebase.initializeApp(firebaseProdConfig).database()
 const usersRef = db.ref('users')
 const pinsRef = db.ref('pins')
 
