@@ -74,7 +74,8 @@ export default {
       .then(() => {
         return Promise.all([
           this.$store.dispatch("getPins"),
-          this.includeScripts()
+          this.includeGmapsScript(),
+          this.includeOmsScript()
         ]);
       })
       .then(() => {
@@ -87,7 +88,7 @@ export default {
     init() {
       setTimeout(() => (this.loaded = true), 1000);
     },
-    includeScripts() {
+    includeGmapsScript() {
       if (document.getElementsByClassName("gm-src").length)
         return Promise.resolve();
       return new Promise(resolve => {
@@ -98,6 +99,20 @@ export default {
         };
         script.async = true;
         script.src = `https://maps.googleapis.com/maps/api/js?key=${this.mapsKey}&libraries=places,geometry`;
+        document.head.appendChild(script);
+      });
+    },
+    includeOmsScript() {
+      if (document.getElementsByClassName("oms-src").length)
+        return Promise.resolve();
+      return new Promise(resolve => {
+        let script = document.createElement("script");
+        script.classList.add("oms-src");
+        script.onload = () => {
+          resolve();
+        };
+        script.async = true;
+        script.src = `https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js`;
         document.head.appendChild(script);
       });
     }
