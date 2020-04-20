@@ -1,15 +1,15 @@
 @font-face {
   font-family: "GT America Light";
-  src: url("./GT-America-Compressed-Light.woff") format("woff"),
-    url("./GT-America-Compressed-Light.woff2") format("woff2");
+  src: url("./GT-America-Compressed-Light.woff2") format("woff2"),
+    url("./GT-America-Compressed-Light.woff") format("woff");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: "GT America Extended";
-  src: url("./GT-America-Extended-Regular.woff") format("woff"),
-    url("./GT-America-Extended-Regular.woff") format("woff2");
+  src: url("./GT-America-Extended-Regular.woff2") format("woff2"),
+    url("./GT-America-Extended-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
