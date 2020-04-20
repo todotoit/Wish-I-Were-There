@@ -172,11 +172,11 @@ canvas {
 @supports (mix-blend-mode: multiply) {
   .color-overlay.view {
     opacity: 0.3;
-    background-image: url("~@/assets/img/white-noise.jpg");
+    background-image: url("~@/assets/img/white-noise.webp");
     mix-blend-mode: multiply;
   }
-  .webp .color-overlay.view {
-    background-image: url("~@/assets/img/white-noise.webp");
+  .no-webp .color-overlay.view {
+    background-image: url("~@/assets/img/white-noise.jpg");
   }
 }
 </style>
