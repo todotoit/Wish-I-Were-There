@@ -1,6 +1,6 @@
 <template>
   <div class="home-animations">
-    <img src="@/assets/img/home-assets.svg" svg-inline class="items" :width="width" />
+    <img src="@/assets/img/home-assets.svg" svg-inline class="items" />
   </div>
 </template>
 

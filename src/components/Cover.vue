@@ -8,7 +8,7 @@
 <script>
 import fragment from "@/assets/frags/noise.frag";
 import vertex from "@/assets/frags/base.vert";
-import { hasWebGl } from "@/utils";
+import { supports } from "@/utils";
 
 function Uniform(name, suffix, gl, program) {
   this.name = name;
@@ -39,12 +39,13 @@ export default {
   data() {
     return {
       webgl: true,
+      gl: null,
       width: window.innerWidth,
       height: window.innerHeight
     };
   },
   mounted() {
-    if (!hasWebGl) this.webgl = false;
+    if (!supports.webgl) this.webgl = false;
     if (!this.webgl) return;
     this.mouseX = 0;
     this.mouseY = 0;
@@ -59,7 +60,11 @@ export default {
   methods: {
     run() {
       const canvas = this.$refs.canvas;
-      this.gl = canvas.getContext(`webgl`);
+      this.gl = canvas.getContext("webgl");
+      if (!this.gl) {
+        this.webgl = false;
+        return;
+      }
 
       // create program
       this.program = this.gl.createProgram();
@@ -143,7 +148,7 @@ export default {
   &.no-webgl {
     background-size: cover;
     .color-overlay.view {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 }
@@ -153,16 +158,19 @@ canvas {
 }
 .color-overlay.view {
   background-color: rgba(29, 27, 38, 0.5);
-  background-image: url("~@/assets/img/white-noise.jpg");
   background-position: left top;
   background-size: 800px;
   animation: shiftbg 1s infinite steps(5);
+  z-index: 2;
+  opacity: 1;
+  @supports (mix-blend-mode: multiply) {
+    opacity: 0.3;
+    background-image: url("~@/assets/img/white-noise.jpg");
+    mix-blend-mode: multiply;
+  }
   @media screen and (max-width: $mqTablet) {
     animation: shiftbg 1s infinite steps(2);
     opacity: 0.15;
   }
-  opacity: 0.3;
-  mix-blend-mode: multiply;
-  z-index: 2;
 }
 </style>
