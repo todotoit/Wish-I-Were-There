@@ -1,3 +1,4 @@
+import Modernizr from "modernizr";
 import BadWords from 'bad-words'
 import blacklist from '@/assets/word-blacklist.js'
 
@@ -26,14 +27,11 @@ export function randomString(length, chars) {
     return result;
 }
 
-export function hasWebGl() {
-    const supports = 'probablySupportsContext' in canvas
-        ? 'probablySupportsContext'
-        : 'supportsContext';
-
-    if (supports in canvas) {
-        return canvas[supports]('webgl') || canvas[supports]('experimental-webgl');
-    }
-
-    return 'WebGLRenderingContext' in window;
+export const supports = {
+    webgl: Modernizr.webgl,
+    webp: false
 }
+
+Modernizr.on('webp.alpha', function (result) {
+    supports.webp = result
+});

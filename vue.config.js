@@ -9,6 +9,7 @@ module.exports = {
       }
     }
   },
+  transpileDependencies: ['bad-words', '@google/markerclustererplus', '@firebase/app', '@firebase/database'],
   chainWebpack: config => {
     config.module
       .rule("vue")
@@ -22,5 +23,12 @@ module.exports = {
       .loader('raw-loader')
       .end()
     config.resolve.alias.set('assets', path.resolve('src/assets'));
+    config.module
+      .rule("modernizr")
+      .test(/\.modernizrrc$/)
+      .use('modernizr-loader')
+      .loader('modernizr-loader');
+    config.resolve.alias
+      .set('modernizr$', path.resolve(__dirname, ".modernizrrc"))
   },
 }
