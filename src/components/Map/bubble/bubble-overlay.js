@@ -1,3 +1,4 @@
+import { supports } from '@/utils'
 import BubbleImage from './bubble-img'
 
 export function createBubble(map, center, options) {
@@ -21,9 +22,10 @@ function BubbleOverlay(bounds, map, options) {
     this.map = map;
     this.user = options.user
     this.marker = options.marker
+    const ext = supports.webp ? 'webp' : 'png'
     this.images = [
-        require('@/assets/img/bubbles/bubbles-gradient.png'),
-        require('@/assets/img/bubbles/bubbles-expanded.png')
+        require('@/assets/img/bubbles/bubbles-gradient.' + ext),
+        require('@/assets/img/bubbles/bubbles-expanded.' + ext)
     ]
 
     this.div = null;
@@ -36,7 +38,8 @@ function createOverlayProto() {
     BubbleOverlay.prototype.onAdd = function () {
         const div = document.createElement('div');
         this.label = document.createElement('label');
-        this.label.classList.add('exte-small', 'bubble-label');
+        this.label.classList.add('exte-small');
+        this.label.classList.add('bubble-label');
         this.label.innerText = this.user.name
         div.classList.add('bubble-container');
         this.bubble = new BubbleImage(div, this.images)

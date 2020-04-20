@@ -1,5 +1,3 @@
-import { TweenMax } from 'gsap'
-
 export default class BubbleImage {
     constructor(container, images) {
         this.r = 50
