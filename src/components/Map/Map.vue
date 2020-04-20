@@ -62,6 +62,7 @@ export default {
         m.setOpacity(val ? 0.3 : 1);
         m.overlay.setDisabled(val);
       });
+      this.pinMarkers.forEach(m => m.setOpacity(val ? 0.3 : 1));
       if (val) {
         val.setOpacity(1);
         val.overlay.setDisabled(false);
@@ -71,7 +72,6 @@ export default {
       this.toggleClustering(this.highlight);
     },
     selectedPinMarker(val) {
-      this.pinMarkers.forEach(m => m.setOpacity(val ? 0.3 : 1));
       if (val) val.setOpacity(1);
     },
     $route(to, from) {
@@ -140,7 +140,7 @@ export default {
       markersWontMove: true,
       markersWontHide: true,
       basicFormatEvents: true,
-      nearbyDistance: 50,
+      nearbyDistance: 20,
       circleFootSeparation: 50,
     });
     const mti = google.maps.MapTypeId;
@@ -410,13 +410,6 @@ export default {
     }
   }
 }
-/* .map-container:not(.active)
-  .gm-style
-  > div:first-child
-  > div:first-child
-  > div:last-child {
-  opacity: 0.2;
-} */
 .bubble-container {
   position: absolute;
   transition: opacity 0.3s;
