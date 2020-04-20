@@ -163,14 +163,20 @@ canvas {
   animation: shiftbg 1s infinite steps(5);
   z-index: 2;
   opacity: 1;
-  @supports (mix-blend-mode: multiply) {
+  @media screen and (max-width: $mqTablet) {
+    animation: shiftbg 1s infinite steps(2);
+    opacity: 0.15;
+  }
+}
+
+@supports (mix-blend-mode: multiply) {
+  .color-overlay.view {
     opacity: 0.3;
     background-image: url("~@/assets/img/white-noise.jpg");
     mix-blend-mode: multiply;
   }
-  @media screen and (max-width: $mqTablet) {
-    animation: shiftbg 1s infinite steps(2);
-    opacity: 0.15;
+  .webp .color-overlay.view {
+    background-image: url("~@/assets/img/white-noise.webp");
   }
 }
 </style>
