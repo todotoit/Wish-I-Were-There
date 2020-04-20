@@ -66,7 +66,8 @@ export default {
     }
     if (this.isTutorial) this.$router.push("/");
     this.$store
-      .dispatch("getUsers")
+      .dispatch("firebaseAuth")
+      .then(() => this.$store.dispatch("getUsers"))
       .then(() => {
         return Promise.all([
           this.$store.dispatch("getPins"),

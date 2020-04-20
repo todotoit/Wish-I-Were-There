@@ -5,7 +5,7 @@ import { store } from './db-rtdb'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const vuex = new Vuex.Store({
   state: {
     users: [],
     pins: [],
@@ -14,7 +14,8 @@ export default new Vuex.Store({
     ready: false,
     user: null,
     userPins: null,
-    placing: false
+    placing: false,
+    auth: false
   },
 
   mutations: {
@@ -77,3 +78,4 @@ export default new Vuex.Store({
     }
   }
 })
+export default vuex;

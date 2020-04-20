@@ -8,8 +8,6 @@ export const db = firebase.initializeApp(config).database()
 const usersRef = db.ref('users')
 const pinsRef = db.ref('pins')
 
-firebase.auth().signInWithEmailAndPassword(process.env.VUE_APP_FIREBASE_USER, process.env.VUE_APP_FIREBASE_PASS)
-
 function prepareUser(context, snap) {
     const user = snap.val()
     user.id = snap.key
@@ -29,9 +27,22 @@ export const store = {
         },
         ADD_PIN(state, data) {
             state.pins = [...state.pins, data]
+        },
+        SET_AUTH(state, data) {
+            state.auth = data
         }
     },
     actions: {
+        firebaseAuth: context => {
+            return firebase.auth()
+                .signInWithEmailAndPassword(process.env.VUE_APP_FIREBASE_USER, process.env.VUE_APP_FIREBASE_PASS)
+                .then(() => {
+                    return context.commit('SET_AUTH', true)
+                })
+                .catch(() => {
+                    return context.commit('SET_AUTH', false)
+                })
+        },
         getUsers: context => {
             usersRef.on('child_added', function (data) {
                 const user = prepareUser(context, data)
