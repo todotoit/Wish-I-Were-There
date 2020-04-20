@@ -20,10 +20,6 @@
       </div>
     </transition>
     <Cover class="shader-bg" v-if="info || (!isExplore && !isTutorial)" />
-    <div class="assets-preload">
-      <img src="@/assets/img/bubbles/bubbles-expanded.png" />
-      <img src="@/assets/img/bubbles/bubbles-gradient.png" />
-    </div>
   </div>
 </template>
 
