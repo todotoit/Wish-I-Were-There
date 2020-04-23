@@ -47,9 +47,6 @@ function createOverlayProto() {
         const panes = this.getPanes();
         panes.overlayLayer.appendChild(div);
         panes.overlayLayer.appendChild(this.label)
-        google.maps.event.addDomListener(div, 'click', e => {
-            google.maps.event.trigger(this.marker, 'click');
-        });
         const d = this.map.selectedUserMarker && !(this.map.selectedUserMarker.user.id === this.user.id)
         this.setVisible(this.map.showUserMarkers)
         this.setDisabled(d)
@@ -66,13 +63,10 @@ function createOverlayProto() {
         let zoomLevel = 0
         if (zoom > 16) zoomLevel = 1
 
-        const markerPos = overlayProjection.fromLatLngToDivPixel(this.marker.getPosition())
-        this.label.style.top = markerPos.y + 'px'
-        this.label.style.left = markerPos.x + 'px'
-
         const sw = overlayProjection.fromLatLngToDivPixel(this.bounds.getSouthWest());
         const ne = overlayProjection.fromLatLngToDivPixel(this.bounds.getNorthEast());
-
+        const markerPos = overlayProjection.fromLatLngToDivPixel(this.marker.getPosition())
+        this.label.style.transform = `translate(${markerPos.x}px, ${markerPos.y}px)`
         if (zoom < 14) {
             this.div.classList.add('far')
             this.label.classList.add('far')
@@ -83,8 +77,7 @@ function createOverlayProto() {
             this.label.classList.remove('far')
         }
 
-        this.div.style.left = sw.x + 'px';
-        this.div.style.top = ne.y + 'px';
+        this.div.style.transform = `translate(${sw.x}px, ${ne.y}px)`
         this.div.style.width = (ne.x - sw.x) + 'px';
         this.div.style.height = (sw.y - ne.y) + 'px';
         this.bubble.setZoomLevel(zoomLevel)

@@ -140,7 +140,7 @@ export default {
       markersWontMove: true,
       markersWontHide: true,
       basicFormatEvents: true,
-      nearbyDistance: 20,
+      nearbyDistance: 30,
       circleFootSeparation: 50,
     });
     const mti = google.maps.MapTypeId;
@@ -448,13 +448,15 @@ export default {
 }
 label.bubble-label {
   position: absolute;
-  z-index: 20;
+  top: 0;
+  left: 0;
+  z-index: 200;
   user-select: none;
   color: $col-green;
   font-size: 1rem;
   white-space: nowrap;
   display: block;
-  transform: translate(15px, -100%);
+  padding-left: .25rem;
   &::before {
     content: ".";
   }
