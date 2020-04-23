@@ -53,12 +53,12 @@ export default {
     });
     setTimeout(() => marker.setAnimation(null), 3000);
     this.$store.commit("SET_MARKER", marker);
-    google.maps.event.addListener(
+    this.mapClickListener = google.maps.event.addListener(
       this.map,
       "click",
       this.handleInput.bind(this)
     );
-    google.maps.event.addListener(
+    this.mapTouchListener = google.maps.event.addListener(
       this.map,
       "touch",
       this.handleInput.bind(this)
@@ -69,8 +69,8 @@ export default {
     if (this.geolocation) this.locateUser();
   },
   destroyed() {
-    google.maps.event.clearListeners(this.map, "click", this.updateMarker);
-    google.maps.event.clearListeners(this.map, "touch", this.updateMarker);
+    google.maps.event.removeListener(this.mapClickListener);
+    google.maps.event.removeListener(this.mapTouchListener);
     this.marker.setMap(null);
   },
   methods: {
