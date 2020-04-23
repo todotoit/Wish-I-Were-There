@@ -229,8 +229,8 @@ export default {
       };
       const overlay = createBubble(this.map, pos, { user, marker });
       marker.addListener("spider_format", e => {
-        marker.overlay.update();
-        console.log(e)
+        this.map.setZoom(this.map.getZoom())
+        google.maps.event.trigger(this.map,'click')
       });
       marker.addListener("spider_click", e => {
         if (e) e.stop();
