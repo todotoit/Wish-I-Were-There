@@ -39,6 +39,8 @@ import Tools from "./Tools";
 import Events from "@/plugins/events";
 import MarkerClusterer from "@google/markerclustererplus";
 
+const CLUSTER_GRID_SIZE = 40;
+
 export default {
   name: "Map",
   components: { SearchLocation, Tools },
@@ -79,10 +81,12 @@ export default {
       if (from.meta.tutorial && to.meta.explore) {
         this.toggleUserMarkers(true);
         this.togglePinMarkers(true);
+        this.toggleClustering(true)
       }
       if (!from.meta.tutorial && to.meta.tutorial) {
         this.toggleUserMarkers(false);
         this.togglePinMarkers(false);
+        this.toggleClustering(false)
       }
     }
   },
@@ -141,10 +145,10 @@ export default {
       markersWontHide: true,
       basicFormatEvents: true,
       nearbyDistance: 30,
-      circleFootSeparation: 50,
+      circleFootSeparation: 50
     });
     const mti = google.maps.MapTypeId;
-    this.oms.legColors.highlighted[mti.ROADMAP] = '#02E19F'
+    this.oms.legColors.highlighted[mti.ROADMAP] = "#02E19F";
     this.$store.commit("SET_MAP", map);
     this.createUserCluster();
     this.createPinCluster();
@@ -189,7 +193,7 @@ export default {
       this.userCluster = new MarkerClusterer(this.map, this.userMarkers, {
         styles: null,
         maxZoom: 13,
-        gridSize: 30,
+        gridSize: CLUSTER_GRID_SIZE,
         clusterClass: "map-cluster",
         imageExtension: "svg",
         ignoreHidden: true
@@ -199,7 +203,7 @@ export default {
       this.pinCluster = new MarkerClusterer(this.map, this.pinMarkers, {
         styles: null,
         maxZoom: 13,
-        gridSize: 30,
+        gridSize: CLUSTER_GRID_SIZE,
         imagePath: "../images/s",
         clusterClass: "map-cluster",
         imageExtension: "svg",
@@ -224,9 +228,9 @@ export default {
         disabled: this.selectedUserMarker
       };
       const overlay = createBubble(this.map, pos, { user, marker });
-/*       marker.addListener('spider_format', e => {
-        marker.overlay.update()
-      }) */
+      marker.addListener("spider_format", e => {
+        marker.overlay.update();
+      });
       marker.addListener("spider_click", e => {
         if (e) e.stop();
         this.highlightUser(marker);
@@ -363,10 +367,10 @@ export default {
     },
     toggleClustering(disable) {
       this.userCluster.setMaxZoom(disable ? 1 : 13);
-      this.userCluster.setGridSize(disable ? 1 : 30);
+      this.userCluster.setGridSize(disable ? 1 : CLUSTER_GRID_SIZE);
       this.userCluster.repaint();
       this.pinCluster.setMaxZoom(disable ? 1 : 13);
-      this.pinCluster.setGridSize(disable ? 1 : 30);
+      this.pinCluster.setGridSize(disable ? 1 : CLUSTER_GRID_SIZE);
       this.pinCluster.repaint();
     }
   }
@@ -459,7 +463,7 @@ label.bubble-label {
   font-size: 1rem;
   white-space: nowrap;
   display: block;
-  padding-left: .25rem;
+  padding-left: 0.25rem;
   &::before {
     content: ".";
   }
