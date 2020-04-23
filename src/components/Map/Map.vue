@@ -224,6 +224,9 @@ export default {
         disabled: this.selectedUserMarker
       };
       const overlay = createBubble(this.map, pos, { user, marker });
+      marker.addListener('spider_format', e => {
+        marker.overlay.update()
+      })
       marker.addListener("spider_click", e => {
         if (e) e.stop();
         this.highlightUser(marker);

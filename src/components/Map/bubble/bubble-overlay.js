@@ -59,6 +59,7 @@ function createOverlayProto() {
     BubbleOverlay.prototype.update = function () {
 
         const overlayProjection = this.getProjection();
+        if(!overlayProjection) return
         const zoom = overlayProjection['T'].zoom
         let zoomLevel = 0
         if (zoom > 16) zoomLevel = 1
