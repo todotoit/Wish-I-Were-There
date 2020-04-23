@@ -230,6 +230,7 @@ export default {
       const overlay = createBubble(this.map, pos, { user, marker });
       marker.addListener("spider_format", e => {
         marker.overlay.update();
+        console.log(e)
       });
       marker.addListener("spider_click", e => {
         if (e) e.stop();
