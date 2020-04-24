@@ -1,29 +1,18 @@
 <template>
   <div class="home">
-    <template>
-      <div class="view-content" v-if="step==0">
-        <LanguageSwitch />
-        <header>
-          <h2 class="expa-large">{{ $t('title') }}</h2>
-          <p class="exte-medium" v-html="$t('intro')"></p>
-        </header>
-        <footer>
-          <button @click="next">{{ cta }}</button>
-          <a @click="$router.push('/explore')" v-if="!user">{{ $t('phase03Skip') }}</a>
-        </footer>
-      </div>
-      <div class="view-content" v-else>
-        <header>
-          <img svg-inline class="logo" src="@/assets/icons/cookie.svg" />
-          <p class="exte-large">{{ $t('cookieDesc') }}</p>
-        </header>
-        <footer>
-          <button @click="$router.push('/bubble')">{{ $t('cookieBtn') }}</button>
-        </footer>
-      </div>
-    </template>
+    <div class="view-content">
+      <LanguageSwitch />
+      <header>
+        <h2 class="expa-large">{{ $t('title') }}</h2>
+        <p class="exte-medium" v-html="$t('intro')"></p>
+      </header>
+      <footer>
+        <button @click="$router.push('/cookies')">{{ cta }}</button>
+        <a @click="$router.push('/explore')" v-if="!user">{{ $t('phase03Skip') }}</a>
+      </footer>
+    </div>
     <transition name="fade">
-      <HomeAnimations v-if="step===0" />
+      <HomeAnimations />
     </transition>
   </div>
 </template>
@@ -48,9 +37,9 @@ export default {
       return this.$store.state.userPins;
     },
     cta() {
-      if(this.pin) return this.$t('ctaHasPin')
-      else if(this.user) return this.$t('ctaHasUser')
-      else return this.$t('ctaStart')
+      if (this.pin) return this.$t("ctaHasPin");
+      else if (this.user) return this.$t("ctaHasUser");
+      else return this.$t("ctaStart");
     }
   },
   methods: {
