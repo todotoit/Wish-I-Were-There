@@ -3,8 +3,8 @@
     <div class="view-content">
       <header>
         <img svg-inline class="logo" src="@/assets/icons/cookie.svg" />
-        <p class="exte-large">{{ $t('cookieDesc') }}</p>
-        <a href="/privacy" target="_blank">{{ $t('privacyLink') }}</a>
+        <p class="exte-large" v-html="$t('cookieDesc')"></p>
+        <a href="/privacy" class="privacy-policy" target="_blank">{{ $t('privacyLink') }}</a>
       </header>
       <footer>
         <button @click="$router.push('/bubble')">{{ $t('cookieBtn') }}</button>
@@ -30,8 +30,14 @@ export default {
     svg {
       margin-bottom: 1rem;
     }
+    a.privacy-policy {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $col-green;
+      margin-top: 1rem;
+    }
   }
-  a {
+  p {
     margin-bottom: 0.5rem;
   }
 }
