@@ -20,7 +20,7 @@
           <button
             v-if="!user && isExplore"
             class="add-your-star"
-            @click="$router.push('/bubble')"
+            @click="$router.push('/cookies')"
           >{{ $t('exploreAddYours') }}</button>
         </footer>
       </div>

@@ -20,14 +20,14 @@ export default {
 
         // Add your name
         phase00Username: 'What’s your name?',
-        phase00Desc: 'Use a nickname if you want.',
+        phase00Desc: 'This is the name that will identify you on the collective map. Use a nickname if you want.',
         phase00Input: 'Enter your name here',
         phase00Btn: 'Next',
 
         // Place your bubble
         phase01Title: 'Where are you now?',
-        phase01Desc: 'Locate the little planet where you are self-isolating at the moment.',
-        phase01Address: 'Search the map',
+        phase01Desc: 'Locate the little planet where you are self-isolating at the moment. The location will be visible to other users too. If you don’t want to give your exact address, enter an approximate location.',
+        phase01Address: 'Search on the map',
         phase01Btn: 'Add planet',
 
         // Your bubble
@@ -38,7 +38,7 @@ export default {
         // Daydream
         phase03Title: 'Where would you love to go?',
         phase03Desc: 'Go ahead, daydream a little. Where is the first place you want to go to, as soon as we are all free to move around again?',
-        phase03Input: 'Search the map',
+        phase03Input: 'Search on the map',
         phase03Btn: 'Add Star',
         phase03Skip: 'Skip to the map',
 
@@ -108,14 +108,14 @@ export default {
 
         // Add your name
         phase00Username: 'Come ti chiami?',
-        phase00Desc: 'Questo è il nome con cui comparirai sulla mappa, puoi usare un nickname se vuoi.',
+        phase00Desc: 'Questo è il nome con cui comparirai sulla mappa collettiva. Puoi usare un nickname se vuoi.',
         phase00Input: 'Inserisci il tuo nome qui',
         phase00Btn: 'Avanti',
 
         // Place your bubble
         phase01Title: 'Dove passi il lockdown?',
-        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato.',
-        phase01Address: 'Cerca nella mappa',
+        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato. La posizione sarà visibile anche ad altri utenti. Se vuoi, puoi scegliere un punto approssimativo per non indicare il tuo indirizzo preciso.',
+        phase01Address: 'Cerca sulla mappa',
         phase01Btn: 'Aggiungi pianeta',
 
         // Your bubble
@@ -126,7 +126,7 @@ export default {
         // Daydream
         phase03Title: 'Dove sogni di essere?',
         phase03Desc: 'Concediti un sogno a occhi aperti. Qual è il primo posto dove andrai, appena saremo di nuovo liberi di spostarci?',
-        phase03Input: 'Cerca nella mappa',
+        phase03Input: 'Cerca sulla mappa',
         phase03Btn: 'Aggiungi stella',
         phase03Skip: 'Salta alla mappa',
 
