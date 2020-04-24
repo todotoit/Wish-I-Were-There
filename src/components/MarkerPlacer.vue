@@ -56,12 +56,12 @@ export default {
     this.mapClickListener = google.maps.event.addListener(
       this.map,
       "click",
-      this.handleInput.bind(this)
+      e => this.handleInput(e)
     );
     this.mapTouchListener = google.maps.event.addListener(
       this.map,
       "touch",
-      this.handleInput.bind(this)
+      e => this.handleInput(e)
     );
     marker.addListener("drag", () => {
       this.$emit("update");
@@ -82,6 +82,7 @@ export default {
       this.$emit("update");
     },
     handleInput(e) {
+      if (!e) return;
       this.updateMarker(e.latLng);
     },
     locateUser() {
