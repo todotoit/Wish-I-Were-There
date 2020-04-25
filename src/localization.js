@@ -19,8 +19,8 @@ export default {
         errorBadMessage: 'Could your message be offensive? Please review before publishing.',
 
         // Add your name
-        phase00Username: 'What’s your name?',
-        phase00Desc: 'This is the name that will identify you on the collective map. Use a nickname if you want.',
+        phase00Username: 'Pick a nickname',
+        phase00Desc: 'This is the name that will identify you on the collective map.',
         phase00Input: 'Enter your name here',
         phase00Btn: 'Next',
 
@@ -234,8 +234,8 @@ For further information on cookies and their use, visit: All About Cookies: www.
         errorBadMessage: 'Il tuo messaggio potrebbe essere offensivo. Controlla, prima di pubblicare.',
 
         // Add your name
-        phase00Username: 'Come ti chiami?',
-        phase00Desc: 'Questo è il nome con cui comparirai sulla mappa collettiva. Puoi usare un nickname se vuoi.',
+        phase00Username: 'Scegli un nickname',
+        phase00Desc: 'Questo è il nome con cui comparirai sulla mappa collettiva.',
         phase00Input: 'Inserisci il tuo nome qui',
         phase00Btn: 'Avanti',
 
