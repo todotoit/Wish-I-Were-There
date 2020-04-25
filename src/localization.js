@@ -82,7 +82,6 @@ export default {
         privacyIntroText: `We know your personal data – and the way they are used – are important. This privacy policy will help you understand which personal data we collect, why we collect them, and how we use them.`,
         privacyHowItWorksTitle: `HOW DOES THE EXPERIENCE WORK?`,
         privacyHowItWorksText: `<p>The app records the coordinates of the location you select as your “planet” to show it on the map, together with other users’. We also use a technical cookie that allows us to recognize you when visit the website again. We do not analyze nor record any personal information (e.g. IP address).</p>
-        <p>Furthermore, you can remove your data at any time, eliminating your pin from the map and from our database.</p>
         <p>The app uses a third-party service (Google Maps), which might also use cookies. You can find further information on how Google Maps manages its cookies <a href="https://policies.google.com/technologies/cookies?hl=en-US" target="blank">here</a>.</p>`,
 
         privacyPolicy: `<p>This page describes both the website’s practices on the processing of personal data of users visiting the website and personal data processing methods and purposes. This Privacy Policy has been created in accordance with articles 13-14 of the EU Regulation 2016/679 for those who interact with the web services accessible via electronic data transmission through: https://wishiwerethere.xyz/<br>
@@ -298,7 +297,6 @@ For further information on cookies and their use, visit: All About Cookies: www.
         privacyIntroText: `Sappiamo che tuoi dati personali – e il modo in cui sono utilizzati – sono importanti. Questa informativa sulla privacy ti aiuterà a capire quali dati personali raccogliamo, perché li raccogliamo e come li utilizziamo.`,
         privacyHowItWorksTitle: `COME FUNZIONA L’ESPERIENZA`,
         privacyHowItWorksText: `<p>L'applicazione registra le coordinate del punto che indicherai come tuo “pianeta” per mostrarle sulla mappa insieme ai contributi degli altri utenti. Utilizziamo anche un cookie tecnico che ci permette di riconoscerti quando visiti nuovamente il sito. Non analizziamo né registriamo alcuna tua informazione personale (es. indirizzo IP).</p>
-        <p>Inoltre potrai, in qualsiasi momento, rimuovere il tuo contributo, che verrà eliminato dalla mappa e dal nostro database.</p>
         <p>L'applicazione utilizza un servizio di terze parti (Google Maps), che potrebbe utilizzare a sua volta dei cookie. <a href="https://policies.google.com/technologies/cookies?hl=en-US" target="blank">Qui</a> trovi maggiori informazioni su come Google Maps gestisce i suoi cookie.</p>`,
 
         privacyPolicy: `<p>In questa pagina si descrivono le modalità di gestione del sito in riferimento al trattamento dei dati personali degli utenti che lo consultano, nonché modalità e finalità di trattamento dei dati personali. Si tratta di un’informativa resa anche ai sensi dell’art.13-14 Reg.to UE 2016/679 a coloro che interagiscono con i servizi web accessibili per via telematica a partire dall’indirizzo: https://wishiwerethere.xyz/ </p>
