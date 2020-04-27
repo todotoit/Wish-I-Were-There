@@ -25,7 +25,7 @@
           >{{ $t('exploreAddYours') }}</button>
           <a
             v-if="isExplore && isCurrentUserSelected"
-            class="add-your-star"
+            class="delete-user"
             @click="$store.commit('SET_DELETING', true)"
           >{{ $t('exploreRemoveYours') }}</a>
         </footer>
@@ -409,6 +409,9 @@ export default {
 #search-location {
   width: 100%;
 }
+.delete-user {
+  color: $col-green;
+}
 @media screen and (min-width: $mqTablet) {
   .map-container .view .view-content {
     header {
@@ -423,6 +426,7 @@ export default {
       }
       .tools {
         flex: 1;
+        min-width: 18rem;
         max-width: 25%;
         .tools-wrap {
           padding: 0;
