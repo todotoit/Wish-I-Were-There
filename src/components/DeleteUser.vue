@@ -3,7 +3,7 @@
     <div class="content">
       <template v-if="!deleted">
         <h2 class="expa-large">{{ $t('removeUserTitle') }}</h2>
-        <p>{{ $t('removeUserContent') }}</p>
+        <p class="desc">{{ $t('removeUserContent') }}</p>
         <button @click="deleteUser" v-if="!loading">{{$t('removeUserConfirm')}}</button>
         <Loader v-else />
         <p
@@ -15,8 +15,8 @@
       </template>
       <template v-else>
         <h2 class="expa-large">{{ $t('removedUserTitle') }}</h2>
-        <p>{{ $t('removedUserContent') }}</p>
-        <a @click="reload">{{ $t('removedUserReload') }}</a>
+        <p class="desc">{{ $t('removedUserContent') }}</p>
+        <a @click="reload" class="reload">{{ $t('removedUserReload') }}</a>
       </template>
     </div>
   </div>
@@ -64,15 +64,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $col-white;
   .content {
     text-align: center;
     max-width: 560px;
-    padding: 1rem;
+    padding: 1.5rem;
     border: 1px solid $col-white;
     background-color: $col-dark;
   }
   p {
     margin-bottom: 1rem;
+    &.desc {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
   }
   button {
     margin-bottom: 0;
@@ -80,6 +85,9 @@ export default {
   a {
     display: block;
     margin-top: 0.5rem;
+    &.reload {
+      color: $col-green;
+    }
   }
   ::v-deep .error {
     margin: 1rem 0;
