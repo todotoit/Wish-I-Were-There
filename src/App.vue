@@ -64,7 +64,8 @@ export default {
         }
       };
     }
-    if (this.isTutorial || this.$route.path === '/cookies') this.$router.push("/");
+    if (this.isTutorial || this.$route.path === "/cookies")
+      this.$router.push("/");
     this.$store
       .dispatch("firebaseAuth")
       .then(() => this.$store.dispatch("getUsers"))
@@ -77,9 +78,19 @@ export default {
       })
       .then(() => {
         this.$store.commit("SET_READY", true);
-        const userId = this.$cookie.get("daydream_user");
-        if (userId) this.$store.dispatch("setCurrentUser", userId).then(r => {
-          if(!r) this.$cookie.delete('daydream_user')
+        const cookie = this.$cookie.get("daydream_user");
+        if (!cookie) return;
+        let user;
+        try {
+          const o = JSON.parse(cookie);
+          user = { id: o.id, key: o.key };
+        } catch {
+          user = { id: cookie, key: null };
+        }
+        console.log("user detected", user);
+        if (!user) return;
+        this.$store.dispatch("setCurrentUser", user).then(r => {
+          if (!r) this.$cookie.delete("daydream_user");
         });
       });
   },
