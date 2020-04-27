@@ -91,6 +91,13 @@ export default {
         this.$store.dispatch("setCurrentUser", user).then(r => {
           if (!r) this.$cookie.delete("daydream_user");
         });
+        if (!user.key) {
+          this.$store.dispatch("upgradeUser", user).then(r => {
+            if (r) {
+              this.$cookie.set("daydream_user", JSON.stringify(r));
+            }
+          });
+        }
       });
   },
   methods: {
