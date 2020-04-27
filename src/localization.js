@@ -70,6 +70,7 @@ export default {
         removedUserTitle: 'Deleted',
         removedUserContent: 'Your pins have been removed from the map.',
         removedUserReload: 'Reload the map',
+        removedUserError: 'There was an error while deleting the user, please contact <a href="mailto:support@todo.to.it">support@todo.to.it</a> for assistance.',
 
         // About
         aboutTitle: 'The Project',
@@ -277,6 +278,7 @@ For further information on cookies and their use, visit: All About Cookies: www.
         exploreAddYours: 'Aggiungi la tua stella',
         exploreRemoveYours: 'Elimina il tuo contributo',
 
+
         // Remove
         removeUserTitle: 'Sei sicuro?',
         removeUserContent: 'Vuoi eliminare il tuo contributo alla mappa? I pin da te posizionati e il messaggio lasciato non saranno visibili a nessuno.',
@@ -285,6 +287,7 @@ For further information on cookies and their use, visit: All About Cookies: www.
         removedUserTitle: 'Eliminato',
         removedUserContent: 'Il tuo contributo è stato rimosso con successo dalla mappa. A breve verrà ricaricata la pagina escludendo il tuo contenuto, se non succede usa questo link:',
         removedUserReload: 'Ricarica la mappa',
+        removedUserError: 'Si è verificato un errore durante l\'eliminazione, se il problema dovesse ripetersi contatta <a href="mailto:support@todo.to.it">support@todo.to.it</a> per assistenza.',
 
         // About
         aboutTitle: 'Il Progetto',
