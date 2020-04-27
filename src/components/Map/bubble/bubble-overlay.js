@@ -1,4 +1,4 @@
-import { supports } from '@/utils'
+import { supports, map, clamp } from '@/utils'
 import BubbleImage from './bubble-img'
 
 export function createBubble(map, center, options) {
@@ -83,8 +83,8 @@ function createOverlayProto() {
             this.div.classList.remove('far')
             this.label.classList.remove('far')
         }
-
-        this.div.style.transform = `translate(${sw.x}px, ${ne.y}px)`
+        const scale = zoomLevel ? 1 : clamp(map(zoom, 14, 17, 2, 1), 1, 1.5)
+        this.div.style.transform = `translate(${sw.x}px, ${ne.y}px) scale(${scale})`
         this.div.style.width = (ne.x - sw.x) + 'px';
         this.div.style.height = (sw.y - ne.y) + 'px';
         this.bubble.setZoomLevel(zoomLevel)

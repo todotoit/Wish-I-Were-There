@@ -47,7 +47,7 @@ import Events from "@/plugins/events";
 import MarkerClusterer from "@google/markerclustererplus";
 
 const CLUSTER_GRID_SIZE = 40;
-const CLUSTER_MAX_ZOOM = 15;
+const CLUSTER_MAX_ZOOM = 14;
 
 export default {
   name: "Map",
@@ -149,7 +149,7 @@ export default {
       center: { lat: this.startPos.lat, lng: this.startPos.lng },
       zoom: 13,
       minZoom: 3,
-      maxZoom: 19,
+      maxZoom: 18,
       mapTypeId: "roadmap",
       disableDefaultUI: true,
       zoomControl: true,
@@ -468,6 +468,7 @@ export default {
     transition: opacity 0.5s;
     &.far {
       animation: spin 80s linear infinite;
+      opacity: .2;
     }
     opacity: 0.3;
     &.hidden {

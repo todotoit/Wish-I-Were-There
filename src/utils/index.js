@@ -27,6 +27,14 @@ export function randomString(length, chars) {
     return result;
 }
 
+export function map(n, in_min, in_max, out_min, out_max) {
+    return (n - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+export function clamp(n, min, max) {
+    return Math.min(Math.max(n, min), max);
+};
+
 export const supports = {
     webgl: Modernizr.webgl,
     webp: false
