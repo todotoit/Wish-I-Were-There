@@ -25,7 +25,7 @@
           <a
             v-if="isExplore && isCurrentUserSelected"
             class="add-your-star"
-            @click="$router.push('/cookies')"
+            @click="$router.push('/delete')"
           >{{ $t('exploreRemoveYours') }}</a>
         </footer>
       </div>
