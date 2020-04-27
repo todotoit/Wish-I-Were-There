@@ -75,7 +75,7 @@ export const store = {
                 context.commit('SET_PINS', pins)
             })
         },
-        createNewUser: (context, data) => {
+        createNewUser: (data) => {
             const coordinates = data.marker.getPosition()
             const userData = {
                 coordinates: { Wa: coordinates.lat(), za: coordinates.lng() },
@@ -91,7 +91,7 @@ export const store = {
             if (!context.state.user || !context.state.key) return Promise.resolve(false)
             return deleteUserCloud({ user: context.state.user, key: context.state.key, pin: context.getters.getUserPin(context.state.user.id) })
         },
-        createNewPin: (context, data) => {
+        createNewPin: (data) => {
             const coordinates = data.marker.getPosition()
             const pinData = {
                 coordinates: { Wa: coordinates.lat(), za: coordinates.lng() },
