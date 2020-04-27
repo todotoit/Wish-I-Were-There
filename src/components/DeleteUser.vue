@@ -4,8 +4,13 @@
       <template v-if="!deleted">
         <h2 class="expa-large">{{ $t('removeUserTitle') }}</h2>
         <p>{{ $t('removeUserContent') }}</p>
-        <button @click="deleteUser">{{$t('removeUserConfirm')}}</button>
-        <p v-if="error" v-html="$t('removedUserError')" class="error"></p>
+        <button @click="deleteUser" v-if="!loading">{{$t('removeUserConfirm')}}</button>
+        <Loader v-else />
+        <p
+          v-if="error"
+          v-html="$t('removedUserError', {id: $store.state.user.id, key: $store.state.key})"
+          class="error"
+        ></p>
         <a @click="$store.commit('SET_DELETING', false)">{{$t('removeUserCancel')}}</a>
       </template>
       <template v-else>
@@ -18,17 +23,23 @@
 </template>
 
 <script>
+import SingleLoader from "@/components/SingleLoader";
+
 export default {
   name: "DeleteUser",
+  components: { Loader: SingleLoader },
   data() {
     return {
       deleted: false,
-      error: false
+      error: false,
+      loading: false
     };
   },
   methods: {
     deleteUser() {
+      this.loading = true;
       return this.$store.dispatch("deleteCurrentUser").then(r => {
+        this.loading = false;
         if (r) this.deleted = true;
         else this.error = true;
       });
@@ -53,7 +64,7 @@ export default {
   align-items: center;
   .content {
     text-align: center;
-    max-width: 500px;
+    max-width: 560px;
     padding: 1rem;
     border: 1px solid $col-white;
     background-color: $col-dark;
@@ -69,11 +80,11 @@ export default {
     margin-top: 0.5rem;
   }
   ::v-deep .error {
-      margin: 1rem 0;
-      color: $col-green;
-      a {
-          text-transform: none;
-      }
+    margin: 1rem 0;
+    color: $col-green;
+    a {
+      text-transform: none;
+    }
   }
 }
 </style>
