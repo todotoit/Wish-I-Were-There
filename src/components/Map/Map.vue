@@ -22,6 +22,11 @@
             class="add-your-star"
             @click="$router.push('/cookies')"
           >{{ $t('exploreAddYours') }}</button>
+          <a
+            v-if="isExplore && isCurrentUserSelected"
+            class="add-your-star"
+            @click="$router.push('/cookies')"
+          >{{ $t('exploreRemoveYours') }}</a>
         </footer>
       </div>
     </div>
@@ -100,6 +105,11 @@ export default {
     },
     isExplore() {
       return this.$route.meta.explore;
+    },
+    isCurrentUserSelected() {
+      return this.selectedUserMarker && this.user
+        ? this.selectedUserMarker.user.id === this.user.id
+        : false;
     },
     map() {
       return this.$store.state.map;
