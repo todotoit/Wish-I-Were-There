@@ -14,6 +14,7 @@ const vuex = new Vuex.Store({
     ready: false,
     user: null,
     userPins: null,
+    key: null,
     placing: false,
     auth: false
   },
@@ -38,6 +39,9 @@ const vuex = new Vuex.Store({
     SET_USER(state, data) {
       state.user = data
     },
+    SET_USER_KEY(state, data) {
+      state.key = data
+    },
     SET_USER_PINS(state, data) {
       state.userPins = data
     },
@@ -48,9 +52,13 @@ const vuex = new Vuex.Store({
 
   actions: {
     ...store.actions,
-    setCurrentUser: (context, id) => {
-      context.commit('SET_USER', context.getters.getUser(id))
-      context.commit('SET_USER_PINS', context.getters.getUserPin(id))
+    setCurrentUser: (context, data) => {
+      const user = context.getters.getUser(data.id)
+      if (!user) return false
+      context.commit('SET_USER', user)
+      context.commit('SET_USER_PINS', context.getters.getUserPin(user.id))
+      context.commit('SET_USER_KEY', data.key)
+      return user
     }
   },
 
