@@ -25,7 +25,7 @@
           <a
             v-if="isExplore && isCurrentUserSelected"
             class="add-your-star"
-            @click="$router.push('/delete')"
+            @click="$router.push('/cookies')"
           >{{ $t('exploreRemoveYours') }}</a>
         </footer>
       </div>
@@ -245,7 +245,6 @@ export default {
       });
       marker.addListener("spider_format", e => {
         this.map.setZoom(this.map.getZoom());
-        google.maps.event.trigger(this.map, "click");
       });
       marker.addListener("spider_click", e => {
         if (e) e.stop();
