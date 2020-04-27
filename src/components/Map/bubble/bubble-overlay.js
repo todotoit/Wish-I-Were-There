@@ -58,7 +58,8 @@ function createOverlayProto() {
     };
 
     BubbleOverlay.prototype.update = function () {
-        if (!this.map.getBounds().contains(this.bounds.getNorthEast()) && !this.map.getBounds().contains(this.bounds.getSouthWest())) {
+        //if (!this.map.getBounds().contains(this.bounds.getNorthEast()) && !this.map.getBounds().contains(this.bounds.getSouthWest())) {
+        if (!this.map.getBounds().contains(this.marker.getPosition())) {
             this.div.classList.add('far')
             this.label.classList.add('far')
             return
