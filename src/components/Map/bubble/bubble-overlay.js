@@ -22,6 +22,7 @@ function BubbleOverlay(bounds, map, options) {
     this.map = map;
     this.user = options.user
     this.marker = options.marker
+    this.zoomLimit = options.zoomLimit || 14
     const ext = supports.webp ? 'webp' : 'png'
     this.images = [
         require('@/assets/img/bubbles/bubbles-gradient.' + ext),
@@ -57,6 +58,11 @@ function createOverlayProto() {
     };
 
     BubbleOverlay.prototype.update = function () {
+        if (!this.map.getBounds().contains(this.bounds.getNorthEast()) && !this.map.getBounds().contains(this.bounds.getSouthWest())) {
+            this.div.classList.add('far')
+            this.label.classList.add('far')
+            return
+        }
         const overlayProjection = this.getProjection();
         if (!overlayProjection || !this.div) return
         const zoom = overlayProjection['T'].zoom
@@ -67,7 +73,7 @@ function createOverlayProto() {
         const ne = overlayProjection.fromLatLngToDivPixel(this.bounds.getNorthEast());
         const markerPos = overlayProjection.fromLatLngToDivPixel(this.marker.getPosition())
         this.label.style.transform = `translate(${markerPos.x}px, ${markerPos.y}px)`
-        if (zoom < 14) {
+        if (zoom <= this.zoomLimit) {
             this.div.classList.add('far')
             this.label.classList.add('far')
             if (!this.div.classList.contains('force-visible')) return

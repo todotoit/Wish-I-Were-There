@@ -40,6 +40,7 @@ import Events from "@/plugins/events";
 import MarkerClusterer from "@google/markerclustererplus";
 
 const CLUSTER_GRID_SIZE = 40;
+const CLUSTER_MAX_ZOOM = 15;
 
 export default {
   name: "Map",
@@ -81,12 +82,12 @@ export default {
       if (from.meta.tutorial && to.meta.explore) {
         this.toggleUserMarkers(true);
         this.togglePinMarkers(true);
-        this.toggleClustering(true)
+        this.toggleClustering(true);
       }
       if (!from.meta.tutorial && to.meta.tutorial) {
         this.toggleUserMarkers(false);
         this.togglePinMarkers(false);
-        this.toggleClustering(false)
+        this.toggleClustering(false);
       }
     }
   },
@@ -192,7 +193,7 @@ export default {
     createUserCluster() {
       this.userCluster = new MarkerClusterer(this.map, this.userMarkers, {
         styles: null,
-        maxZoom: 13,
+        maxZoom: CLUSTER_MAX_ZOOM,
         gridSize: CLUSTER_GRID_SIZE,
         clusterClass: "map-cluster",
         imageExtension: "svg",
@@ -202,7 +203,7 @@ export default {
     createPinCluster() {
       this.pinCluster = new MarkerClusterer(this.map, this.pinMarkers, {
         styles: null,
-        maxZoom: 13,
+        maxZoom: CLUSTER_MAX_ZOOM,
         gridSize: CLUSTER_GRID_SIZE,
         imagePath: "../images/s",
         clusterClass: "map-cluster",
@@ -227,10 +228,14 @@ export default {
         visible: this.showUserMarkers,
         disabled: this.selectedUserMarker
       };
-      const overlay = createBubble(this.map, pos, { user, marker });
+      const overlay = createBubble(this.map, pos, {
+        user,
+        marker,
+        zoomLimit: CLUSTER_MAX_ZOOM
+      });
       marker.addListener("spider_format", e => {
-        this.map.setZoom(this.map.getZoom())
-        google.maps.event.trigger(this.map,'click')
+        this.map.setZoom(this.map.getZoom());
+        google.maps.event.trigger(this.map, "click");
       });
       marker.addListener("spider_click", e => {
         if (e) e.stop();
@@ -428,9 +433,9 @@ export default {
   }
   &.hidden,
   &.far {
-    opacity: 0;
+    display: none;
     &.force-visible {
-      opacity: 1;
+      display: block;
     }
   }
   img {
@@ -473,9 +478,9 @@ label.bubble-label {
   }
   &.hidden,
   &.far {
-    opacity: 0;
+    display: none;
     &.force-visible {
-      opacity: 1;
+      display: block;
     }
   }
 }
