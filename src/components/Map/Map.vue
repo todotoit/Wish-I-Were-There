@@ -1,5 +1,6 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing, highlight}">
+    <DeleteUser v-if="deleting" />
     <div class="view">
       <div class="view-content">
         <header>
@@ -22,6 +23,11 @@
             class="add-your-star"
             @click="$router.push('/cookies')"
           >{{ $t('exploreAddYours') }}</button>
+          <a
+            v-if="isExplore && isCurrentUserSelected"
+            class="delete-user"
+            @click="$store.commit('SET_DELETING', true)"
+          >{{ $t('exploreRemoveYours') }}</a>
         </footer>
       </div>
     </div>
@@ -34,17 +40,18 @@ import styles from "./map-styles.js";
 import { createBubble } from "./bubble/bubble-overlay";
 import { getNewItems, getRemovedItems } from "@/utils";
 import SearchLocation from "@/components/SearchLocation.vue";
+import DeleteUser from "@/components/DeleteUser.vue";
 import GmapsQuadraticBezier from "./line/gm-bezier";
 import Tools from "./Tools";
 import Events from "@/plugins/events";
 import MarkerClusterer from "@google/markerclustererplus";
 
 const CLUSTER_GRID_SIZE = 40;
-const CLUSTER_MAX_ZOOM = 15;
+const CLUSTER_MAX_ZOOM = 14;
 
 export default {
   name: "Map",
-  components: { SearchLocation, Tools },
+  components: { SearchLocation, Tools, DeleteUser },
   watch: {
     users(val, oldVal) {
       const newUsers = getNewItems(val, oldVal);
@@ -101,6 +108,14 @@ export default {
     isExplore() {
       return this.$route.meta.explore;
     },
+    isCurrentUserSelected() {
+      return this.selectedUserMarker && this.user
+        ? this.selectedUserMarker.user.id === this.user.id
+        : false;
+    },
+    deleting() {
+      return this.$store.state.deleting;
+    },
     map() {
       return this.$store.state.map;
     },
@@ -134,7 +149,7 @@ export default {
       center: { lat: this.startPos.lat, lng: this.startPos.lng },
       zoom: 13,
       minZoom: 3,
-      maxZoom: 19,
+      maxZoom: 18,
       mapTypeId: "roadmap",
       disableDefaultUI: true,
       zoomControl: true,
@@ -235,7 +250,6 @@ export default {
       });
       marker.addListener("spider_format", e => {
         this.map.setZoom(this.map.getZoom());
-        google.maps.event.trigger(this.map, "click");
       });
       marker.addListener("spider_click", e => {
         if (e) e.stop();
@@ -395,6 +409,9 @@ export default {
 #search-location {
   width: 100%;
 }
+.delete-user {
+  color: $col-green;
+}
 @media screen and (min-width: $mqTablet) {
   .map-container .view .view-content {
     header {
@@ -409,6 +426,7 @@ export default {
       }
       .tools {
         flex: 1;
+        min-width: 18rem;
         max-width: 25%;
         .tools-wrap {
           padding: 0;
@@ -450,6 +468,7 @@ export default {
     transition: opacity 0.5s;
     &.far {
       animation: spin 80s linear infinite;
+      opacity: .2;
     }
     opacity: 0.3;
     &.hidden {

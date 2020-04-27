@@ -92,7 +92,8 @@ export default {
     z-index: 2;
   }
   .tools-bg {
-    background-color: rgba($col-dark, 0.8);
+    background-color: rgba($col-dark, 0.7);
+    mix-blend-mode: multiply;
     filter: blur(1rem);
   }
 }

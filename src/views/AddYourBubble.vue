@@ -30,7 +30,12 @@
         />
       </header>
       <footer>
-        <button @click="createNewBubble()" :disabled="!markerPlaced">{{ $t('phase01Btn') }}</button>
+        <button
+          @click="createNewBubble()"
+          :disabled="!markerPlaced"
+          v-if="!loading"
+        >{{ $t('phase01Btn') }}</button>
+        <SingleLoader v-else />
       </footer>
     </template>
     <template v-else>
@@ -48,17 +53,19 @@
 <script>
 import MarkerPlacer from "@/components/MarkerPlacer.vue";
 import InputCheck from "@/components/InputCheck";
+import SingleLoader from "@/components/SingleLoader";
 import Events from "@/plugins/events";
 
 export default {
   name: "FindYourBubble",
-  components: { MarkerPlacer, InputCheck },
+  components: { MarkerPlacer, InputCheck, SingleLoader },
   data() {
     return {
       step: 0,
       name: "",
       valid: true,
-      markerPlaced: false
+      markerPlaced: false,
+      loading: false
     };
   },
   computed: {
@@ -79,12 +86,19 @@ export default {
   methods: {
     createNewBubble() {
       if (!this.valid || !this.markerPlaced) return;
+      this.loading = true;
       this.$store
         .dispatch("createNewUser", { name: this.name, marker: this.marker })
         .then(r => {
+          this.loading = false;
           this.$store.commit("SET_PLACING", false);
           this.$store.commit("SET_USER", r);
-          this.$cookie.set("daydream_user", r.id, { expires: "1Y" });
+          this.$store.commit("SET_USER_KEY", r.key);
+          this.$cookie.set(
+            "daydream_user",
+            JSON.stringify({ id: r.id, key: r.key }),
+            { expires: "1Y" }
+          );
           Events.$emit("select-user", r.id);
         });
     },
