@@ -40,8 +40,10 @@ export default {
       this.loading = true;
       return this.$store.dispatch("deleteCurrentUser").then(r => {
         this.loading = false;
-        if (r) this.deleted = true;
-        else this.error = true;
+        if (r) {
+          this.deleted = true;
+          setTimeout(() => window.location.reload(), 5000);
+        } else this.error = true;
       });
     },
     reload() {
