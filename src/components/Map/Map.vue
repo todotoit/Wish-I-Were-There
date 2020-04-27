@@ -1,5 +1,6 @@
 <template>
   <div class="map-container" :class="{active: isExplore, placing: placing, highlight}">
+    <DeleteUser v-if="deleting" />
     <div class="view">
       <div class="view-content">
         <header>
@@ -25,7 +26,7 @@
           <a
             v-if="isExplore && isCurrentUserSelected"
             class="add-your-star"
-            @click="$router.push('/cookies')"
+            @click="$store.commit('SET_DELETING', true)"
           >{{ $t('exploreRemoveYours') }}</a>
         </footer>
       </div>
@@ -39,6 +40,7 @@ import styles from "./map-styles.js";
 import { createBubble } from "./bubble/bubble-overlay";
 import { getNewItems, getRemovedItems } from "@/utils";
 import SearchLocation from "@/components/SearchLocation.vue";
+import DeleteUser from "@/components/DeleteUser.vue";
 import GmapsQuadraticBezier from "./line/gm-bezier";
 import Tools from "./Tools";
 import Events from "@/plugins/events";
@@ -49,7 +51,7 @@ const CLUSTER_MAX_ZOOM = 15;
 
 export default {
   name: "Map",
-  components: { SearchLocation, Tools },
+  components: { SearchLocation, Tools, DeleteUser },
   watch: {
     users(val, oldVal) {
       const newUsers = getNewItems(val, oldVal);
@@ -110,6 +112,9 @@ export default {
       return this.selectedUserMarker && this.user
         ? this.selectedUserMarker.user.id === this.user.id
         : false;
+    },
+    deleting() {
+      return this.$store.state.deleting;
     },
     map() {
       return this.$store.state.map;
