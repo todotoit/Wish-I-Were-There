@@ -49,14 +49,19 @@ section.privacy {
   }
   .language-switch {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 1rem;
+    ul {
+      text-align: center;
+    }
   }
   header {
     width: 100%;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     text-align: center;
     margin-bottom: 3rem;
   }
