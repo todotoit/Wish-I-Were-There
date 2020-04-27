@@ -16,13 +16,17 @@ const vuex = new Vuex.Store({
     userPins: null,
     key: null,
     placing: false,
-    auth: false
+    auth: false,
+    deleting: false
   },
 
   mutations: {
     ...store.mutations,
     SET_MAP(state, data) {
       state.map = data
+    },
+    SET_DELETING(state, data) {
+      state.deleting = data
     },
     SET_USERS(state, data) {
       state.users = data

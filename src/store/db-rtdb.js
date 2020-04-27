@@ -88,7 +88,7 @@ export const store = {
                 })
         },
         deleteCurrentUser: (context) => {
-            if (!context.state.user || context.state.key) return Promise.resolve(false)
+            if (!context.state.user || !context.state.key) return Promise.resolve(false)
             return deleteUserCloud({ user: context.state.user, key: context.state.key, pin: context.getters.getUserPin(context.state.user.id) })
         },
         createNewPin: (context, data) => {
