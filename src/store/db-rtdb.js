@@ -10,6 +10,7 @@ const usersRef = db.ref('users')
 const pinsRef = db.ref('pins')
 const functions = firebase.app().functions('us-central1');
 const createUserCloud = functions.httpsCallable('createUser');
+const deleteUserCloud = functions.httpsCallable('deleteUser');
 
 function prepareUser(context, snap) {
     const user = snap.val()
@@ -85,6 +86,10 @@ export const store = {
                 .then(user => {
                     return { ...user.data, marker: data.marker }
                 })
+        },
+        deleteCurrentUser: (context) => {
+            if (!context.state.user || context.state.key) return Promise.resolve(false)
+            return deleteUserCloud({ user: context.state.user, key: context.state.key, pin: context.getters.getUserPin(context.state.user.id) })
         },
         createNewPin: (context, data) => {
             const coordinates = data.marker.getPosition()
