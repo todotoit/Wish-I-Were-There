@@ -29,27 +29,30 @@
         </InputCheck>
       </header>
       <footer>
-        <button @click="createNewPin" :disabled="!message">{{ $t('phase04Btn') }}</button>
+        <button @click="createNewPin" :disabled="!message" v-if="!loading">{{ $t('phase04Btn') }}</button>
+        <SingleLoader v-else />
       </footer>
     </template>
   </div>
 </template>
 
 <script>
+import SingleLoader from "@/components/SingleLoader";
 import MarkerPlacer from "@/components/MarkerPlacer.vue";
 import InputCheck from "@/components/InputCheck";
 import { cleanInput } from "@/utils";
 
 export default {
   name: "AddYourPins",
-  components: { MarkerPlacer, InputCheck },
+  components: { MarkerPlacer, InputCheck, SingleLoader },
   data() {
     return {
       message: "",
       valid: false,
       addingMessage: false,
       messageLength: 200,
-      markerPlaced: false
+      markerPlaced: false,
+      loading: false
     };
   },
   computed: {
@@ -69,6 +72,7 @@ export default {
   methods: {
     createNewPin() {
       if (!this.valid || !this.markerPlaced) return;
+      this.loading = true;
       this.$store
         .dispatch("createNewPin", {
           user: this.user,
@@ -76,6 +80,7 @@ export default {
           marker: this.marker
         })
         .then(r => {
+          this.loading = false;
           this.$store.commit("SET_USER_PINS", r);
           this.$store.commit("SET_PLACING", false);
           this.$router.push("/thankyou");
