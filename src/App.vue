@@ -87,7 +87,6 @@ export default {
         } catch {
           user = { id: cookie, key: null };
         }
-        console.log("user detected", user);
         if (!user) return;
         this.$store.dispatch("setCurrentUser", user).then(r => {
           if (!r) this.$cookie.delete("daydream_user");
