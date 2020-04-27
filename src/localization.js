@@ -60,7 +60,7 @@ export default {
         exploreSelf: 'Self-isolating planets',
         exploreSearch: 'Search address',
         exploreAddYours: 'Add your star',
-        exploreAddYours: 'Remove your pin',
+        exploreRemoveYours: 'Remove your pin',
 
         // Remove
         removeUserTitle: 'Are you sure?',
