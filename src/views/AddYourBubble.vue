@@ -84,7 +84,11 @@ export default {
         .then(r => {
           this.$store.commit("SET_PLACING", false);
           this.$store.commit("SET_USER", r);
-          this.$cookie.set("daydream_user", r.id, { expires: "1Y" });
+          this.$cookie.set(
+            "daydream_user",
+            { id: r.id, key: r.key },
+            { expires: "1Y" }
+          );
           Events.$emit("select-user", r.id);
         });
     },

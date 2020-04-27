@@ -1,12 +1,15 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
+import 'firebase/functions'
 import { firebaseDevConfig, firebaseProdConfig } from './config.js'
 
 const config = process.env.NODE_ENV !== 'development' ? firebaseProdConfig : firebaseDevConfig
 export const db = firebase.initializeApp(config).database()
 const usersRef = db.ref('users')
 const pinsRef = db.ref('pins')
+const functions = firebase.app().functions('us-central1');
+const createUserCloud = functions.httpsCallable('createUser');
 
 function prepareUser(context, snap) {
     const user = snap.val()
@@ -73,21 +76,14 @@ export const store = {
         },
         createNewUser: (context, data) => {
             const coordinates = data.marker.getPosition()
-            const id = context.getters.getUniqueUserId()
             const userData = {
                 coordinates: { Wa: coordinates.lat(), za: coordinates.lng() },
                 created: new Date().toISOString(),
                 name: data.name
             }
-            return db
-                .ref('users/' + id)
-                .set(userData)
-                .then(() => {
-                    const user = {
-                        id,
-                        ...userData,
-                    }
-                    return { ...user, marker: data.marker }
+            return createUserCloud(userData)
+                .then(user => {
+                    return { ...user.data, marker: data.marker }
                 })
         },
         createNewPin: (context, data) => {
