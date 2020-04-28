@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <transition name="fade">
-      <Loader v-if="!ready" />
+      <Loader v-if="!loaded" />
       <div class="container" v-else>
         <div class="view" v-show="!isExplore">
-          <router-view v-if="ready" />
+          <router-view v-if="isHome || ready" />
         </div>
         <Map v-if="ready" v-show="!info && (isExplore || isTutorial)" />
         <div class="btn-info" @click="info = !info" v-show="isExplore">
@@ -42,9 +42,6 @@ export default {
     ready() {
       return this.$store.state.ready;
     },
-    isHome() {
-      return this.$route.path === "/";
-    },
     isExplore() {
       return this.$route.meta.explore === true;
     },
@@ -59,48 +56,53 @@ export default {
     }
   },
   mounted() {
-    if (this.isTutorial || this.$route.path === "/cookies")
-      this.$router.push("/");
     if (document.readyState === "complete") this.init();
     else {
       document.onreadystatechange = () => {
-        if (document.readyState === "complete") this.init();
+        if (document.readyState === "complete") {
+          this.init();
+        }
       };
     }
-    Promise.all([
-      this.$store.dispatch("init"),
-      this.includeGmapsScript(),
-      this.includeOmsScript()
-    ]).then(() => {
-      this.$store.commit("SET_READY", true);
-      const user = this.getSavedUser();
-      if (!user) return;
-      this.$store.dispatch("setCurrentUser", user).then(r => {
-        if (!r) this.$cookie.delete("daydream_user");
-      });
-      if (!user.key) {
-        this.$store.dispatch("upgradeUser", user).then(r => {
-          if (r) this.$cookie.set("daydream_user", JSON.stringify(r));
+    if (this.isTutorial || this.$route.path === "/cookies")
+      this.$router.push("/");
+    this.$store
+      .dispatch("firebaseAuth")
+      .then(() => this.$store.dispatch("getUsers"))
+      .then(() => {
+        return Promise.all([
+          this.$store.dispatch("getPins"),
+          this.includeGmapsScript(),
+          this.includeOmsScript()
+        ]);
+      })
+      .then(() => {
+        this.$store.commit("SET_READY", true);
+        const cookie = this.$cookie.get("daydream_user");
+        if (!cookie) return;
+        let user;
+        try {
+          const o = JSON.parse(cookie);
+          user = { id: o.id, key: o.key };
+        } catch {
+          user = { id: cookie, key: null };
+        }
+        if (!user) return;
+        this.$store.dispatch("setCurrentUser", user).then(r => {
+          if (!r) this.$cookie.delete("daydream_user");
         });
-      }
-    });
+        if (!user.key) {
+          this.$store.dispatch("upgradeUser", user).then(r => {
+            if (r) {
+              this.$cookie.set("daydream_user", JSON.stringify(r));
+            }
+          });
+        }
+      });
   },
   methods: {
     init() {
-      this.loaded = true;
-    },
-    getSavedUser() {
-      const cookie = this.$cookie.get("daydream_user");
-      if (!cookie) return false;
-      let user;
-      try {
-        const o = JSON.parse(cookie);
-        user = { id: o.id, key: o.key };
-      } catch {
-        user = { id: cookie, key: null };
-      }
-      if (!user) return false;
-      return user;
+      setTimeout(() => (this.loaded = true), 1000);
     },
     includeGmapsScript() {
       if (document.getElementsByClassName("gm-src").length)
@@ -138,7 +140,6 @@ export default {
 #app {
   overflow: hidden;
   width: 100%;
-  background-color: $col-dark;
 }
 .close {
   cursor: pointer;

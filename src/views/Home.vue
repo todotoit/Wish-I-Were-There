@@ -7,8 +7,16 @@
         <p class="exte-medium" v-html="$t('intro')"></p>
       </header>
       <footer>
-        <button @click="$router.push('/cookies')">{{ cta }}</button>
-        <a @click="$router.push('/explore')" v-if="!user">{{ $t('phase03Skip') }}</a>
+        <transition name="fade" mode="out-in">
+          <div v-if="ready">
+            <button @click="$router.push('/cookies')">{{ cta }}</button>
+            <a @click="$router.push('/explore')">{{ $t('phase03Skip') }}</a>
+          </div>
+          <div v-else class="data-loading">
+            <Loader />
+            <p>loading map data</p>
+          </div>
+        </transition>
       </footer>
     </div>
     <transition name="fade">
@@ -20,10 +28,11 @@
 <script>
 import LanguageSwitch from "@/components/LanguageSwitch";
 import HomeAnimations from "@/components/HomeAnimations";
+import SingleLoader from "@/components/SingleLoader";
 
 export default {
   name: "Home",
-  components: { LanguageSwitch, HomeAnimations },
+  components: { LanguageSwitch, HomeAnimations, Loader: SingleLoader },
   data() {
     return {
       step: 0
@@ -35,6 +44,9 @@ export default {
     },
     pin() {
       return this.$store.state.userPins;
+    },
+    ready() {
+      return this.$store.state.ready;
     },
     cta() {
       if (this.pin) return this.$t("ctaHasPin");
@@ -61,6 +73,18 @@ export default {
     align-items: center;
     svg {
       margin-bottom: 1rem;
+    }
+  }
+  footer {
+    min-height: 90px;
+    .data-loading {
+      p {
+        color: $col-green;
+      }
+      svg {
+        stroke: $col-green;
+        stroke-width: 4;
+      }
     }
   }
 }
