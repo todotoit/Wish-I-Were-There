@@ -4,7 +4,7 @@
       <Loader v-if="!loaded" />
       <div class="container" v-else>
         <div class="view" v-show="!isExplore">
-          <router-view v-if="ready" />
+          <router-view v-if="isHome || ready" />
         </div>
         <Map v-if="ready" v-show="!info && (isExplore || isTutorial)" />
         <div class="btn-info" @click="info = !info" v-show="isExplore">

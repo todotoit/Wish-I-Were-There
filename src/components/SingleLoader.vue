@@ -1,6 +1,6 @@
 <template>
   <div class="single-loader">
-    <img src="@/assets/icons/pin.svg" svg-inline class="loader-icon" />
+    <img src="@/assets/icons/pin-loader.svg" svg-inline class="loader-icon" />
   </div>
 </template>
 
@@ -15,5 +15,6 @@ export default {};
   height: 3rem;
   outline: none;
   animation: spin 10s linear infinite;
+  stroke: $col-white;
 }
 </style>

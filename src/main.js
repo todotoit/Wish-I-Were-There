@@ -10,7 +10,6 @@ import VueMq from 'vue-mq'
 
 import './assets/css/style.scss'
 import './assets/css/transitions.scss'
-import './assets/fonts/stylesheet.css'
 
 Vue.use(VueSocialSharing);
 Vue.use(VueCookie);
