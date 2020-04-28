@@ -48,6 +48,11 @@ export const store = {
                     return context.commit('SET_AUTH', false)
                 })
         },
+        init: context => {
+            return context.dispatch('firebaseAuth')
+                .then(() => context.dispatch('getUsers'))
+                .then(() => context.dispatch('getPins'))
+        },
         getUsers: context => {
             usersRef.on('child_added', function (data) {
                 const user = prepareUser(context, data)

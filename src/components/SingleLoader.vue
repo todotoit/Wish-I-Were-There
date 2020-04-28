@@ -16,5 +16,6 @@ export default {};
   outline: none;
   animation: spin 10s linear infinite;
   stroke: $col-white;
+  stroke-width: 4;
 }
 </style>

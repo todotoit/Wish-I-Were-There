@@ -83,7 +83,6 @@ export default {
       }
       svg {
         stroke: $col-green;
-        stroke-width: 4;
       }
     }
   }
