@@ -45,6 +45,9 @@ export default {
     isExplore() {
       return this.$route.meta.explore === true;
     },
+    isHome() {
+      return this.$route.path === "/";
+    },
     isTutorial() {
       return this.$route.meta.tutorial === true;
     },
