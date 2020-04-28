@@ -9,8 +9,9 @@ module.exports = {
       }
     }
   },
-  transpileDependencies: ['bad-words', '@google/markerclustererplus', '@firebase/app', '@firebase/database'],
+  transpileDependencies: ['bad-words', '@google/markerclustererplus', '@firebase/app'],
   chainWebpack: config => {
+    config.resolve.alias.set('assets', path.resolve('src/assets'));
     config.module
       .rule("vue")
       .use("vue-svg-inline-loader")
@@ -22,7 +23,6 @@ module.exports = {
       .use('raw-loader')
       .loader('raw-loader')
       .end()
-    config.resolve.alias.set('assets', path.resolve('src/assets'));
     config.module
       .rule("modernizr")
       .test(/\.modernizrrc$/)
