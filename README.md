@@ -1,24 +1,2 @@
-# daydream
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Wish I Were There
+Wish I Were There stems from the awareness that self-isolating is the right thing to do during the pandemic, but it also makes our favorite places feel like a constellation of faraway stars. It allows us to create a collective sky map of daydreams, of all the places where our heart goes while we need to stay at home. Sharing these new stars will bring us closer, even while we need to stay apart.
