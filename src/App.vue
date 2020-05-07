@@ -20,13 +20,9 @@
       </div>
     </transition>
     <Cover class="shader-bg" v-if="info || (!isExplore && !isTutorial)" />
-    <div
-      id="awwwards"
-      v-if="isHome"
-      style="position: fixed; z-index: 999; transform: translateY(-50%); top: 50%;  right: 0"
-    >
+    <div id="awwwards" v-if="isHome" class="awwwards-banner">
       <a href="https://www.awwwards.com" target="_blank">
-        <svg width="53.08" height="171.358">
+        <svg>
           <path class="js-color-bg" fill="white" d="M0 0h53.08v171.358H0z" />
           <g class="js-color-text" fill="black">
             <path
@@ -184,6 +180,25 @@ export default {
   svg path {
     fill: $col-white;
   }
+}
+
+.awwwards-banner {
+  position: fixed;
+  z-index: 999;
+  transform-origin: center right;
+  transform: translateY(-50%) scale(0.9);
+  top: 50%;
+  right: 0;
+  svg {
+    width: 53.08px;
+    height: 171.358px;
+  }
+  @media screen and (max-width: $mqTablet) {
+    top: 1.25rem;
+    transform-origin: center right;
+    transform: scale(0.7);
+  }
+
 }
 
 .btn-info {
