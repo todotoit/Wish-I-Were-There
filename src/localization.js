@@ -32,7 +32,7 @@ export default {
 
         // Your bubble
         phase02Title: 'Your current cosmos',
-        phase02Desc: 'Your planet is at the center of a 200m-radius cosmos, because that’s how far most Italians can go from home while on lockdown. Staying within this small range makes a big difference against COVID-19.',
+        phase02Desc: 'Your planet is at the center of a small cosmos: we picked a 200m-radius because that’s how far Italians were allowed at the height of lockdown. Staying within this small range made a big difference against COVID-19.',
         phase02Btn: 'Next',
 
         // Daydream
@@ -77,7 +77,7 @@ export default {
         aboutDesc: `<p>Wish I Were There stems from the awareness that self-isolating is the right thing to do during the pandemic, but it also makes our favorite places feel like a constellation of faraway stars. It allows us to create a collective sky map of daydreams, of all the places where our heart goes while we need to stay at home. Sharing these new stars will bring us closer, even while we need to stay apart.</p>
         <p>Wish I Were There is a project by TODO, a design studio where physical and digital, technology and the human touch are brought together into communication ecosystems where people can feel, enjoy, and learn. <br/>
         Founded in 2007, TODO has designed and delivered playful and profound experiences for Enel, Arduino, the Mozilla Foundation, Audi, Seat, the United Arab Emirates University and many more Italian and international clients.</p>
-        <p>TODO’s team has been working remotely since 10 March to stay – and keep others – safe.</p>`,
+        <p>Wish I Were There was entirely ideated and created remotely, during the lockdown in Italy.</p>`,
 
         privacyIntroTitle: `INTRODUCTION`,
         privacyIntroText: `We know your personal data – and the way they are used – are important. This privacy policy will help you understand which personal data we collect, why we collect them, and how we use them.`,
@@ -249,7 +249,7 @@ For further information on cookies and their use, visit: All About Cookies: www.
 
         // Your bubble
         phase02Title: 'Il tuo microcosmo',
-        phase02Desc: 'Il tuo pianeta è il centro di un microcosmo di 200m di raggio: il massimo della distanza da casa per molti italiani oggi. Limitarci a questo spazio aiuta a combattere la COVID-19.',
+        phase02Desc: 'Il tuo pianeta è il centro di un microcosmo: gli abbiamo dato 200m di raggio perché era la distanza consentita durante il lockdown in Italia. Limitarci a questo spazio ha aiutato il Paese a combattere la COVID-19.',
         phase02Btn: 'Avanti',
 
         // Daydream
@@ -295,7 +295,7 @@ For further information on cookies and their use, visit: All About Cookies: www.
         aboutDesc: `<p>Wish I Were There nasce dalla consapevolezza che la cosa migliore che possiamo fare durante questa pandemia è rimanere a casa. E se, nell’isolamento, i nostri luoghi preferiti iniziano a sembrare costellazioni lontane, creiamo la mappa dei nostri sogni, con tutti i posti che visitiamo con il cuore anche se siamo costretti a casa. Condividere queste nuove stelle ci farà sentire più vicini, nonostante tutto.</p>
         <p>Wish I Were There è un progetto di TODO, uno studio di design dove fisico e digitale, tecnologia e sensibilità umana compongono ecosistemi di comunicazione che permettono alle persone di emozionarsi, divertirsi e imparare.<br/>
         Fondato nel 2007, TODO ha ideato e realizzato progetti per Enel, Arduino, Mozilla Foundation, Audi, Seat, Università degli Emirati Arabi Uniti e molti altri clienti in Italia e all’estero.</p>
-        <p>Il team di TODO lavora in remoto dal 10 marzo, per la sicurezza di tutti.</p>`,
+        <p>Wish I Were There è un progetto realizzato interamente in remoto, durante il lockdown.</p>`,
 
         privacyIntroTitle: `INTRODUZIONE`,
         privacyIntroText: `Sappiamo che tuoi dati personali – e il modo in cui sono utilizzati – sono importanti. Questa informativa sulla privacy ti aiuterà a capire quali dati personali raccogliamo, perché li raccogliamo e come li utilizziamo.`,
