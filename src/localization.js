@@ -242,7 +242,7 @@ For further information on cookies and their use, visit: All About Cookies: www.
         phase00Btn: 'Avanti',
 
         // Place your bubble
-        phase01Title: 'Dove passi il lockdown?',
+        phase01Title: 'Dove sei in questo momento?',
         phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato. La posizione sarà visibile anche ad altri utenti. Se vuoi, puoi scegliere un punto approssimativo per non indicare il tuo indirizzo preciso.',
         phase01Address: 'Cerca sulla mappa',
         phase01Btn: 'Aggiungi pianeta',
