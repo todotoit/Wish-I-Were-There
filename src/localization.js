@@ -2,7 +2,7 @@ export default {
     en: {
         // Intro
         title: 'Wish I Were There',
-        intro: `Self-isolating is the right thing to do during the pandemic, but it also makes our favorite places feel like a constellation of faraway stars. So let’s create a collective sky map of daydreams, of all the places where our heart goes while we need to stay at home. Sharing these new stars will bring us closer, even while we need to stay apart.`,
+        intro: `Self-isolating is the right thing to do during the pandemic, but it also makes our friends and family feel like a constellation of faraway stars. So let’s create a collective sky map of daydreams, of all the places where our heart goes while we need to stay at home. Sharing these new stars will bring us closer, even while we need to stay apart.`,
         ctaStart: `Start wishing`,
         ctaHasUser: `See your planet`,
         ctaHasPin: `Visit your star`,
@@ -26,18 +26,18 @@ export default {
 
         // Place your bubble
         phase01Title: 'Where are you now?',
-        phase01Desc: 'Locate the little planet where you are self-isolating at the moment. The location will be visible to other users too. If you don’t want to give your exact address, enter an approximate location.',
+        phase01Desc: 'Locate the little planet where you are spending your days at the moment. The location will be visible to other users too. If you don’t want to give your exact address, enter an approximate location.',
         phase01Address: 'Search on the map',
         phase01Btn: 'Add planet',
 
         // Your bubble
         phase02Title: 'Your current cosmos',
-        phase02Desc: 'Your planet is at the center of a small cosmos: we picked a 200m-radius because that’s how far Italians were allowed at the height of lockdown. Staying within this small range made a big difference against COVID-19.',
+        phase02Desc: 'Your planet is at the center of a small cosmos and for now, the fewer people you come into contact with, the better. Social distancing makes a big difference against COVID-19.',
         phase02Btn: 'Next',
 
         // Daydream
         phase03Title: 'Where would you love to go?',
-        phase03Desc: 'Go ahead, daydream a little. Where is the first place you want to go to, as soon as we are all free to move around again?',
+        phase03Desc: 'Go ahead, daydream a little. Where is the first place you want to go to, as soon as the pandemic is under control?',
         phase03Input: 'Search on the map',
         phase03Btn: 'Add Star',
         phase03Skip: 'Skip to the map',
@@ -219,7 +219,7 @@ For further information on cookies and their use, visit: All About Cookies: www.
     it: {
         // Intro
         title: 'Wish I Were There',
-        intro: `La cosa migliore che possiamo fare durante la pandemia è rimanere a casa. E se i nostri luoghi preferiti iniziano a sembrarci costellazioni lontane? Creiamo la mappa dei nostri sogni, quella dei posti che visitiamo con il cuore. Condividere queste nuove stelle ci farà sentire più vicini, nonostante tutto.`,
+        intro: `La cosa migliore che possiamo fare durante la pandemia è rimanere a casa. E se le persone a cui vogliamo bene iniziano a sembrarci costellazioni lontane? Creiamo la mappa dei nostri sogni, quella dei posti che visitiamo con il cuore. Condividere queste nuove stelle ci farà sentire più vicini, nonostante tutto.`,
         ctaStart: `Inizia a sognare`,
         ctaHasUser: `Vedi il tuo pianeta`,
         ctaHasPin: `Visita la tua stella`,
@@ -243,18 +243,18 @@ For further information on cookies and their use, visit: All About Cookies: www.
 
         // Place your bubble
         phase01Title: 'Dove sei in questo momento?',
-        phase01Desc: 'Metti il tuo pianeta nel punto dove ti sei auto-isolato. La posizione sarà visibile anche ad altri utenti. Se vuoi, puoi scegliere un punto approssimativo per non indicare il tuo indirizzo preciso.',
+        phase01Desc: 'Metti il tuo pianeta nel punto dove stai passando le tue giornate. La posizione sarà visibile anche ad altri utenti. Se vuoi, puoi scegliere un punto approssimativo per non indicare il tuo indirizzo preciso.',
         phase01Address: 'Cerca sulla mappa',
         phase01Btn: 'Aggiungi pianeta',
 
         // Your bubble
         phase02Title: 'Il tuo microcosmo',
-        phase02Desc: 'Il tuo pianeta è il centro di un microcosmo: gli abbiamo dato 200m di raggio perché era la distanza consentita durante il lockdown in Italia. Limitarci a questo spazio ha aiutato il Paese a combattere la COVID-19.',
+        phase02Desc: 'Il tuo pianeta è il centro di un microcosmo: per il momento, meno persone incontri di persona e meglio è. Limitare gli spostamenti e i contatti aiuta tutti a combattere il COVID-19.',
         phase02Btn: 'Avanti',
 
         // Daydream
         phase03Title: 'Dove sogni di essere?',
-        phase03Desc: 'Concediti un sogno a occhi aperti. Qual è il primo posto dove andrai, appena saremo di nuovo liberi di spostarci?',
+        phase03Desc: 'Concediti un sogno a occhi aperti. Qual è il primo posto dove andrai, appena la pandemia sarà sotto controllo?',
         phase03Input: 'Cerca sulla mappa',
         phase03Btn: 'Aggiungi stella',
         phase03Skip: 'Salta alla mappa',
