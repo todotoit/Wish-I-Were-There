@@ -4,8 +4,7 @@ module.exports = {
       useBuiltIns: 'usage',
       polyfills: [
         'es.object.assign',
-        'es.object.values',
-        'es.array'
+        'es.object.values'
       ]
     }]
   ]
