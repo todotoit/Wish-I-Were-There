@@ -66,7 +66,7 @@ function createOverlayProto() {
         }
         const overlayProjection = this.getProjection();
         if (!overlayProjection || !this.div) return
-        const zoom = overlayProjection['T'].zoom
+        const zoom = this.map.zoom
         let zoomLevel = 0
         if (zoom > 16) zoomLevel = 1
 
@@ -84,7 +84,8 @@ function createOverlayProto() {
             this.label.classList.remove('far')
         }
         const scale = zoomLevel ? 1 : clamp(map(zoom, 14, 17, 2, 1), 1, 1.5)
-        this.div.style.transform = `translate(${sw.x}px, ${ne.y}px) scale(${scale})`
+        const t = `translate(${sw.x}px, ${ne.y}px) scale(${scale})`
+        this.div.style.transform = t
         this.div.style.width = (ne.x - sw.x) + 'px';
         this.div.style.height = (sw.y - ne.y) + 'px';
         this.bubble.setZoomLevel(zoomLevel)
